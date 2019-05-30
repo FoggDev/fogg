@@ -21,7 +21,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/foggdev/fogg.git",
-    "directory": "packages/fogg-buttons"
+    "directory": "packages/fogg-alerts"
   },
   "license": "MIT",
   "jest": {
