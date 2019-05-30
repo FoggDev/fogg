@@ -1,6 +1,6 @@
 {
   "name": "fogg-alerts",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Fogg Alerts",
   "main": "dist/bundle.js",
   "scripts": {
