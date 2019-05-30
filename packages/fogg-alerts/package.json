@@ -2,7 +2,7 @@
   "name": "fogg-alerts",
   "version": "1.0.0",
   "description": "Fogg Alerts",
-  "main": "dist/index.js",
+  "main": "dist/bundle.js",
   "scripts": {
     "sandbox": "webpack-dev-server --config webpack.sandbox.config.js",
     "clean": "rm -rf ./dist",
@@ -25,7 +25,8 @@
     "directory": "packages/fogg-alerts"
   },
   "files": [
-    "dist"
+    "src/",
+    "dist/"
   ],
   "license": "MIT",
   "jest": {

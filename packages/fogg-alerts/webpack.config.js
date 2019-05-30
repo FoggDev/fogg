@@ -7,7 +7,7 @@ module.exports = {
   entry: './src/entry.js',
   output: {
     libraryTarget: 'umd',
-    filename: 'index.js',
+    filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist')
   },
   module: {
