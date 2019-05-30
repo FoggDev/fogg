@@ -2,7 +2,7 @@
   "name": "fogg-buttons",
   "version": "1.0.0",
   "description": "Fogg Buttons",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "sandbox": "webpack-dev-server --config webpack.sandbox.config.js",
     "clean": "rm -rf ./dist",
@@ -23,6 +23,9 @@
     "url": "https://github.com/foggdev/fogg.git",
     "directory": "packages/fogg-buttons"
   },
+  "files": [
+    "dist"
+  ],
   "license": "MIT",
   "jest": {
     "setupFilesAfterEnv": [

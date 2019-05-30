@@ -8,7 +8,7 @@ module.exports = {
   entry: './sandbox/index.jsx',
   output: {
     libraryTarget: 'umd',
-    filename: 'bundle-sandbox.js',
+    filename: 'index.js',
     path: path.resolve(__dirname, 'dist')
   },
   module: {
