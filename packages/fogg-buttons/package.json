@@ -7,7 +7,7 @@
     "sandbox": "webpack-dev-server --config webpack.sandbox.config.js",
     "clean": "rm -rf ./dist",
     "build:dev": "npm run clean && webpack -w -d --config webpack.config.js",
-    "build:npm": "npm run clean && NODE_ENV=production webpack --config webpack.config.js",
+    "build": "npm run clean && NODE_ENV=production webpack --config webpack.config.js",
     "lint": "eslint --ext .jsx,.js src",
     "lint:fix": "eslint --ext .jsx,.js --fix src",
     "test": "jest --no-cache --maxWorkers=4",
