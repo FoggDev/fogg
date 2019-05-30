@@ -1,0 +1,72 @@
+{
+  "name": "fogg-alerts",
+  "version": "1.0.0",
+  "description": "Fogg Alerts",
+  "main": "index.js",
+  "scripts": {
+    "sandbox": "webpack-dev-server --config webpack.sandbox.config.js",
+    "clean": "rm -rf ./dist",
+    "build:dev": "npm run clean && webpack -w -d --config webpack.config.js",
+    "build:npm": "npm run clean && NODE_ENV=production webpack --config webpack.config.js",
+    "lint": "eslint --ext .jsx,.js src",
+    "lint:fix": "eslint --ext .jsx,.js --fix src",
+    "test": "jest --no-cache --maxWorkers=4",
+    "test:verbose": "jest --verbose --no-cache --maxWorkers=4",
+    "test:watch": "jest --watch",
+    "test:watchAll": "jest --watchAll",
+    "test:coverage": "jest --coverage"
+  },
+  "author": "Fogg",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/foggdev/fogg.git",
+    "directory": "packages/fogg-buttons"
+  },
+  "license": "MIT",
+  "jest": {
+    "setupFilesAfterEnv": [
+      "<rootDir>/config/jest/setupTestFramework.js"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx}"
+    ],
+    "moduleNameMapper": {
+      "^.+\\.(scss)$": "identity-obj-proxy"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "npm run lint && npm run test"
+    }
+  },
+  "dependencies": {
+    "@babel/core": "7.4.5",
+    "@babel/preset-env": "7.4.5",
+    "@babel/preset-react": "7.0.0",
+    "babel-eslint": "10.0.1",
+    "babel-loader": "8.0.6",
+    "babel7-jest": "1.0.1",
+    "classnames": "2.2.6",
+    "cross-env": "5.2.0",
+    "css-loader": "2.1.1",
+    "enzyme": "3.9.0",
+    "enzyme-adapter-react-16": "1.13.2",
+    "eslint": "5.16.0",
+    "eslint-config-airbnb": "17.1.0",
+    "eslint-plugin-import": "2.17.3",
+    "eslint-plugin-jsx-a11y": "6.2.1",
+    "eslint-plugin-react": "7.13.0",
+    "html-webpack-plugin": "3.2.0",
+    "husky": "2.3.0",
+    "jest": "24.8.0",
+    "mini-css-extract-plugin": "0.7.0",
+    "node-sass": "4.12.0",
+    "react": "16.8.6",
+    "react-dom": "16.8.6",
+    "sass-loader": "7.1.0",
+    "webpack": "4.32.2",
+    "webpack-cli": "3.3.2",
+    "webpack-dev-server": "3.4.1"
+  }
+}
