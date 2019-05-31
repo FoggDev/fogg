@@ -40,6 +40,7 @@ const App = () => (
 
       <h2>Buttons</h2>
 
+      <h3>Colors</h3>
       <p>
         <Button primary>Primary</Button>
         <Button success>Success</Button>
@@ -50,6 +51,7 @@ const App = () => (
         <Button disabled>Disabled</Button>
       </p>
 
+      <h3>Outline</h3>
       <p>
         <Button primary outline>Primary</Button>
         <Button success outline>Success</Button>
@@ -58,6 +60,20 @@ const App = () => (
         <Button light outline>Light</Button>
         <Button dark outline>Dark</Button>
         <Button disabled outline>Disabled</Button>
+      </p>
+
+      <h3>Sizes</h3>
+      <p>
+        <Button primary small>Small</Button>
+        <Button primary>Default</Button>
+        <Button primary large>Large</Button>
+        <Button primary xLarge>xLarge</Button>
+      </p>
+
+      <h3>Full Width</h3>
+      <p>
+        <Button primary large block>Block level button</Button>
+        <Button danger large block>Block level button</Button>
       </p>
 
       <h2>Accordion</h2>

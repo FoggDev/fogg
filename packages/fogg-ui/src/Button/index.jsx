@@ -58,76 +58,31 @@ const StyledButton = styled.button`
   user-select: none;
   vertical-align: middle;
 
-  ${({ primary, outline }) => primary && `
-    background-color: ${outline ? 'transparent ' : colors.primary.background};
-    border-color: ${colors.primary.background};
-    color: ${outline ? colors.primary.background : colors.color};
-
-    &:hover {
-      color: ${colors.color}
-      background-color: ${colors.primary.hover};
-      border-color: ${colors.primary.hover};
-    }
+  ${({ block }) => block && `
+    display: block;
+    margin-top: .5rem;
+    width: 100%;
   `}
 
-  ${({ success, outline }) => success && `
-    background-color: ${outline ? 'transparent ' : colors.success.background};
-    border-color: ${colors.success.background};
-    color: ${outline ? colors.success.background : colors.color};
-
-    &:hover {
-      color: ${colors.color}
-      background-color: ${colors.success.hover};
-      border-color: ${colors.success.background};
-    }
+  ${({ small }) => small && `
+    padding: 0px 1rem;
+    font-size: 0.75rem;
+    line-height: 1.875rem;
+    border-radius: 0.1875rem;
   `}
 
-  ${({ danger, outline }) => danger && `
-    background-color: ${outline ? 'transparent ' : colors.danger.background};
-    border-color: ${colors.danger.background};
-    color: ${outline ? colors.danger.background : colors.color};
-
-    &:hover {
-      color: ${colors.color}
-      background-color: ${colors.danger.hover};
-      border-color: ${colors.danger.hover};
-    }
+  ${({ large }) => large && `
+    padding: 0px 1.75rem;
+    font-size: 1.125rem;
+    line-height: 3.125rem;
+    border-radius: 0.1875rem;
   `}
 
-  ${({ warning, outline }) => warning && `
-    background-color: ${outline ? 'transparent ' : colors.warning.background};
-    border-color: ${colors.warning.background};
-    color: ${outline ? colors.warning.background : colors.color};
-
-    &:hover {
-      color: ${colors.color}
-      background-color: ${colors.warning.hover};
-      border-color: ${colors.warning.hover};
-    }
-  `}
-
-  ${({ light, outline }) => light && `
-    background-color: ${outline ? 'transparent' : colors.light.background};
-    border-color: ${colors.light.background};
-    color: ${colors.light.color};
-
-    &:hover {
-      color: ${colors.color}
-      background-color: ${colors.light.hover};
-      border-color: ${colors.light.hover};
-    }
-  `}
-
-  ${({ dark, outline }) => dark && `
-    background-color: ${outline ? 'transparent ' : colors.dark.background};
-    border-color: ${colors.dark.background};
-    color: ${outline ? colors.dark.background : colors.dark.color};
-
-    &:hover {
-      color: ${colors.color}
-      background-color: ${colors.dark.hover};
-      border-color: ${colors.dark.hover};
-    }
+  ${({ xLarge }) => xLarge && `
+    padding: 0px 2.125rem;
+    font-size: 1.375rem;
+    line-height: 4.375rem;
+    border-radius: 0.1875rem;
   `}
 
   ${({ disabled, outline }) => disabled && `
@@ -139,6 +94,78 @@ const StyledButton = styled.button`
     &:hover {
       background-color: ${colors.disabled.hover};
       border-color: ${colors.disabled.hover};
+    }
+  `}
+
+  ${({ primary, outline, disabled }) => primary && `
+    background-color: ${outline ? 'transparent ' : colors.primary.background};
+    border-color: ${colors.primary.background};
+    color: ${outline ? colors.primary.background : colors.color};
+
+    &:hover {
+      color: ${colors.color}
+      background-color: ${disabled ? colors.primary.background : colors.primary.hover};
+      border-color: ${disabled ? colors.primary.background : colors.primary.hover};
+    }
+  `}
+
+  ${({ success, outline, disabled }) => success && `
+    background-color: ${outline ? 'transparent ' : colors.success.background};
+    border-color: ${colors.success.background};
+    color: ${outline ? colors.success.background : colors.color};
+
+    &:hover {
+      color: ${colors.color}
+      background-color: ${disabled ? colors.success.background : colors.success.hover};
+      border-color: ${colors.success.background};
+    }
+  `}
+
+  ${({ danger, outline, disabled }) => danger && `
+    background-color: ${outline ? 'transparent ' : colors.danger.background};
+    border-color: ${colors.danger.background};
+    color: ${outline ? colors.danger.background : colors.color};
+
+    &:hover {
+      color: ${colors.color}
+      background-color: ${disabled ? colors.danger.background : colors.danger.hover};
+      border-color: ${colors.danger.hover};
+    }
+  `}
+
+  ${({ warning, outline, disabled }) => warning && `
+    background-color: ${outline ? 'transparent ' : colors.warning.background};
+    border-color: ${colors.warning.background};
+    color: ${outline ? colors.warning.background : colors.color};
+
+    &:hover {
+      color: ${colors.color}
+      background-color: ${disabled ? colors.warning.background : colors.warning.hover};
+      border-color: ${colors.warning.hover};
+    }
+  `}
+
+  ${({ light, outline, disabled }) => light && `
+    background-color: ${outline ? 'transparent' : colors.light.background};
+    border-color: ${colors.light.background};
+    color: ${colors.light.color};
+
+    &:hover {
+      color: ${disabled ? colors.light.color : colors.color}
+      background-color: ${disabled ? colors.light.background : colors.light.hover};
+      border-color: ${disabled ? colors.light.background : colors.light.hover};
+    }
+  `}
+
+  ${({ dark, outline, disabled }) => dark && `
+    background-color: ${outline ? 'transparent ' : colors.dark.background};
+    border-color: ${colors.dark.background};
+    color: ${outline ? colors.dark.background : colors.dark.color};
+
+    &:hover {
+      color: ${colors.color}
+      background-color: ${disabled ? colors.dark.background : colors.dark.hover};
+      border-color: ${colors.dark.hover};
     }
   `}
 `
