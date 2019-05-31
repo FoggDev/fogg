@@ -10,16 +10,16 @@ import styles from './App.scss'
 
 const panels = [
   {
-    title: 'What does royalty free mean?',
-    content: 'Royalty free means you just need to pay for rights to use the item once per end product. You don\'t need to pay additional or ongoing fees for each person who sees or uses it.',
+    title: 'What\'s the difference between 32-bit and 64-bit versions of Windows?',
+    content: 'The terms 32-bit and 64-bit refer to the way a computer\'s processor (also called a CPU) handles information. The 64-bit version of Windows handles large amounts of random access memory (RAM) more effectively than a 32-bit system. Not all devices can run the 64-bit versions of Windows.',
   },
   {
-    title: 'What do you mean by item and end product?',
-    content: 'The item is what you purchase from Envato Market. The end product is what you build with that item. For example, the item is a business card template; the end product is the finalized business card. The item is a button graphic; the end product is an app using the button graphic in the app\'s interface.',
+    title: 'My Windows 7 product key won\'t verify. What\'s the problem?',
+    content: 'The most common issue is the use of a product key for a product not currently supported by the site such as an Upgrade key, an MSDN key, product keys for pre-installed media or an Enterprise edition key. For access to MSDN products or Enterprise edition visit the MSDN Portal or the Volume Licensing Service Center. Upgrades and pre-installed media are not currently supported by the tools on the site.',
   },
   {
-    title: 'They Fail Poorly and Often',
-    content: 'When your icon font fails, the browser treats it like any other font and replaces it with a fallback. Best-case scenario, you\'ve chosen your fallback characters carefully and something weird-looking but communicative still loads. Worse-case scenario (and far more often), the user sees something completely incongruous, usually the dreaded "missing character" glyph.',
+    title: 'I don\'t see the Windows 8.1 or Windows 10 edition I\'m looking for. Where else should I check?',
+    content: 'If you are looking for MSDN products or Enterprise editions visit the MSDN Portal or the Volume Licensing Service Center.',
   }
 ]
 
