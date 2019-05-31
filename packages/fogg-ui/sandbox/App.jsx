@@ -39,12 +39,26 @@ const App = () => (
       <Alert dark>This is my dark alert</Alert>
 
       <h2>Buttons</h2>
-      <Button>Primary</Button>
-      <Button success>Success</Button>
-      <Button danger>Danger</Button>
-      <Button warning>Warning</Button>
-      <Button light>Light</Button>
-      <Button dark>Dark</Button>
+
+      <p>
+        <Button primary>Primary</Button>
+        <Button success>Success</Button>
+        <Button danger>Danger</Button>
+        <Button warning>Warning</Button>
+        <Button light>Light</Button>
+        <Button dark>Dark</Button>
+        <Button disabled>Disabled</Button>
+      </p>
+
+      <p>
+        <Button primary outline>Primary</Button>
+        <Button success outline>Success</Button>
+        <Button danger outline>Danger</Button>
+        <Button warning outline>Warning</Button>
+        <Button light outline>Light</Button>
+        <Button dark outline>Dark</Button>
+        <Button disabled outline>Disabled</Button>
+      </p>
 
       <h2>Accordion</h2>
 

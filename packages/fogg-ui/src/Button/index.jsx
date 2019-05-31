@@ -2,6 +2,41 @@ import React from 'react'
 import { string } from 'prop-types'
 import styled from 'styled-components'
 
+const colors = {
+  color: '#FFF',
+  primary: {
+    background: '#00AEEF',
+    hover: '#43C8F5'
+  },
+  success: {
+    background: '#54D48A',
+    hover: '#7ADCA1'
+  },
+  danger: {
+    background: '#DA4453',
+    hover: '#ED5565'
+  },
+  warning: {
+    background: '#F6BB42',
+    hover: '#FFCE54'
+  },
+  light: {
+    color: '#7987A1',
+    background: '#E5E9F2',
+    hover: '#B4BDCE'
+  },
+  dark: {
+    background: '#343A40',
+    hover: '#22272A'
+  },
+  disabled: {
+    color: '#F5F7FA',
+    background: '#CCD1DC',
+    outline: '#D2D7E3',
+    hover: '#CCD1DC'
+  }
+}
+
 const StyledButton = styled.button`
   -moz-user-select: none;
   -ms-user-select: none;
@@ -9,6 +44,7 @@ const StyledButton = styled.button`
   background-color: transparent;
   border-radius: .25rem;
   border: 1px solid transparent;
+  color: ${colors.color};
   cursor: pointer;
   display: inline-block;
   font-family: -apple-system,BlinkMacSystemFont,Roboto,"Helvetica Neue",Arial,sans-serif;
@@ -21,62 +57,88 @@ const StyledButton = styled.button`
   transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
   user-select: none;
   vertical-align: middle;
-  color: #fff;
-  background-color: #0168fa;
-  border-color: #0168fa;
 
-  &:hover {
-    background-color: #0357d4;
-  }
-
-  ${({ success }) => success && `
-    color: #fff;
-    background-color: #10b759;
-    border-color: #10b759;
+  ${({ primary, outline }) => primary && `
+    background-color: ${outline ? 'transparent ' : colors.primary.background};
+    border-color: ${colors.primary.background};
+    color: ${outline ? colors.primary.background : colors.color};
 
     &:hover {
-      background-color: #0e9448;
+      color: ${colors.color}
+      background-color: ${colors.primary.hover};
+      border-color: ${colors.primary.hover};
     }
   `}
 
-  ${({ danger }) => danger && `
-    color: #fff;
-    background-color: #dc3545;
-    border-color: #dc3545;
+  ${({ success, outline }) => success && `
+    background-color: ${outline ? 'transparent ' : colors.success.background};
+    border-color: ${colors.success.background};
+    color: ${outline ? colors.success.background : colors.color};
 
     &:hover {
-      background-color: #c82333;
+      color: ${colors.color}
+      background-color: ${colors.success.hover};
+      border-color: ${colors.success.background};
     }
   `}
 
-  ${({ light }) => light && `
-    background-color: #e5e9f2;
-    border-color: #cdd5e6;
-    color: #8392a5;
+  ${({ danger, outline }) => danger && `
+    background-color: ${outline ? 'transparent ' : colors.danger.background};
+    border-color: ${colors.danger.background};
+    color: ${outline ? colors.danger.background : colors.color};
 
     &:hover {
-      background-color: #e5e9f2;
-      color: #444;
+      color: ${colors.color}
+      background-color: ${colors.danger.hover};
+      border-color: ${colors.danger.hover};
     }
   `}
 
-  ${({ dark }) => dark && `
-    color: #fff;
-    background-color: #343a40;
-    border-color: #343a40;
+  ${({ warning, outline }) => warning && `
+    background-color: ${outline ? 'transparent ' : colors.warning.background};
+    border-color: ${colors.warning.background};
+    color: ${outline ? colors.warning.background : colors.color};
 
     &:hover {
-      background-color: #22272a;
+      color: ${colors.color}
+      background-color: ${colors.warning.hover};
+      border-color: ${colors.warning.hover};
     }
   `}
 
-  ${({ warning }) => warning && `
-    color: #666;
-    background-color: #ffc107;
-    border-color: #ffc107;
+  ${({ light, outline }) => light && `
+    background-color: ${outline ? 'transparent' : colors.light.background};
+    border-color: ${colors.light.background};
+    color: ${colors.light.color};
 
     &:hover {
-      background-color: #f1b400;
+      color: ${colors.color}
+      background-color: ${colors.light.hover};
+      border-color: ${colors.light.hover};
+    }
+  `}
+
+  ${({ dark, outline }) => dark && `
+    background-color: ${outline ? 'transparent ' : colors.dark.background};
+    border-color: ${colors.dark.background};
+    color: ${outline ? colors.dark.background : colors.dark.color};
+
+    &:hover {
+      color: ${colors.color}
+      background-color: ${colors.dark.hover};
+      border-color: ${colors.dark.hover};
+    }
+  `}
+
+  ${({ disabled, outline }) => disabled && `
+    color: ${colors.disabled.color};
+    background-color: ${outline ? colors.disabled.outline : colors.disabled.background};
+    border-color: ${colors.disabled.background};
+    cursor: not-allowed;
+
+    &:hover {
+      background-color: ${colors.disabled.hover};
+      border-color: ${colors.disabled.hover};
     }
   `}
 `
