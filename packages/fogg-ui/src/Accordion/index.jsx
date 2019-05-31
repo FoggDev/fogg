@@ -5,7 +5,6 @@ import Panel from './Panel'
 
 const StyledAccordion = styled.div`
   width: 100%;
-  max-width: 470px;
 `
 
 class Accordion extends Component {
