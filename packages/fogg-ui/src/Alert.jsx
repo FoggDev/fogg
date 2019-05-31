@@ -2,7 +2,7 @@ import React from 'react'
 import { element, string } from 'prop-types'
 import styled from 'styled-components'
 
-const AlertDiv = styled.button`
+const StyledAlert = styled.div`
   border-radius: 0.25rem;
   border: 1px solid transparent;
   margin-bottom: 1rem;
@@ -62,7 +62,7 @@ const AlertDiv = styled.button`
 const Alert = props => {
   const { children } = props
 
-  return <AlertDiv {...props}>{children}</AlertDiv>
+  return <StyledAlert {...props}>{children}</StyledAlert>
 }
 
 Alert.propTypes = {
