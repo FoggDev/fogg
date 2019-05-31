@@ -1,5 +1,5 @@
 import React from 'react'
-import { element, string } from 'prop-types'
+import { string } from 'prop-types'
 import styled from 'styled-components'
 
 const StyledAlert = styled.div`
@@ -65,7 +65,7 @@ const Alert = props => {
 }
 
 Alert.propTypes = {
-  children: element,
+  children: string,
   className: string
 }
 

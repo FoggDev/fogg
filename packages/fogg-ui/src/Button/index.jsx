@@ -1,5 +1,5 @@
 import React from 'react'
-import { element, string } from 'prop-types'
+import { string } from 'prop-types'
 import styled from 'styled-components'
 
 const StyledButton = styled.button`
@@ -88,7 +88,7 @@ const Button = props => {
 }
 
 Button.propTypes = {
-  children: element,
+  children: string,
   className: string
 }
 

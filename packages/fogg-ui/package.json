@@ -47,8 +47,12 @@
   },
   "dependencies": {
     "@babel/core": "7.4.5",
+    "@babel/plugin-proposal-class-properties": "7.4.4",
     "@babel/preset-env": "7.4.5",
     "@babel/preset-react": "7.0.0",
+    "@fortawesome/fontawesome-svg-core": "1.2.18",
+    "@fortawesome/free-solid-svg-icons": "5.8.2",
+    "@fortawesome/react-fontawesome": "0.1.4",
     "babel-eslint": "10.0.1",
     "babel-loader": "8.0.6",
     "babel7-jest": "1.0.1",
