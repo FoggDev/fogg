@@ -58,7 +58,6 @@ const StyledAlert = styled.div`
   `}
 `
 
-
 const Alert = props => {
   const { children } = props
 
