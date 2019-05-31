@@ -1,6 +1,6 @@
 {
   "name": "fogg-alerts",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Fogg Alerts",
   "main": "dist/bundle.js",
   "scripts": {
@@ -68,6 +68,7 @@
     "mini-css-extract-plugin": "0.7.0",
     "node-sass": "4.12.0",
     "sass-loader": "7.1.0",
+    "styled-components": "^4.2.1",
     "webpack": "4.32.2",
     "webpack-cli": "3.3.2",
     "webpack-dev-server": "3.4.1"
@@ -77,6 +78,7 @@
     "react-dom": ">=16.8.6"
   },
   "devDependencies": {
+    "babel-plugin-styled-components": "^1.10.0",
     "react": "16.8.6",
     "react-dom": "16.8.6"
   }
