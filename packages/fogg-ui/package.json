@@ -1,6 +1,6 @@
 {
   "name": "fogg-ui",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Fogg Alerts",
   "main": "dist/index.js",
   "scripts": {
