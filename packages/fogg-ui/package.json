@@ -2,7 +2,7 @@
   "name": "fogg-ui",
   "version": "1.0.0",
   "description": "Fogg Alerts",
-  "main": "dist/bundle.js",
+  "main": "dist/index.js",
   "scripts": {
     "sandbox": "webpack-dev-server --config webpack.sandbox.config.js",
     "clean": "rm -rf ./dist",
@@ -22,7 +22,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/foggdev/fogg.git",
-    "directory": "packages/fogg-alerts"
+    "directory": "packages/fogg-ui"
   },
   "files": [
     "src/",
