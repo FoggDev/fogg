@@ -19,6 +19,7 @@ const StyledPanel = styled.div`
   }
 `
 const StyledPanelHeader = styled.div`
+  display: flex;
   font-size: 14px;
   font-weight: 500;
   color: #1b2e4b;
@@ -34,6 +35,12 @@ const StyledPanelHeader = styled.div`
     background-color: transparent;
     color: #0086d7;
   `}
+`
+
+const StyledPanelHeaderSpan = styled.span`
+  display: inline;
+  white-space: pre-wrap;
+  margin-left: 10px;
 `
 
 const StyledPanelWrapper = styled.div`
@@ -60,9 +67,12 @@ const Panel = props => {
   return (
     <StyledPanel>
       <StyledPanelHeader onClick={activateTab} open={isOpen}>
-        <FontAwesomeIcon icon={isOpen ? faMinus : faPlus} />
-        &nbsp;&nbsp;
-        {title}
+        <span>
+          <FontAwesomeIcon icon={isOpen ? faMinus : faPlus} />
+        </span>
+        <StyledPanelHeaderSpan>
+          {title}
+        </StyledPanelHeaderSpan>
       </StyledPanelHeader>
 
       <StyledPanelWrapper open={isOpen}>
