@@ -5,6 +5,8 @@ import React from 'react'
 import Alert from '../src/Alert'
 import Accordion from '../src/Accordion'
 import Button from '../src/Button'
+import Checkbox from '../src/Checkbox'
+import Radio from '../src/Radio'
 
 import styles from './App.scss'
 
@@ -79,6 +81,20 @@ const App = () => (
       <h2>Accordion</h2>
 
       <Accordion panels={panels} />
+
+      <h2>Checkbox</h2>
+
+      <Checkbox label="One" name="option[]" />
+      <Checkbox label="Two" name="option[]" />
+      <Checkbox label="Three" name="option[]" />
+      <Checkbox label="Four" name="option[]" />
+
+      <h2>Radio</h2>
+
+      <Radio label="One" name="option[]" />
+      <Radio label="Two" name="option[]" />
+      <Radio label="Three" name="option[]" />
+      <Radio label="Four" name="option[]" />
     </div>
   </div>
 )
