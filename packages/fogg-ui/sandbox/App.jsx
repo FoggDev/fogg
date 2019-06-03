@@ -4,6 +4,7 @@ import React from 'react'
 // Components
 import Alert from '../src/Alert'
 import Accordion from '../src/Accordion'
+import Badge from '../src/Badge'
 import Button from '../src/Button'
 import Checkbox from '../src/Checkbox'
 import Radio from '../src/Radio'
@@ -39,6 +40,15 @@ const App = () => (
       <Alert info>This is my info alert</Alert>
       <Alert light>This is my light alert</Alert>
       <Alert dark>This is my dark alert</Alert>
+
+      <h2>Badges</h2>
+      <Badge primary>Primary</Badge>
+      <Badge secondary>Secondary</Badge>
+      <Badge success>Success</Badge>
+      <Badge danger>Danger</Badge>
+      <Badge warning>Warning</Badge>
+      <Badge light>Light</Badge>
+      <Badge dark>Dark</Badge>
 
       <h2>Buttons</h2>
 
