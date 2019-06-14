@@ -12,6 +12,7 @@ import TextCounter from '../src/TextCounter'
 import Icon from '../src/Icon'
 import RenderIf from '../src/RenderIf'
 import Pagination from '../src/Pagination'
+import Placeholder from '../src/Placeholder'
 
 import styles from './App.scss'
 
@@ -42,7 +43,7 @@ class App extends Component {
     })
   }
 
-  handleClick = e => {
+  handleClick = () => {
     this.setState({
       clicked: true
     })
@@ -209,6 +210,9 @@ class App extends Component {
             total={100}
             url="/page/"
           />
+
+          <h2>Placeholder</h2>
+          <Placeholder />
         </div>
       </div>
     )
