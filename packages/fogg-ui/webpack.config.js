@@ -6,11 +6,12 @@ const devMode = process.env.NODE_ENV !== 'production'
 module.exports = {
   entry: './src/entry.js',
   output: {
-    libraryTarget: 'umd',
-    library: 'fogg-alerts',
-    umdNamedDefine: true,
+    path: path.resolve(__dirname, 'dist'),
     filename: 'index.js',
-    path: path.resolve(__dirname, 'dist')
+    libraryTarget: 'umd',
+    library: 'lib',
+    umdNamedDefine: true,
+    globalObject: 'this'
   },
   module: {
     rules: [
