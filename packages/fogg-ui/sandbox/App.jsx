@@ -14,6 +14,8 @@ import RenderIf from '../src/RenderIf'
 import Pagination from '../src/Pagination'
 import Placeholder from '../src/Placeholder'
 import Spinner from '../src/Spinner'
+import Input from '../src/Input'
+import TextArea from '../src/TextArea'
 
 import styles from './App.scss'
 
@@ -132,6 +134,16 @@ class App extends Component {
           <Radio label="Two" name="option[]" />
           <Radio label="Three" name="option[]" />
           <Radio label="Four" name="option[]" />
+
+          <h2>Input</h2>
+
+          <Input name="input" className="input" />
+          <Input noWrapper name="input2" className="input2" />
+
+          <h2>TextArea</h2>
+
+          <TextArea name="textarea" className="textarea">Content</TextArea>
+          <TextArea noWrapper name="textarea" className="textarea" />
 
           <h2>TextCounter</h2>
 
