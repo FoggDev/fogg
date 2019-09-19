@@ -54,6 +54,8 @@
     "react/no-unescaped-entities": "off",
     "react/react-in-jsx-scope": "off",
     "react/require-default-props": "off",
-    "semi": ["error", "never"]
+    "semi": ["error", "never"],
+    "import/no-dynamic-require": "off",
+    "global-require": "off"
   }
 }

@@ -13,6 +13,7 @@ import Icon from '../src/Icon'
 import RenderIf from '../src/RenderIf'
 import Pagination from '../src/Pagination'
 import Placeholder from '../src/Placeholder'
+import Spinner from '../src/Spinner'
 
 import styles from './App.scss'
 
@@ -210,6 +211,64 @@ class App extends Component {
             total={100}
             url="/page/"
           />
+
+          <h2>Spinners</h2>
+          <div className={styles.spinners}>
+            <Spinner
+              spinner="audio"
+              style={{ width: '30px' }}
+            />
+            {' '}
+            <Spinner
+              spinner="ball-triangle"
+              style={{ width: '30px' }}
+            />
+            {' '}
+            <Spinner
+              spinner="bars"
+              style={{ width: '30px' }}
+            />
+            {' '}
+            <Spinner
+              spinner="circles"
+              style={{ width: '30px' }}
+            />
+            {' '}
+            <Spinner
+              spinner="grid"
+              style={{ width: '30px' }}
+            />
+            {' '}
+            <Spinner
+              spinner="oval"
+              style={{ width: '30px' }}
+            />
+            {' '}
+            <Spinner
+              spinner="puff"
+              style={{ width: '30px' }}
+            />
+            {' '}
+            <Spinner
+              spinner="rings"
+              style={{ width: '30px' }}
+            />
+            {' '}
+            <Spinner
+              spinner="spinning-circles"
+              style={{ width: '30px' }}
+            />
+            {' '}
+            <Spinner
+              spinner="tail-spin"
+              style={{ width: '30px' }}
+            />
+            {' '}
+            <Spinner
+              spinner="three-dots"
+              style={{ width: '30px' }}
+            />
+          </div>
 
           <h2>Placeholder</h2>
           <Placeholder />

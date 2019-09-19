@@ -14,6 +14,10 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.svg$/,
+        loader: 'file-loader'
+      },
+      {
         test: /\.s?[ac]ss$/,
         use: [
           MiniCssExtractPlugin.loader,
