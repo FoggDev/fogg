@@ -15,6 +15,14 @@ const StyledAlert = styled.div`
   background-color: #cce5ff;
   border-color: #b8daff;
 
+  ${({ center }) => center && `
+    text-align: center;
+  `}
+
+  ${({ flat }) => flat && `
+    border-radius: 0;
+  `}
+
   ${({ secondary }) => secondary && `
     color: #383d41;
     background-color: #e2e3e5;
