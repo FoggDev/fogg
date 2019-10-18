@@ -1,6 +1,6 @@
 {
   "name": "fogg-ui",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "Fogg UI",
   "main": "dist/index.js",
   "scripts": {
