@@ -6,14 +6,14 @@ import StyledBaseButton from './StyledBaseButton'
 
 const StyledButton = styled(StyledBaseButton)`
   ${({ outline, disabled }) => `
-    background-color: ${outline ? 'transparent' : colors.default.background};
-    border-color: ${colors.default.background};
-    color: ${colors.default.color};
+    background-color: ${outline ? 'transparent' : colors.light.background};
+    border-color: ${colors.light.background};
+    color: ${colors.light.color};
 
     &:hover {
-      color: ${disabled ? colors.default.color : colors.color}
-      background-color: ${disabled ? colors.default.background : colors.default.hover};
-      border-color: ${disabled ? colors.default.background : colors.default.hover};
+      color: ${disabled ? colors.light.color : colors.color}
+      background-color: ${disabled ? colors.light.background : colors.light.hover};
+      border-color: ${disabled ? colors.light.background : colors.light.hover};
     }
   `}
 `

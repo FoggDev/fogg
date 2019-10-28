@@ -6,6 +6,12 @@ import Alert from '../src/Alert'
 import Accordion from '../src/Accordion'
 import Badge from '../src/Badge'
 import Button from '../src/Button'
+import DangerButton from '../src/Button/Danger'
+import DarkButton from '../src/Button/Dark'
+import LightButton from '../src/Button/Light'
+import PrimaryButton from '../src/Button/Primary'
+import SuccessButton from '../src/Button/Success'
+import WarningButton from '../src/Button/Warning'
 import Checkbox from '../src/Checkbox'
 import Radio from '../src/Radio'
 import TextCounter from '../src/TextCounter'
@@ -83,23 +89,23 @@ class App extends Component {
 
           <h3>Colors</h3>
           <p>
-            <Button primary>Primary</Button>
-            <Button success>Success</Button>
-            <Button danger>Danger</Button>
-            <Button warning>Warning</Button>
-            <Button light>Light</Button>
-            <Button dark>Dark</Button>
+            <PrimaryButton>Primary</PrimaryButton>
+            <SuccessButton>Success</SuccessButton>
+            <DangerButton>Danger</DangerButton>
+            <WarningButton>Warning</WarningButton>
+            <LightButton>Light</LightButton>
+            <DarkButton>Dark</DarkButton>
             <Button disabled>Disabled</Button>
           </p>
 
           <h3>Outline</h3>
           <p>
-            <Button primary outline>Primary</Button>
-            <Button success outline>Success</Button>
-            <Button danger outline>Danger</Button>
-            <Button warning outline>Warning</Button>
-            <Button light outline>Light</Button>
-            <Button dark outline>Dark</Button>
+            <PrimaryButton outline>Primary</PrimaryButton>
+            <SuccessButton outline>Success</SuccessButton>
+            <DangerButton outline>Danger</DangerButton>
+            <WarningButton outline>Warning</WarningButton>
+            <LightButton outline>Light</LightButton>
+            <DarkButton outline>Dark</DarkButton>
             <Button disabled outline>Disabled</Button>
           </p>
 
@@ -168,7 +174,7 @@ class App extends Component {
 
           <h2>RenderIf</h2>
 
-          <Button primary onClick={this.handleClick}>Click it</Button>
+          <PrimaryButton primary onClick={this.handleClick}>Click it</PrimaryButton>
 
           <RenderIf isTrue={clicked}>
             <p>This should be render when the button is clicked!</p>

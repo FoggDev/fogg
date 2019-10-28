@@ -1,5 +1,10 @@
 export default {
   color: '#FFF',
+  default: {
+    color: '#888',
+    background: '#F5F5F5',
+    hover: '#CCC'
+  },
   primary: {
     background: '#00AEEF',
     hover: '#43C8F5'
