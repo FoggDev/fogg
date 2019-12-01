@@ -4,9 +4,9 @@
   "description": "Fogg Utils",
   "scripts": {
     "clean": "rm -rf ./dist",
-    "build": "npm run clean && NODE_ENV=production babel src --out-dir dist --ignore '**/*.test.js'",
-    "lint": "eslint --ext .jsx,.js src",
-    "lint:fix": "eslint --ext .jsx,.js --fix src",
+    "build": "npm run clean && NODE_ENV=production babel . --ignore node_modules,**/*.test.js --out-dir dist",
+    "lint": "eslint --ext .jsx,.js ./",
+    "lint:fix": "eslint --ext .jsx,.js --fix ./",
     "test": "jest --no-cache --maxWorkers=4",
     "test:verbose": "jest --verbose --no-cache --maxWorkers=4",
     "test:watch": "jest --watch",
@@ -27,15 +27,6 @@
     "dist/security"
   ],
   "license": "MIT",
-  "husky": {
-    "hooks": {
-      "pre-push": "npm run lint"
-    }
-  },
-  "dependencies": {
-    "fogg-utils/is": "file:is",
-    "fogg-utils/security": "file:security"
-  },
   "devDependencies": {
     "@babel/cli": "^7.7.4",
     "@babel/core": "^7.4.5",
@@ -50,5 +41,9 @@
     "eslint": "5.16.0",
     "husky": "2.3.0",
     "jest": "24.8.0"
+  },
+  "dependencies": {
+    "@fogg-utils/is": "file:is",
+    "@fogg-utils/security": "file:security"
   }
 }

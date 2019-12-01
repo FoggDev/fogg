@@ -1,5 +1,5 @@
 {
-  "name": "fogg-utils/security",
+  "name": "@fogg-utils/security",
   "main": "index.js",
   "version": "0.0.0"
 }
