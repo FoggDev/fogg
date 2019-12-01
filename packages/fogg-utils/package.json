@@ -1,5 +1,5 @@
 {
-  "name": "@fogg-utils",
+  "name": "fogg-utils",
   "version": "1.0.8",
   "description": "Fogg Utils",
   "scripts": {
@@ -43,7 +43,7 @@
     "jest": "24.8.0"
   },
   "dependencies": {
-    "@fogg-utils/is": "file:is",
-    "@fogg-utils/security": "file:security"
+    "@fogg-utils/is": "file:src/is",
+    "@fogg-utils/security": "file:src/security"
   }
 }
