@@ -1,6 +1,6 @@
 {
   "name": "fogg-utils",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "Fogg Utils",
   "scripts": {
     "clean": "rm -rf ./dist",
@@ -40,9 +40,5 @@
     "eslint": "5.16.0",
     "husky": "2.3.0",
     "jest": "24.8.0"
-  },
-  "dependencies": {
-    "@fogg-utils/is": "file:src/is",
-    "@fogg-utils/security": "file:src/security"
   }
 }
