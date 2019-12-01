@@ -1,6 +1,6 @@
 {
   "name": "fogg-utils",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "Fogg Utils",
   "scripts": {
     "clean": "rm -rf ./dist",
@@ -21,10 +21,9 @@
     "url": "https://github.com/foggdev/fogg.git",
     "directory": "packages/fogg-utils"
   },
+  "main": "dist/index.js",
   "files": [
-    "dist/",
-    "dist/is",
-    "dist/security"
+    "dist/"
   ],
   "license": "MIT",
   "devDependencies": {
