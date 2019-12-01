@@ -4,7 +4,6 @@
   "description": "Fogg Utils",
   "scripts": {
     "clean": "rm -rf ./dist",
-    "build": "npm run clean && NODE_ENV=production babel . --ignore node_modules,**/*.test.js --out-dir dist",
     "lint": "eslint --ext .jsx,.js ./",
     "lint:fix": "eslint --ext .jsx,.js --fix ./",
     "test": "jest --no-cache --maxWorkers=4",
@@ -12,7 +11,7 @@
     "test:watch": "jest --watch",
     "test:watchAll": "jest --watchAll",
     "test:coverage": "jest --coverage",
-    "prepublish": "npm run lint && npm run build"
+    "prepublish": "npm run lint"
   },
   "author": "Carlos Santana",
   "private": false,
@@ -22,9 +21,8 @@
     "directory": "packages/fogg-utils"
   },
   "files": [
-    "dist/",
-    "dist/is",
-    "dist/security"
+    "is",
+    "security"
   ],
   "license": "MIT",
   "devDependencies": {
