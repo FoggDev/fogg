@@ -2,7 +2,6 @@
   "name": "fogg-utils",
   "version": "1.0.2",
   "description": "Fogg Utils",
-  "main": "dist/index.js",
   "scripts": {
     "clean": "rm -rf ./dist",
     "build": "npm run clean && NODE_ENV=production babel src --out-dir dist --ignore '**/*.test.js'",
