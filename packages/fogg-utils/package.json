@@ -1,6 +1,6 @@
 {
   "name": "fogg-utils",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Fogg Utils",
   "main": "dist/index.js",
   "scripts": {
