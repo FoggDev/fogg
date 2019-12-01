@@ -22,13 +22,19 @@
     "directory": "packages/fogg-utils"
   },
   "files": [
-    "dist/"
+    "dist/",
+    "dist/is",
+    "dist/security"
   ],
   "license": "MIT",
   "husky": {
     "hooks": {
       "pre-push": "npm run lint"
     }
+  },
+  "dependencies": {
+    "fogg-utils/is": "file:is",
+    "fogg-utils/security": "file:security"
   },
   "devDependencies": {
     "@babel/cli": "^7.7.4",
