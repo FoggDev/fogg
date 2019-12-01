@@ -6,7 +6,7 @@ import {
 
 describe('#encrypt', () => {
   it('should return a encrypted salted string', () => {
-    expect(encrypt('foo')).toBe('e39d1cbc9d72392729986185e3cdfb2160f55b1b')
+    expect(encrypt('foo')).toBe('0beec7b5ea3f0fdbc95d0dd47f3c5bc275da8a33')
   })
 })
 

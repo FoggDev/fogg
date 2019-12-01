@@ -2,7 +2,7 @@
 import crypto from 'crypto'
 
 // Utils
-import { isString, isJson, isObject } from '../is'
+import { isString, isJson, isObject } from './is'
 
 export function encrypt(str) {
   return crypto
