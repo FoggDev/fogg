@@ -1,10 +1,10 @@
 {
   "name": "fogg-utils",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "Fogg Utils",
   "scripts": {
     "clean": "rm -rf ./dist",
-    "build": "npm run clean && NODE_ENV=production babel src --ignore **/*.test.js --out-dir dist --copy-files",
+    "build": "npm run clean && NODE_ENV=production babel src --ignore **/*.test.js --out-dir dist",
     "lint": "eslint --ext .jsx,.js ./",
     "lint:fix": "eslint --ext .jsx,.js --fix ./",
     "test": "jest --no-cache --maxWorkers=4",
