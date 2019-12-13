@@ -89,7 +89,7 @@ class App extends Component {
 
           <h3>Colors</h3>
           <p>
-            <PrimaryButton>Primary</PrimaryButton>
+            <PrimaryButton href="http://dev.education">Primary</PrimaryButton>
             <SuccessButton>Success</SuccessButton>
             <DangerButton>Danger</DangerButton>
             <WarningButton>Warning</WarningButton>

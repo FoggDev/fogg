@@ -1,7 +1,9 @@
 import styled from 'styled-components'
 import colors from '../colors'
 
-const StyledBaseButton = styled.button`
+const StyledBaseButton = styled.a`
+  text-decoration: none;
+  margin-right: 5px;
   -moz-user-select: none;
   -ms-user-select: none;
   -webkit-user-select: none;
