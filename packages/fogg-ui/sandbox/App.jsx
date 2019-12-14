@@ -5,7 +5,6 @@ import React, { Component } from 'react'
 import Alert from '../src/Alert'
 import Accordion from '../src/Accordion'
 import Badge from '../src/Badge'
-import Button from '../src/Button'
 import DangerButton from '../src/Button/Danger'
 import DarkButton from '../src/Button/Dark'
 import LightButton from '../src/Button/Light'
@@ -95,7 +94,6 @@ class App extends Component {
             <WarningButton>Warning</WarningButton>
             <LightButton>Light</LightButton>
             <DarkButton>Dark</DarkButton>
-            <Button disabled>Disabled</Button>
           </p>
 
           <h3>Outline</h3>
@@ -106,21 +104,20 @@ class App extends Component {
             <WarningButton outline>Warning</WarningButton>
             <LightButton outline>Light</LightButton>
             <DarkButton outline>Dark</DarkButton>
-            <Button disabled outline>Disabled</Button>
           </p>
 
           <h3>Sizes</h3>
           <p>
-            <Button primary small>Small</Button>
-            <Button primary>Default</Button>
-            <Button primary large>Large</Button>
-            <Button primary xLarge>xLarge</Button>
+            <PrimaryButton primary small>Small</PrimaryButton>
+            <PrimaryButton primary>Default</PrimaryButton>
+            <PrimaryButton primary large>Large</PrimaryButton>
+            <PrimaryButton primary xLarge>xLarge</PrimaryButton>
           </p>
 
           <h3>Full Width</h3>
           <p>
-            <Button primary large block>Block level button</Button>
-            <Button danger large block>Block level button</Button>
+            <PrimaryButton primary large block>Block level button</PrimaryButton>
+            <PrimaryButton danger large block>Block level button</PrimaryButton>
           </p>
 
           <h2>Accordion</h2>
