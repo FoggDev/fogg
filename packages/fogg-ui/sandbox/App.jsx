@@ -143,13 +143,41 @@ class App extends Component {
 
           <h2>Input</h2>
 
-          <Input name="input" className="input" />
-          <Input noWrapper name="input2" className="input2" />
+          <Input
+            disabled
+            name="input"
+            className="input"
+            placeholder="Placeholder"
+          />
+          <Input
+            noWrapper
+            name="input2"
+            className="input2"
+            style={{
+              width: '100%',
+              height: '40px'
+            }}
+          />
 
           <h2>TextArea</h2>
 
-          <TextArea name="textarea" className="textarea">Content</TextArea>
-          <TextArea noWrapper name="textarea" className="textarea" />
+          <TextArea
+            name="textarea"
+            className="textarea"
+            disabled
+            style={{
+              height: '200px',
+              width: '400px'
+            }}
+          >
+            Content
+          </TextArea>
+
+          <TextArea
+            noWrapper
+            name="textarea"
+            className="textarea"
+          />
 
           <h2>TextCounter</h2>
 
