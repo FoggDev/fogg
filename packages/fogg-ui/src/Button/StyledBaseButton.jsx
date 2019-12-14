@@ -24,6 +24,14 @@ const StyledBaseButton = styled.a`
   user-select: none;
   vertical-align: middle;
 
+  ${({ disabled }) => disabled && `
+    color: currentColor;
+    cursor: not-allowed;
+    opacity: 0.5;
+    text-decoration: none;
+    pointer-events: none;
+  `}
+
   ${({ block }) => block && `
     display: block;
     margin-top: .5rem;

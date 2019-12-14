@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { string } from 'prop-types'
+import { bool, string } from 'prop-types'
 import colors from '../colors'
 import StyledBaseButton from './StyledBaseButton'
 
@@ -19,14 +19,21 @@ const StyledButton = styled(StyledBaseButton)`
 `
 
 const Button = props => {
-  const { children } = props
+  const { children, disabled, href } = props
+  const buttonProps = Object.assign({}, props)
 
-  return <StyledButton {...props}>{children}</StyledButton>
+  if (disabled && href) {
+    delete buttonProps.href
+  }
+
+  return <StyledButton {...buttonProps}>{children}</StyledButton>
 }
 
 Button.propTypes = {
   children: string,
-  className: string
+  className: string,
+  disabled: bool,
+  href: string
 }
 
 export default Button
