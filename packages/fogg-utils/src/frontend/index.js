@@ -17,8 +17,8 @@ export function isFirstRender(items) {
   return !isDefined(items) || items.length === 0 || Object.keys(items).length === 0
 }
 
-export function getModuleInfo(path) {
-  const [, page, module = 'home', action] = path.split('/')
+export function getModuleInfo({ asPath }) {
+  const [, page, module = 'home', action] = asPath.split('/')
 
   return {
     page,
