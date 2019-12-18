@@ -71,7 +71,7 @@ const StyledTextarea = styled.textarea`
 }
 `
 
-const Input = props => {
+const TextArea = props => {
   const { noWrapper, children } = props
 
   if (noWrapper) {
@@ -81,7 +81,7 @@ const Input = props => {
   return <p><StyledTextarea {...props}>{children}</StyledTextarea></p>
 }
 
-Input.propTypes = {
+TextArea.propTypes = {
   autoComplete: string,
   autoFocus: bool,
   className: string,
@@ -99,4 +99,4 @@ Input.propTypes = {
   style: object
 }
 
-export default Input
+export default TextArea

@@ -1,5 +1,12 @@
+// Dependencies
+import slug from 'slug'
+
 // Utils
 import { isBrowser, isDefined } from '../is'
+
+export function slugFn(str) {
+  return slug(str, { lower: true })
+}
 
 export function cx(...classes) {
   return classes.join(' ').trim()
