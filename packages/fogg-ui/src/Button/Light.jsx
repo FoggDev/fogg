@@ -11,7 +11,7 @@ const StyledButton = styled(StyledBaseButton)`
     color: ${colors.light.color};
 
     &:hover {
-      color: ${disabled ? colors.light.color : colors.color}
+      color: ${disabled ? colors.light.color : colors.color};
       background-color: ${disabled ? colors.light.background : colors.light.hover};
       border-color: ${disabled ? colors.light.background : colors.light.hover};
     }

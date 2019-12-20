@@ -21,6 +21,7 @@ import Placeholder from '../src/Placeholder'
 import Spinner from '../src/Spinner'
 import Input from '../src/Input'
 import TextArea from '../src/TextArea'
+import Select from '../src/Select'
 
 import styles from './App.scss'
 
@@ -83,6 +84,23 @@ class App extends Component {
           <Badge warning>Warning</Badge>
           <Badge light>Light</Badge>
           <Badge dark>Dark</Badge>
+
+          <h2>Select</h2>
+
+          <Select
+            name="language"
+            label="Select language"
+            options={[
+              {
+                option: 'English',
+                value: 'en'
+              },
+              {
+                option: 'Spanish',
+                value: 'es'
+              }
+            ]}
+          />
 
           <h2>Buttons</h2>
 
