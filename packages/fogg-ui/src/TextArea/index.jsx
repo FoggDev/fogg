@@ -78,7 +78,11 @@ const TextArea = props => {
     return <StyledTextarea {...props} value={value || children} />
   }
 
-  return <p><StyledTextarea {...props} value={value || children} /></p>
+  return (
+    <div style={{ marginTop: '5px', marginBottom: '20px' }}>
+      <StyledTextarea {...props} value={value || children} />
+    </div>
+  )
 }
 
 TextArea.propTypes = {

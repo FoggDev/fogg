@@ -101,7 +101,7 @@ const Select = props => {
   }
 
   return (
-    <div style={{ marginBottom: '20px' }}>
+    <div style={{ marginTop: '5px', marginBottom: '20px' }}>
       <StyledSelect {...props} type={type}>
         <a onClick={handleOpenOnClick}>
           <div>{selectedOption.option || label}</div>

@@ -11,7 +11,6 @@ const StyledInput = styled.input`
   font-size: 14px;
   font-weight: 400;
   height: 25px;
-  margin-bottom: 14px;
   padding: 8px;
   transition: all 0.3s ease 0s;
   width: 93%;
@@ -78,7 +77,7 @@ const Input = props => {
   }
 
   return (
-    <div style={{ marginBottom: '20px' }}>
+    <div style={{ marginTop: '5px', marginBottom: '20px' }}>
       <StyledInput {...props} />
     </div>
   )
