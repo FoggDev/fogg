@@ -44,10 +44,8 @@ export default {
     font: '#FFF'
   },
   select: {
-    radius: '5px',
-    baseFg: '#222',
-    baseBg: '#FFF',
-    accentFg: '#006fc2',
-    accentBg: '#bae1ff'
+    background: '#5A6268',
+    hover: '#EEE',
+    font: '#333'
   }
 }

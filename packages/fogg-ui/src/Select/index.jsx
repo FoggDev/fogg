@@ -6,11 +6,9 @@ import colors from '../colors'
 
 const StyledSelect = styled.div`
   width: fit-content;
-  margin-bottom: 200px;
   position: relative;
 
   a {
-    background: #5A6268;
     ${({ type }) => type && `
       background: ${colors[type].background};
     `}
@@ -29,9 +27,10 @@ const StyledSelect = styled.div`
   }
 
   ul {
+    background: white;
     -ms-overflow-style: none;
     border-radius: 3px;
-    border: 1px solid #CCC;
+    border: 1px solid #666;
     list-style-type: none;
     margin: 0;
     max-height: 150px;
@@ -39,8 +38,9 @@ const StyledSelect = styled.div`
     padding: 0;
     position: absolute;
     scrollbar-width: none;
-    top: 42px;
+    top: 45px;
     width: 130%;
+    z-index: 1;
 
     &::-webkit-scrollbar {
       display: none;
@@ -56,10 +56,13 @@ const StyledSelect = styled.div`
       -moz-user-select: none;
       -ms-user-select: none;
       user-select: none;
+      border-bottom: 1px solid #666;
+
+      &:last-child {
+        border-bottom: none;
+      }
 
       &:hover {
-        background: #EEE;
-
         ${({ type }) => type && `
           background: ${colors[type].hover};
           color: ${colors[type].font};
@@ -70,11 +73,11 @@ const StyledSelect = styled.div`
 `
 
 const Select = props => {
-  const { label = '', options = null, name = '' } = props
+  const { label = '', options = null, onClick, type = 'select' } = props
   const [open, setOpen] = useState(false)
   const [selected, setValue] = useState({ option: '', value: '' })
 
-  const onClick = () => {
+  const handleOpenOnClick = () => {
     setOpen(!open)
   }
 
@@ -83,6 +86,8 @@ const Select = props => {
       option,
       value
     })
+
+    onClick({ option, value })
 
     setOpen(!open)
   }
@@ -93,18 +98,21 @@ const Select = props => {
 
   return (
     <p>
-      <StyledSelect {...props}>
-        <a name="dropdown" onClick={onClick}>
+      <StyledSelect {...props} type={type}>
+        <a name="dropdown" onClick={handleOpenOnClick}>
           <div>{selected.option || label}</div>
           <div><Icon type="fas fa-caret-down" /></div>
         </a>
 
-        <input type="hidden" name={`${name}:value`} value={selected.value} />
-        <input type="hidden" name={`${name}:option`} value={selected.option} />
-
         <ul style={{ display: open ? 'block' : 'none' }}>
           {options.map(({ option, value }) => (
-            <li onClick={() => selectOption(option, value)}>
+            <li
+              onClick={() => selectOption(option, value)}
+              style={{
+                background: `${selected.value === value ? colors[type].hover : ''}`,
+                color: `${selected.value === value ? colors[type].font : ''}`
+              }}
+            >
               {option}
             </li>
           ))}
@@ -121,7 +129,7 @@ Select.propTypes = {
   name: string,
   noWrapper: bool,
   label: string,
-  onChange: func,
+  onClick: func,
   options: array,
   style: object,
   type: string
