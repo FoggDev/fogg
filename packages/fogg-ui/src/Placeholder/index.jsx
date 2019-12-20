@@ -141,6 +141,7 @@ const Placeholder = ({ lines = 4, centered, right, media }) => (
   <StyledPlaceholder>
     {Array.from(Array(!media ? lines : 3).keys()).map(line => (
       <StyledLine
+        key={line}
         line={line}
         centered={centered}
         right={right}

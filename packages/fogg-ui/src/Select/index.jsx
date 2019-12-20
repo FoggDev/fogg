@@ -101,7 +101,7 @@ const Select = props => {
   }
 
   return (
-    <p>
+    <div style={{ marginBottom: '20px' }}>
       <StyledSelect {...props} type={type}>
         <a onClick={handleOpenOnClick}>
           <div>{selectedOption.option || label}</div>
@@ -116,6 +116,7 @@ const Select = props => {
 
             return (
               <li
+                key={`option-${value}`}
                 onClick={() => selectOption(option, value)}
                 style={{
                   background: `${selectedOption.value === value ? colors[type].hover : ''}`,
@@ -128,7 +129,7 @@ const Select = props => {
           })}
         </ul>
       </StyledSelect>
-    </p>
+    </div>
   )
 }
 

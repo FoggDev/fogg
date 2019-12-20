@@ -1,6 +1,6 @@
 // Dependencies
 import React from 'react'
-import { element, string, bool, func, object } from 'prop-types'
+import { string, bool, func, object } from 'prop-types'
 import styled from 'styled-components'
 
 const StyledTextarea = styled.textarea`
@@ -72,20 +72,20 @@ const StyledTextarea = styled.textarea`
 `
 
 const TextArea = props => {
-  const { noWrapper, children } = props
+  const { noWrapper, children, value } = props
 
   if (noWrapper) {
-    return <StyledTextarea {...props}>{children}</StyledTextarea>
+    return <StyledTextarea {...props} value={value || children} />
   }
 
-  return <p><StyledTextarea {...props}>{children}</StyledTextarea></p>
+  return <p><StyledTextarea {...props} value={value || children} /></p>
 }
 
 TextArea.propTypes = {
   autoComplete: string,
   autoFocus: bool,
   className: string,
-  children: element,
+  children: string,
   disabled: bool,
   id: string,
   name: string,

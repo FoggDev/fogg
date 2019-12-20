@@ -77,7 +77,11 @@ const Input = props => {
     return <StyledInput {...props} />
   }
 
-  return <p><StyledInput {...props} /></p>
+  return (
+    <div style={{ marginBottom: '20px' }}>
+      <StyledInput {...props} />
+    </div>
+  )
 }
 
 Input.propTypes = {
