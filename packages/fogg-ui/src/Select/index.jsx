@@ -73,9 +73,14 @@ const StyledSelect = styled.div`
 `
 
 const Select = props => {
-  const { label = '', options = null, onClick, type = 'select' } = props
+  const {
+    label = '',
+    options = null,
+    onClick,
+    type = 'select'
+  } = props
   const [open, setOpen] = useState(false)
-  const [selected, setValue] = useState({ option: '', value: '' })
+  const [selectedOption, setValue] = useState({ option: '', value: '' })
 
   const handleOpenOnClick = () => {
     setOpen(!open)
@@ -88,8 +93,7 @@ const Select = props => {
     })
 
     onClick({ option, value })
-
-    setOpen(!open)
+    setOpen(false)
   }
 
   if (!options) {
@@ -99,23 +103,29 @@ const Select = props => {
   return (
     <p>
       <StyledSelect {...props} type={type}>
-        <a name="dropdown" onClick={handleOpenOnClick}>
-          <div>{selected.option || label}</div>
+        <a onClick={handleOpenOnClick}>
+          <div>{selectedOption.option || label}</div>
           <div><Icon type="fas fa-caret-down" /></div>
         </a>
 
         <ul style={{ display: open ? 'block' : 'none' }}>
-          {options.map(({ option, value }) => (
-            <li
-              onClick={() => selectOption(option, value)}
-              style={{
-                background: `${selected.value === value ? colors[type].hover : ''}`,
-                color: `${selected.value === value ? colors[type].font : ''}`
-              }}
-            >
-              {option}
-            </li>
-          ))}
+          {options.map(({ option, value, selected }) => {
+            if (selected && !selectedOption.value) {
+              selectOption(option, value)
+            }
+
+            return (
+              <li
+                onClick={() => selectOption(option, value)}
+                style={{
+                  background: `${selectedOption.value === value ? colors[type].hover : ''}`,
+                  color: `${selectedOption.value === value ? colors[type].font : ''}`
+                }}
+              >
+                {option}
+              </li>
+            )
+          })}
         </ul>
       </StyledSelect>
     </p>

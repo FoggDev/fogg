@@ -104,7 +104,8 @@ class App extends Component {
               },
               {
                 option: 'French',
-                value: 'fr'
+                value: 'fr',
+                selected: true
               },
               {
                 option: 'German',
