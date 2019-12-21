@@ -2,6 +2,7 @@
 import React, { useState } from 'react'
 import { array, func } from 'prop-types'
 import styled from 'styled-components'
+import slug from 'slug'
 import Icon from '../Icon'
 
 const StyledTags = styled.div`
@@ -11,7 +12,7 @@ const StyledTags = styled.div`
   border: 1px solid #EEE;
   border-radius: 5px;
   padding: 20px 5px 20px 2px;
-  width: 500px;
+  width: 60%;
 
   div.label {
     color: #666;
@@ -59,8 +60,8 @@ const Tags = props => {
 
   const onKeyPressed = ({ key }) => {
     if (key === 'Enter') {
-      if (!tagsArr.includes(newTag)) {
-        const newTags = [...tagsArr, newTag]
+      if (!tagsArr.includes(newTag) && newTag.trim() !== '') {
+        const newTags = [...tagsArr, slug(newTag, { lower: true })]
 
         setTags(newTags)
         setTag('')
@@ -86,8 +87,6 @@ const Tags = props => {
   return (
     <div style={{ marginTop: '5px', marginBottom: '20px' }}>
       <StyledTags>
-        <div className="label">Tags:</div>
-
         <div className="container">
           {tagsArr.map(tag => (
             <div key={tag} className="tag">
