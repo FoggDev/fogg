@@ -11,7 +11,6 @@ const StyledTextarea = styled.textarea`
   font-size: 14px;
   font-weight: 400;
   line-height: 1.5;
-  margin-bottom: 14px;
   padding: 8px;
   overflow: hidden;
   transition: all 0.3s ease 0s;
