@@ -1,6 +1,6 @@
 // Dependencies
 import React, { useState } from 'react'
-import { array, string, func, object } from 'prop-types'
+import { array, func } from 'prop-types'
 import styled from 'styled-components'
 import Icon from '../Icon'
 
@@ -115,9 +115,7 @@ const Tags = props => {
 
 Tags.propTypes = {
   tags: array,
-  className: string,
-  onClick: func,
-  style: object
+  getTags: func
 }
 
 export default Tags
