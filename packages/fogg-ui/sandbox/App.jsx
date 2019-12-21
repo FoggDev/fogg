@@ -22,6 +22,7 @@ import Spinner from '../src/Spinner'
 import Input from '../src/Input'
 import TextArea from '../src/TextArea'
 import Select from '../src/Select'
+import Tags from '../src/Tags'
 
 import styles from './App.scss'
 
@@ -177,6 +178,10 @@ class App extends Component {
               }
             ]}
           />
+
+          <h2>Tags</h2>
+
+          <Tags tags={['react']} getTags={tags => console.log(tags)} />
 
           <h2>Buttons</h2>
 
