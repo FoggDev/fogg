@@ -87,13 +87,18 @@ const Select = props => {
   }
 
   const selectOption = (option, value) => {
-    setValue({
-      option,
-      value
-    })
+    if (value && option) {
+      setValue({
+        option,
+        value
+      })
 
-    onClick({ option, value })
-    setOpen(false)
+      onClick({ option, value })
+
+      if (open) {
+        setOpen(false)
+      }
+    }
   }
 
   if (!options) {

@@ -152,6 +152,43 @@ class App extends Component {
               },
               {
                 option: 'Chinese',
+                value: 'ch',
+                selected: true
+              }
+            ]}
+          />
+
+          <Select
+            name="language"
+            type="warning"
+            label="Select language"
+            onClick={({ option, value }) => {
+              console.log(option, value)
+            }}
+            options={[
+              {
+                option: 'English',
+                value: 'en'
+              },
+              {
+                option: 'Spanish',
+                value: 'es',
+                selected: true
+              },
+              {
+                option: 'French',
+                value: 'fr'
+              },
+              {
+                option: 'German',
+                value: 'ge'
+              },
+              {
+                option: 'Japan',
+                value: 'jp'
+              },
+              {
+                option: 'Chinese',
                 value: 'ch'
               }
             ]}
