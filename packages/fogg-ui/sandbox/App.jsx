@@ -159,37 +159,21 @@ class App extends Component {
           />
 
           <Select
-            name="language"
+            name="published"
             type="warning"
-            label="Select language"
+            label="Published"
             onClick={({ option, value }) => {
               console.log(option, value)
             }}
             options={[
               {
-                option: 'English',
-                value: 'en'
+                option: 'Yes',
+                value: true
               },
               {
-                option: 'Spanish',
-                value: 'es',
+                option: 'No',
+                value: false,
                 selected: true
-              },
-              {
-                option: 'French',
-                value: 'fr'
-              },
-              {
-                option: 'German',
-                value: 'ge'
-              },
-              {
-                option: 'Japan',
-                value: 'jp'
-              },
-              {
-                option: 'Chinese',
-                value: 'ch'
               }
             ]}
           />

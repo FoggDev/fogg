@@ -87,7 +87,7 @@ const Select = props => {
   }
 
   const selectOption = (option, value) => {
-    if (value && option) {
+    if (option) {
       setValue({
         option,
         value
@@ -115,7 +115,7 @@ const Select = props => {
 
         <ul style={{ display: open ? 'block' : 'none' }}>
           {options.map(({ option, value, selected }) => {
-            if (selected && !selectedOption.value) {
+            if (selected && selectedOption.value === '') {
               selectOption(option, value)
             }
 
