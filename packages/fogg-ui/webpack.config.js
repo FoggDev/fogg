@@ -60,7 +60,8 @@ module.exports = {
       commonjs2: 'react-dom',
       amd: 'ReactDOM',
       root: 'ReactDOM'
-    }
+    },
+    slug: 'slug'
   },
   devtool: devMode ? 'source-map' : '',
   plugins: [
