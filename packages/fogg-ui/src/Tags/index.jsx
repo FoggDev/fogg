@@ -9,8 +9,7 @@ const StyledTags = styled.div`
   background-color: white;
   display: flex;
   flex-direction: column;
-  border: 1px solid #EEE;
-  border-radius: 5px;
+  border: none;
   padding: 20px 5px 20px 2px;
   width: 60%;
   -webkit-touch-callout: none;
