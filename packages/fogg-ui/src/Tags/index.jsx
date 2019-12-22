@@ -13,6 +13,12 @@ const StyledTags = styled.div`
   border-radius: 5px;
   padding: 20px 5px 20px 2px;
   width: 60%;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 
   div.label {
     color: #666;

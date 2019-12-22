@@ -30,6 +30,12 @@ const StyledPanelHeader = styled.div`
   outline: none;
   cursor: pointer;
   transition: all 0.25s ease-in-out;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 
   ${({ open }) => open && `
     background-color: transparent;

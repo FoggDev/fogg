@@ -7,6 +7,12 @@ import colors from '../colors'
 const StyledSelect = styled.div`
   width: fit-content;
   position: relative;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 
   a {
     ${({ type }) => type && `
@@ -22,6 +28,7 @@ const StyledSelect = styled.div`
     div {
       i {
         margin-left: 20px;
+        cursor: pointer;
       }
     }
   }

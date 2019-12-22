@@ -14,6 +14,12 @@ const StyledAlert = styled.div`
   color: #004085;
   background-color: #cce5ff;
   border-color: #b8daff;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 
   ${({ center }) => center && `
     text-align: center;
