@@ -1,5 +1,5 @@
 // Dependencies
-import React, { useState } from 'react'
+import React, { useState, useMemo } from 'react'
 import { array, func } from 'prop-types'
 import styled from 'styled-components'
 import slug from 'slug'
@@ -57,44 +57,57 @@ const Tags = props => {
   const { tags = [], getTags } = props
   const [tagsArr, setTags] = useState(tags)
   const [newTag, setTag] = useState('')
+  const [fetchTags, setFetchTags] = useState(true)
+
+  useMemo(() => {
+    if (fetchTags) {
+      getTags(tagsArr)
+    }
+  })
+
+  const findTagIndex = tagName => tagsArr.findIndex(t => t.name === tagName)
 
   const onKeyPressed = ({ key }) => {
     if (key === 'Enter') {
-      if (!tagsArr.includes(newTag) && newTag.trim() !== '') {
-        const newTags = [...tagsArr, slug(newTag, { lower: true })]
+      const tagIndex = findTagIndex(newTag)
+
+      if (tagIndex === -1 && newTag.trim() !== '') {
+        const newTags = [...tagsArr, { name: slug(newTag, { lower: true }) }]
 
         setTags(newTags)
         setTag('')
+        setFetchTags(true)
       }
     }
   }
 
   const onChange = ({ target: { value } }) => {
     setTag(value)
+    setFetchTags(false)
   }
 
-  const onClick = (tag) => {
-    if (tagsArr.includes(tag)) {
-      const tagIndex = tagsArr.findIndex(t => t === tag)
+  const onClick = tag => {
+    const tagIndex = findTagIndex(tag)
+
+    if (tagIndex > -1) {
       tagsArr.splice(tagIndex, 1)
 
       setTags([...tagsArr])
+      setFetchTags(true)
     }
   }
-
-  getTags(tagsArr)
 
   return (
     <div style={{ marginTop: '5px', marginBottom: '20px' }}>
       <StyledTags>
         <div className="container">
-          {tagsArr.map(tag => (
-            <div key={tag} className="tag">
-              <span title={tag}>{tag}</span>
+          {tagsArr.map((tag, index) => (
+            <div key={`${tag.name}-${index}`} className="tag">
+              <span title={tag.name}>{tag.name}</span>
               <Icon
                 title="Remove tag"
                 type="fas fa-times"
-                onClick={() => onClick(tag)}
+                onClick={() => onClick(tag.name)}
               />
             </div>
           ))}

@@ -181,7 +181,10 @@ class App extends Component {
 
           <h2>Tags</h2>
 
-          <Tags tags={['react']} getTags={tags => console.log(tags)} />
+          <Tags
+            tags={[{ name: 'react' }]}
+            getTags={tags => console.log(tags)}
+          />
 
           <h2>Buttons</h2>
 
