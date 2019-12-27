@@ -23,6 +23,7 @@ import Input from '../src/Input'
 import TextArea from '../src/TextArea'
 import Select from '../src/Select'
 import Tags from '../src/Tags'
+import Table from '../src/Table'
 
 import styles from './App.scss'
 
@@ -38,6 +39,41 @@ const panels = [
   {
     title: 'I don\'t see the Windows 8.1 or Windows 10 edition I\'m looking for. Where else should I check?',
     content: 'If you are looking for MSDN products or Enterprise editions visit the MSDN Portal or the Volume Licensing Service Center.',
+  }
+]
+
+const rows = [
+  {
+    id: '946cd97d-5d00-4597-91b3-47b71209f2a3',
+    title: 'My first post super looooooooooooooooooong',
+    readingTime: '3 minutes',
+    language: 'en',
+    createdAt: '2019-12-23T04:44:17.883Z',
+    published: true,
+    tags: [
+      {
+        name: 'react'
+      },
+      {
+        name: 'php'
+      }
+    ]
+  },
+  {
+    id: 'be22fde5-bb2f-4f6b-8dfa-1ab5bf91182b',
+    title: 'My second post super looooooooooooooooooong',
+    readingTime: '7 minutes',
+    language: 'es',
+    published: false,
+    createdAt: '2019-12-23T04:44:17.883Z',
+    tags: [
+      {
+        name: 'graphql'
+      },
+      {
+        name: 'apollo'
+      }
+    ]
   }
 ]
 
@@ -184,6 +220,21 @@ class App extends Component {
           <Tags
             tags={[{ name: 'react' }]}
             getTags={tags => console.log(tags)}
+          />
+
+          <h2>Table</h2>
+
+          <Table
+            data={{
+              caption: 'Posts',
+              head: ['Title', 'Reading Time', 'Language', 'Tags', 'Published', 'Date'],
+              body: ['title', 'readingTime', 'language', 'tags.name', 'published', 'createdAt'],
+              rows,
+              actions: {
+                edit: '/dashboard/blog/update',
+                delete: '/dashboard/blog/delete'
+              }
+            }}
           />
 
           <h2>Buttons</h2>

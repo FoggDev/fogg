@@ -61,7 +61,8 @@ module.exports = {
       amd: 'ReactDOM',
       root: 'ReactDOM'
     },
-    slug: 'slug'
+    slug: 'slug',
+    moment: 'moment'
   },
   devtool: devMode ? 'source-map' : '',
   plugins: [

@@ -29,6 +29,7 @@
     "jsx-a11y/no-noninteractive-element-interactions": "off",
     "linebreak-style": "off",
     "new-cap": "off",
+    "no-alert": "off",
     "no-confusing-arrow": "off",
     "no-else-return": "off",
     "no-loop-func": "off",
