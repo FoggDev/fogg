@@ -25,11 +25,12 @@ export function isFirstRender(items) {
 }
 
 export function getModuleInfo({ asPath }) {
-  const [, page, module = 'home', action] = asPath.split('/')
+  const [, page, module = 'home', action, id] = asPath.split('/')
 
   return {
     page,
     module,
-    action
+    action,
+    id
   }
 }
