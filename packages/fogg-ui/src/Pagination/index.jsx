@@ -151,7 +151,7 @@ class Pagination extends Component {
       } else {
         pageNav.push(
           <StyledLi key={i}>
-            <StyledLink theme={theme} href={`${url}${pge}/`} title={pge}>{pge}</StyledLink>
+            <StyledLink theme={theme} href={`${url}${pge}`} title={pge}>{pge}</StyledLink>
           </StyledLi>
         )
       }
@@ -166,7 +166,7 @@ class Pagination extends Component {
     if (currentPage <= (pages - 1)) {
       return (
         <StyledLi>
-          <StyledLink theme={theme} href={`${url}${currentPage + 1}/`} className="next">
+          <StyledLink theme={theme} href={`${url}${currentPage + 1}`} className="next">
             <Icon type="fas fa-chevron-right" />
           </StyledLink>
         </StyledLi>
@@ -182,7 +182,7 @@ class Pagination extends Component {
     if (start > 0) {
       return (
         <StyledLi>
-          <StyledLink theme={theme} href={`${url}${currentPage - 1}/`} className="previous">
+          <StyledLink theme={theme} href={`${url}${currentPage - 1}`} className="previous">
             <Icon type="fas fa-chevron-left" />
           </StyledLink>
         </StyledLi>
