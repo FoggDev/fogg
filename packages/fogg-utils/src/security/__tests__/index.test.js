@@ -2,7 +2,7 @@ import {
   encrypt,
   getBase64,
   setBase64
-} from '../security'
+} from '../index'
 
 describe('#encrypt', () => {
   it('should return a encrypted salted string', () => {

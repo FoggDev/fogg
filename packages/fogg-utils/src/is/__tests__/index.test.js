@@ -8,7 +8,7 @@ import {
   isPassword,
   isString,
   isUndefined
-} from '../is'
+} from '../index'
 
 describe('#isArray', () => {
   it('should return true if is an Array', () => {
