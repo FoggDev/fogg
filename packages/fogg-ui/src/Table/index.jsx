@@ -88,6 +88,7 @@ const Table = props => {
       head,
       body,
       rows,
+      count,
       actions = null
     }
   } = props
@@ -97,7 +98,7 @@ const Table = props => {
       <caption>
         <div className="app">{caption}</div>
         <div className="count">
-          <i className="fa fa-database" aria-hidden="true" /> {rows.length}
+          <i className="fa fa-database" aria-hidden="true" /> {count || rows.length}
         </div>
       </caption>
 
