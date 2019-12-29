@@ -1,6 +1,6 @@
 {
   "name": "fogg-utils",
-  "version": "1.1.6",
+  "version": "1.1.7",
   "description": "Fogg Utils",
   "scripts": {
     "clean": "rm -rf ./dist",
