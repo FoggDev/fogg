@@ -70,6 +70,11 @@ const StyledTable = styled.table`
 
         a {
           color: #333;
+          cursor: pointer;
+
+          &:hover {
+            color: #666;
+          }
         }
       }
     }
