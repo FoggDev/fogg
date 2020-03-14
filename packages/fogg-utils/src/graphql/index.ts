@@ -11,11 +11,7 @@ export function getGraphQlError(error: object): Error {
   }
 }
 
-export function validateFields(
-  validations: any,
-  values: any,
-  alert: string = 'Error trying to create the item'
-): object {
+export function validateFields(validations: any, values: any, alert = 'Error trying to create the item'): object {
   const messages: any = {}
 
   Object.keys(validations).forEach(field => {

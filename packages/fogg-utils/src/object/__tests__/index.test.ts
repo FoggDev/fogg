@@ -1,6 +1,4 @@
-import {
-  cloneObject
-} from '../index'
+import { cloneObject } from '../index'
 
 describe('#cloneObject', () => {
   it('should clone an object', () => {

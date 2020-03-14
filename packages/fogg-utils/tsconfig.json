@@ -1,13 +1,13 @@
 {
   "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
     "baseUrl": "./src",
-    "target": "es6",
-    "module": "commonjs",
     "declaration": true,
+    "esModuleInterop": true,
+    "module": "commonjs",
     "outDir": "./dist",
     "strict": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
+    "target": "es6",
     "typeRoots": ["./src/@types", "./node_modules/@types"],
     "types": ["jest"]
   },

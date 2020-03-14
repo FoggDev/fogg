@@ -30,9 +30,9 @@ export function getBase64(value: string): string | object | boolean {
 export function setBase64(value: object | string): string | void {
   if (isObject(value)) {
     return Buffer.from(JSON.stringify(value)).toString('base64')
-  } else if (isString(value)) {
-    return Buffer.from(value).toString('base64')
   }
+
+  return isString(value) ? Buffer.from(value).toString('base64') : null
 }
 
 export function getRandomCode(max: number): string {

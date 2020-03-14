@@ -16,7 +16,7 @@ interface PathInfo {
   id: string
 }
 
-export function slugFn(str: string = ''): string {
+export function slugFn(str = ''): string {
   return slug(str, { lower: true })
 }
 
@@ -24,7 +24,7 @@ export function cx(...classes: string[]): string {
   return classes.join(' ').trim()
 }
 
-export function redirectTo(url: string = '/'): void {
+export function redirectTo(url = '/'): void {
   if (isBrowser()) {
     window.location.href = url
   }

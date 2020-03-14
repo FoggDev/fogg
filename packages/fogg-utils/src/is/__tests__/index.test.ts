@@ -1,14 +1,4 @@
-import {
-  isArray,
-  isDefined,
-  isFunction,
-  isJson,
-  isNumber,
-  isObject,
-  isPassword,
-  isString,
-  isUndefined
-} from '../index'
+import { isArray, isDefined, isFunction, isJson, isNumber, isObject, isPassword, isString, isUndefined } from '../index'
 
 describe('#isArray', () => {
   it('should return true if is an Array', () => {
@@ -16,10 +6,12 @@ describe('#isArray', () => {
   })
 
   it('should return false if is not an Array', () => {
-    expect(isArray({
-      bar: 'bar',
-      foo: 'foo'
-    })).toBe(false)
+    expect(
+      isArray({
+        bar: 'bar',
+        foo: 'foo'
+      })
+    ).toBe(false)
   })
 })
 
@@ -37,7 +29,7 @@ describe('#isDefined', () => {
 
 describe('#isFunction', () => {
   it('should be true if a variable is a function', () => {
-    const test = () => 'bar'
+    const test = (): string => 'bar'
     expect(isFunction(test)).toBe(true)
   })
 

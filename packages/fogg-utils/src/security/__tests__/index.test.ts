@@ -1,8 +1,4 @@
-import {
-  encrypt,
-  getBase64,
-  setBase64
-} from '../index'
+import { encrypt, getBase64, setBase64 } from '../index'
 
 describe('#encrypt', () => {
   it('should return a encrypted salted string', () => {

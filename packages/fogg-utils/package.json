@@ -4,7 +4,7 @@
   "description": "Fogg Utils",
   "scripts": {
     "build": "tsc",
-    "lint": "tslint -p tsconfig.json",
+    "lint": "eslint . --ext .js,.tsx,.ts",
     "test": "jest --config jestconfig.json",
     "prepublish": "npm run lint && npm run build"
   },
@@ -20,19 +20,31 @@
     "dist/"
   ],
   "license": "MIT",
+  "jest": {
+    "globals": {
+      "describe": true
+    }
+  },
   "devDependencies": {
     "@types/jest": "^25.1.4",
     "@types/node": "^13.9.1",
-    "cross-env": "5.2.0",
-    "jest": "24.8.0",
+    "@typescript-eslint/eslint-plugin": "^2.23.0",
+    "@typescript-eslint/parser": "^2.23.0",
+    "cross-env": "7.0.2",
+    "eslint": "6.8.0",
+    "eslint-config-airbnb": "^18.1.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-import": "2.20.1",
+    "eslint-plugin-jsx-a11y": "6.2.3",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-react": "^7.19.0",
+    "jest": "25.1.0",
     "prettier": "^1.19.1",
     "ts-jest": "^25.2.1",
-    "tslint": "^6.1.0",
-    "tslint-config-prettier": "^1.18.0",
     "typescript": "^3.8.3"
   },
   "dependencies": {
     "@types/slug": "^0.9.1",
-    "slug": "^1.1.0"
+    "slug": "^2.1.1"
   }
 }

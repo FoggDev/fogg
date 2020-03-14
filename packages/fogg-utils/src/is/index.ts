@@ -14,7 +14,7 @@ export function isNumber(v: unknown): boolean {
   return typeof v === 'number'
 }
 
-export function isFunction(v: any) {
+export function isFunction(v: any): boolean {
   return typeof v === 'function'
 }
 
@@ -33,10 +33,10 @@ export function isJson(str: any): object | boolean {
 }
 
 export function isObject(v: unknown): boolean {
-  return isDefined(v) && typeof v === 'object'
+  return isDefined(v) && typeof v === 'object' && !isArray(v)
 }
 
-export function isPassword(password: string, min: number = 8): boolean {
+export function isPassword(password: string, min = 8): boolean {
   return Boolean(password && password.length >= min)
 }
 
@@ -52,6 +52,6 @@ export function isUndefined(v: unknown): boolean {
   return typeof v === 'undefined' || v === null
 }
 
-export function isBrowser() {
+export function isBrowser(): boolean {
   return isDefined(window)
 }

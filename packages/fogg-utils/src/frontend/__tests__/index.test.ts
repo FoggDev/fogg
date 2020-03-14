@@ -1,6 +1,4 @@
-import {
-  getModuleInfo
-} from '../index'
+import { getModuleInfo } from '../index'
 
 describe('#getModuleInfo', () => {
   it('get module info with action', () => {
