@@ -3,45 +3,36 @@
   "version": "1.1.9",
   "description": "Fogg Utils",
   "scripts": {
-    "clean": "rm -rf ./dist",
-    "build": "npm run clean && NODE_ENV=production babel src --ignore **/*.test.js --out-dir dist",
-    "lint": "eslint --ext .jsx,.js ./",
-    "lint:fix": "eslint --ext .jsx,.js --fix ./",
-    "test": "jest --no-cache --maxWorkers=4",
-    "test:verbose": "jest --verbose --no-cache --maxWorkers=4",
-    "test:watch": "jest --watch",
-    "test:watchAll": "jest --watchAll",
-    "test:coverage": "jest --coverage",
+    "build": "tsc",
+    "lint": "tslint -p tsconfig.json",
+    "test": "jest --config jestconfig.json",
     "prepublish": "npm run lint && npm run build"
   },
   "author": "Carlos Santana",
-  "private": false,
   "repository": {
     "type": "git",
     "url": "https://github.com/foggdev/fogg.git",
     "directory": "packages/fogg-utils"
   },
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "files": [
     "dist/"
   ],
   "license": "MIT",
   "devDependencies": {
-    "@babel/cli": "^7.7.4",
-    "@babel/core": "^7.4.5",
-    "@babel/preset-env": "7.4.5",
-    "babel-eslint": "10.0.1",
-    "babel7-jest": "1.0.1",
+    "@types/jest": "^25.1.4",
+    "@types/node": "^13.9.1",
     "cross-env": "5.2.0",
-    "eslint-config-airbnb": "17.1.0",
-    "eslint-plugin-import": "2.17.3",
-    "eslint-plugin-jsx-a11y": "6.2.1",
-    "eslint-plugin-react": "7.13.0",
-    "eslint": "5.16.0",
-    "husky": "2.3.0",
-    "jest": "24.8.0"
+    "jest": "24.8.0",
+    "prettier": "^1.19.1",
+    "ts-jest": "^25.2.1",
+    "tslint": "^6.1.0",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^3.8.3"
   },
   "dependencies": {
+    "@types/slug": "^0.9.1",
     "slug": "^1.1.0"
   }
 }

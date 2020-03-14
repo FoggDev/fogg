@@ -4,28 +4,38 @@ import slug from 'slug'
 // Utils
 import { isBrowser, isDefined } from '../is'
 
-export function slugFn(str = '') {
+// Interfaces
+interface Router {
+  asPath: string
+}
+
+interface PathInfo {
+  section: string
+  module: string
+  action: string
+  id: string
+}
+
+export function slugFn(str: string = ''): string {
   return slug(str, { lower: true })
 }
 
-export function cx(...classes) {
+export function cx(...classes: string[]): string {
   return classes.join(' ').trim()
 }
 
-export function redirectTo(url = '/') {
+export function redirectTo(url: string = '/'): void {
   if (isBrowser()) {
     window.location.href = url
   }
-
-  return false
 }
 
-export function isFirstRender(items) {
+export function isFirstRender(items: any): boolean {
   return !isDefined(items) || items.length === 0 || Object.keys(items).length === 0
 }
 
-export function getModuleInfo({ asPath }) {
-  let cleanPath = asPath.split('?')[0]
+export function getModuleInfo(router: Router): PathInfo {
+  let cleanPath = router.asPath.split('?')[0]
 
   if (cleanPath.substr(-1) === '/') {
     cleanPath = cleanPath.slice(0, -1)
@@ -41,7 +51,7 @@ export function getModuleInfo({ asPath }) {
   }
 }
 
-export function scrollToTop() {
+export function scrollToTop(): void {
   document.body.scrollTop = 0
   document.documentElement.scrollTop = 0
 }

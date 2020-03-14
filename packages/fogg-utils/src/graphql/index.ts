@@ -1,12 +1,22 @@
-export const getGraphQlError = error => {
+// Interfaces
+interface Error {
+  error: boolean
+  message: string
+}
+
+export function getGraphQlError(error: object): Error {
   return {
     error: true,
     message: error.toString().replace('Error: GraphQL error: ', '')
   }
 }
 
-export const validateFields = (validations, values, alert = 'Error trying to create the item') => {
-  const messages = {}
+export function validateFields(
+  validations: any,
+  values: any,
+  alert: string = 'Error trying to create the item'
+): object {
+  const messages: any = {}
 
   Object.keys(validations).forEach(field => {
     const { len, isEmpty } = validations[field]
@@ -30,11 +40,11 @@ export const validateFields = (validations, values, alert = 'Error trying to cre
 
   return Object.keys(messages).length > 0
     ? {
-      error: true,
-      alert,
-      messages
-    }
+        error: true,
+        alert,
+        messages
+      }
     : {
-      error: false
-    }
+        error: false
+      }
 }

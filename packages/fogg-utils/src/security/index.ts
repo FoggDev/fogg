@@ -4,14 +4,16 @@ import crypto from 'crypto'
 // Utils
 import { isString, isJson, isObject } from '../is'
 
-export function encrypt(str) {
+declare const Buffer: any
+
+export function encrypt(str: string): string {
   return crypto
     .createHash('sha1')
     .update(str.toString())
     .digest('hex')
 }
 
-export function getBase64(value) {
+export function getBase64(value: string): string | object | boolean {
   let buffer = false
 
   if (isString(value)) {
@@ -25,17 +27,15 @@ export function getBase64(value) {
   return buffer
 }
 
-export function setBase64(value) {
+export function setBase64(value: object | string): string | void {
   if (isObject(value)) {
     return Buffer.from(JSON.stringify(value)).toString('base64')
   } else if (isString(value)) {
     return Buffer.from(value).toString('base64')
   }
-
-  return false
 }
 
-export function getRandomCode(max) {
+export function getRandomCode(max: number): string {
   let code = ''
   let randomPoz
   const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
