@@ -1,0 +1,12 @@
+{
+  "name": "@types/fogg-utils",
+  "version": "1.0.0",
+  "description": "Fogg Utils Types",
+  "author": "Carlos Santana",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/foggdev/fogg.git",
+    "directory": "packages/@types/fogg-utils"
+  }
+}
