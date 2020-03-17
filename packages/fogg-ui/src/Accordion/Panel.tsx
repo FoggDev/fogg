@@ -1,6 +1,4 @@
 import React, { FC } from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons'
 import styled from 'styled-components'
 
 // Interfaces
@@ -78,7 +76,7 @@ const StyledPanelWrapper = styled.div<iStyledProps>`
 const StyledPanelContent = styled.div`
   font-size: 0.85rem;
   border-top-width: 0;
-  padding: 0 20px 20px 35px;
+  padding: 10px 20px 20px 35px;
   position: relative;
 `
 
@@ -89,7 +87,7 @@ const Panel: FC<iProps> = ({ title, content, activeTab, index, activateTab }) =>
     <StyledPanel open={isOpen}>
       <StyledPanelHeader onClick={activateTab}>
         <span>
-          <FontAwesomeIcon icon={isOpen ? faMinus : faPlus} />
+          <img style={{ width: '10px' }} alt="Spinner" src={require(`./icons/${isOpen ? 'minus' : 'plus'}.svg`)} />
         </span>
         <StyledPanelHeaderSpan>{title}</StyledPanelHeaderSpan>
       </StyledPanelHeader>
