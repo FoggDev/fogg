@@ -1,9 +1,16 @@
 {
-  "parser": "babel-eslint",
-  "extends": "airbnb",
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "prettier"],
+  "extends": [
+    "airbnb",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended"
+  ],
   "env": {
-    "browser": "true",
-    "jest": "true"
+    "browser": true,
+    "jest": true
   },
   "rules": {
     "arrow-parens": "off",
@@ -50,6 +57,7 @@
     "react/destructuring-assignment": "off",
     "react/forbid-prop-types": "off",
     "react/button-has-type": "off",
+    "react/jsx-filename-extension": "off",
     "react/jsx-one-expression-per-line": "off",
     "react/no-array-index-key": "off",
     "react/no-danger": "off",
@@ -58,6 +66,11 @@
     "react/require-default-props": "off",
     "semi": ["error", "never"],
     "import/no-dynamic-require": "off",
-    "global-require": "off"
+    "global-require": "off",
+    "react/prop-types": "off",
+    "react/jsx-props-no-spreading": "off",
+    "@typescript-eslint/class-name-casing": "off",
+    "@typescript-eslint/member-delimiter-style": "off",
+    "@typescript-eslint/no-explicit-any": "off"
   }
 }
