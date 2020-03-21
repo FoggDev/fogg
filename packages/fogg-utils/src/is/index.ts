@@ -53,5 +53,5 @@ export function isUndefined(v: unknown): boolean {
 }
 
 export function isBrowser(): boolean {
-  return isDefined(window)
+  return typeof window !== 'undefined'
 }
