@@ -10,6 +10,7 @@ interface iProps {
   disabled?: boolean
   href?: string
   large?: boolean
+  name?: string
   onClick?(): void
   outline?: boolean
   small?: boolean

@@ -7,6 +7,7 @@ interface iProps {
   children?: string
   className?: string
   disabled?: boolean
+  name?: string
   outline?: boolean
 }
 

@@ -5,6 +5,7 @@ interface iStyledProps {
   block?: boolean
   disabled?: boolean
   large?: boolean
+  name?: string
   small?: boolean
   xLarge?: boolean
 }
