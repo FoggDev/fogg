@@ -6,7 +6,7 @@ const webpack = require('webpack')
 const devMode = process.env.NODE_ENV !== 'production'
 
 module.exports = {
-  entry: './sandbox/entry.tsx',
+  entry: './sandbox/index.tsx',
   output: {
     libraryTarget: 'umd',
     filename: 'index.js',
