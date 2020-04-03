@@ -11,7 +11,7 @@ interface iProps {
   href?: string
   large?: boolean
   name?: string
-  onClick?(): void
+  onClick?(): any
   outline?: boolean
   small?: boolean
   xLarge?: boolean

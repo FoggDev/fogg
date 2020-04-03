@@ -6,6 +6,7 @@ interface iStyledProps {
   disabled?: boolean
   large?: boolean
   name?: string
+  onClick?(): any
   small?: boolean
   xLarge?: boolean
 }
