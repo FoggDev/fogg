@@ -16,7 +16,7 @@ interface iProps {
   name?: string
   noWrapper?: boolean
   label?: string
-  onClick(obj: object): void
+  onClick(obj: object): any
   options?: Option[]
   style?: object
   type?: string

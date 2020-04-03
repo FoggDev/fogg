@@ -10,9 +10,9 @@ interface iProps {
   id?: string
   name?: string
   noWrapper?: boolean
-  onBlur?(): void
-  onChange?(): void
-  onClick?(): void
+  onBlur?(): any
+  onChange?(): any
+  onClick?(): any
   placeholder?: string
   type?: string
   value?: string
