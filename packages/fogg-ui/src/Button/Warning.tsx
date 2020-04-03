@@ -8,7 +8,7 @@ interface iProps {
   className?: string
   disabled?: boolean
   name?: string
-  onClick?(): any
+  onClick?(e: any): any
   outline?: boolean
 }
 
