@@ -44,3 +44,11 @@ export function validateFields(validations: any, values: any, alert = 'Error try
         error: false
       }
 }
+
+export function getQueryName(query: any) {
+  if (query && query.definitions && query.definitions.length > 0) {
+    return query.definitions[0].name.value
+  }
+
+  return false
+}
