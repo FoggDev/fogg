@@ -29,6 +29,7 @@
     "src/Checkbox/index.tsx",
     "src/Icon/index.tsx",
     "src/Input/index.tsx",
+    "src/Modal/index.tsx",
     "src/Pagination/index.tsx",
     "src/Placeholder/index.tsx",
     "src/Radio/index.tsx",
