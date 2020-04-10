@@ -54,6 +54,7 @@ const StyledContent = styled.div`
   margin-top: 9px;
   overflow-y: auto;
   overflow-x: hidden;
+  text-align: left;
 
   .label {
     margin: 0;
