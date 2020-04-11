@@ -8,6 +8,7 @@ interface iProps {
   className?: string
   disabled?: boolean
   id?: string
+  hasError?: boolean
   name?: string
   noWrapper?: boolean
   onBlur?(e: any): any
@@ -20,7 +21,11 @@ interface iProps {
   style?: object
 }
 
-const StyledInput = styled.input`
+interface iStyledProps {
+  hasError?: boolean
+}
+
+const StyledInput = styled.input<iStyledProps>`
   background: white;
   border-radius: 5px;
   border: 1px solid #EEE;
@@ -31,6 +36,12 @@ const StyledInput = styled.input`
   padding: 8px;
   transition: all 0.3s ease 0s;
   width: 93%;
+
+  ${({ hasError }): any =>
+    hasError &&
+    `
+    border: 1px solid red;
+  `}
 
   ::placeholder {
     color: #EEE;
