@@ -13,6 +13,7 @@ interface iProps {
   onBlur?(e: any): any
   onChange?(e: any): any
   onClick?(e: any): any
+  pattern?: string
   placeholder?: string
   type?: string
   value?: string
