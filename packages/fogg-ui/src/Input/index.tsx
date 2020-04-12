@@ -7,8 +7,8 @@ interface iProps {
   autoFocus?: boolean
   className?: string
   disabled?: boolean
-  id?: string
   hasError?: boolean
+  id?: string
   name?: string
   noWrapper?: boolean
   onBlur?(e: any): any
@@ -16,9 +16,10 @@ interface iProps {
   onClick?(e: any): any
   pattern?: string
   placeholder?: string
+  readOnly?: boolean
+  style?: object
   type?: string
   value?: string
-  style?: object
 }
 
 interface iStyledProps {
