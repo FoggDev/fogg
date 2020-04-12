@@ -1,4 +1,17 @@
-import { getModuleInfo } from '../index'
+import { getModuleInfo, generateHexCode, isValidHexColor } from '../index'
+
+describe('#isValidHexColor', () => {
+  it ('should generate a valid hex code', () => {
+    expect(isValidHexColor(generateHexCode())).toBe(true)
+  })
+})
+
+describe('#generateHexCode', () => {
+  it ('should generate an hex code', () => {
+    const hexCode = generateHexCode()
+    expect(hexCode.length).toBe(7)
+  })
+})
 
 describe('#getModuleInfo', () => {
   it('get module info with action', () => {

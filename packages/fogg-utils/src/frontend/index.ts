@@ -55,3 +55,11 @@ export function scrollToTop(): void {
   document.body.scrollTop = 0
   document.documentElement.scrollTop = 0
 }
+
+export function isValidHexColor(hexCode: string) {
+  return /^#([0-9a-f]{3}){1,2}$/i.test(hexCode.toLowerCase())
+}
+
+export function generateHexCode(): string {
+  return `#${Math.floor(Math.random() * 16777215).toString(16)}`
+}
