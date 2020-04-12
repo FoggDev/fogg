@@ -45,7 +45,7 @@ export function validateFields(validations: any, values: any, alert = 'Error try
       }
 }
 
-export function getQueryName(query: any) {
+export function getQueryName(query: any): string | boolean {
   if (query && query.definitions && query.definitions.length > 0) {
     return query.definitions[0].name.value
   }

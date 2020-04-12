@@ -56,7 +56,7 @@ export function scrollToTop(): void {
   document.documentElement.scrollTop = 0
 }
 
-export function isValidHexColor(hexCode: string) {
+export function isValidHexColor(hexCode: string): boolean {
   return /^#([0-9a-f]{3}){1,2}$/i.test(hexCode.toLowerCase())
 }
 
