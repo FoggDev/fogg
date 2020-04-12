@@ -23,6 +23,11 @@ describe('#invertHexCode', () => {
     const hexCode = invertHexCode('FFFFFF')
     expect(hexCode).toBe('#000000')
   })
+
+  it('should generate an inverted hex code white by default', () => {
+    const hexCode = invertHexCode()
+    expect(hexCode).toBe('#fff')
+  })
 })
 
 describe('#getModuleInfo', () => {
