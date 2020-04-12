@@ -36,6 +36,7 @@
     "no-param-reassign": "off",
     "no-underscore-dangle": "off",
     "prettier/prettier": "error",
-    "react/jsx-curly-newline": "off"
+    "react/jsx-curly-newline": "off",
+    "no-bitwise": "off"
   }
 }
