@@ -14,8 +14,15 @@ const Icon: FC<iProps> = props => {
 
   delete iconProps.type
   delete iconProps.className
+  let style = {}
 
-  return <i className={`${type} ${className}`} {...iconProps} />
+  if (props.onClick) {
+    style = {
+      cursor: 'pointer'
+    }
+  }
+
+  return <i style={style} className={`${type} ${className}`} {...iconProps} />
 }
 
 export default Icon
