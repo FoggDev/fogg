@@ -1,4 +1,4 @@
-import { getModuleInfo, generateHexCode, isValidHexColor } from '../index'
+import { getModuleInfo, generateHexCode, isValidHexColor, invertHexCode } from '../index'
 
 describe('#isValidHexColor', () => {
   it('should generate a valid hex code', () => {
@@ -10,6 +10,18 @@ describe('#generateHexCode', () => {
   it('should generate an hex code', () => {
     const hexCode = generateHexCode()
     expect(hexCode.length).toBe(7)
+  })
+})
+
+describe('#invertHexCode', () => {
+  it('should generate an inverted hex code with #', () => {
+    const hexCode = invertHexCode('#FFFFFF')
+    expect(hexCode).toBe('#000000')
+  })
+
+  it('should generate an inverted hex code without #', () => {
+    const hexCode = invertHexCode('FFFFFF')
+    expect(hexCode).toBe('#000000')
   })
 })
 

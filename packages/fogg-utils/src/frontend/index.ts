@@ -63,3 +63,9 @@ export function isValidHexColor(hexCode: string): boolean {
 export function generateHexCode(): string {
   return `#${Math.floor(Math.random() * 16777215).toString(16)}`
 }
+
+export function invertHexCode(hexCode: string): string {
+  const hex = hexCode.replace('#', '')
+
+  return `#${(Number(`0x1${hex}`) ^ 0xFFFFFF).toString(16).substr(1).toUpperCase()}`
+}
