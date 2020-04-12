@@ -67,5 +67,8 @@ export function generateHexCode(): string {
 export function invertHexCode(hexCode: string): string {
   const hex = hexCode.replace('#', '')
 
-  return `#${(Number(`0x1${hex}`) ^ 0xffffff).toString(16).substr(1).toUpperCase()}`
+  return `#${(Number(`0x1${hex}`) ^ 0xffffff)
+    .toString(16)
+    .substr(1)
+    .toUpperCase()}`
 }
