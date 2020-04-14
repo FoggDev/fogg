@@ -1,5 +1,6 @@
 {
   "eslint.enable": true,
+  "eslint.workingDirectories": ["./packages/fogg-ui", "./packages/fogg-utils"],
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
   "typescript.tsdk": "node_modules/typescript/lib"
