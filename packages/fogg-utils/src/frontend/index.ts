@@ -51,6 +51,20 @@ export function getModuleInfo(router: Router): PathInfo {
   }
 }
 
+export function getParams(mapParams: string[]): any {
+  if (isBrowser()) {
+    const { pathname } = window.location
+    const chunks = pathname.split('/').filter(v => v)
+    const params: any = {}
+
+    mapParams.forEach((param, i) => {
+      params[param] = chunks[i] || null
+    })
+
+    return params
+  }
+}
+
 export function scrollToTop(): void {
   document.body.scrollTop = 0
   document.documentElement.scrollTop = 0
