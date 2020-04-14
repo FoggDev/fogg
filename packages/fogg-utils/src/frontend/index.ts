@@ -63,6 +63,8 @@ export function getParams(mapParams: string[]): any {
 
     return params
   }
+
+  return {}
 }
 
 export function scrollToTop(): void {
