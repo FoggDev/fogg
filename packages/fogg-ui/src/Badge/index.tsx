@@ -10,6 +10,7 @@ interface iProps {
   flat?: boolean
   info?: boolean
   light?: boolean
+  onClick?(e: any): any
   primary?: boolean
   secondary?: boolean
   success?: boolean
@@ -97,8 +98,19 @@ const StyledBadge = styled.div<iProps>`
 
 const Badge: FC<iProps> = props => {
   const { children } = props
+  let style = {}
 
-  return <StyledBadge {...props}>{children}</StyledBadge>
+  if (props.onClick) {
+    style = {
+      cursor: 'pointer'
+    }
+  }
+
+  return (
+    <StyledBadge style={style} {...props}>
+      {children}
+    </StyledBadge>
+  )
 }
 
 export default Badge

@@ -122,16 +122,16 @@ class App extends Component {
           <Alert info>This is my info alert</Alert>
           <Alert light>This is my light alert</Alert>
           <Alert dark>This is my dark alert</Alert>
-
           <h2>Badges</h2>
-          <Badge primary>Primary</Badge>
+          <Badge primary onClick={() => console.log('PRIMARY')}>
+            Primary
+          </Badge>
           <Badge secondary>Secondary</Badge>
           <Badge success>Success</Badge>
           <Badge danger>Danger</Badge>
           <Badge warning>Warning</Badge>
           <Badge light>Light</Badge>
           <Badge dark>Dark</Badge>
-
           <h2>Select</h2>
           <Select
             name="language"
@@ -167,7 +167,6 @@ class App extends Component {
               }
             ]}
           />
-
           <Select
             name="language"
             type="warning"
@@ -203,7 +202,6 @@ class App extends Component {
               }
             ]}
           />
-
           <Select
             name="published"
             type="warning"
@@ -223,10 +221,8 @@ class App extends Component {
               }
             ]}
           />
-
           <h2>Tags</h2>
           <Tags tags={[{ name: 'react' }]} getTags={tags => console.log(tags)} />
-
           <h2>Table</h2>
           <Table
             data={{
@@ -240,7 +236,6 @@ class App extends Component {
               }
             }}
           />
-
           <h2>Buttons</h2>
           <h3>Colors</h3>
           <p>
@@ -251,7 +246,6 @@ class App extends Component {
             <LightButton>Light</LightButton>
             <DarkButton>Dark</DarkButton>
           </p>
-
           <h3>Outline</h3>
           <p>
             <PrimaryButton outline>Primary</PrimaryButton>
@@ -261,7 +255,6 @@ class App extends Component {
             <LightButton outline>Light</LightButton>
             <DarkButton outline>Dark</DarkButton>
           </p>
-
           <h3>Sizes</h3>
           <p>
             <PrimaryButton small>Small</PrimaryButton>
@@ -269,7 +262,6 @@ class App extends Component {
             <PrimaryButton large>Large</PrimaryButton>
             <PrimaryButton xLarge>xLarge</PrimaryButton>
           </p>
-
           <h3>Full Width</h3>
           <p>
             <PrimaryButton large block>
@@ -279,22 +271,18 @@ class App extends Component {
               Block level button
             </PrimaryButton>
           </p>
-
           <h2>Accordion</h2>
           <Accordion panels={panels} />
-
           <h2>Checkbox</h2>
           <Checkbox label="One" name="option[]" />
           <Checkbox label="Two" name="option[]" />
           <Checkbox label="Three" name="option[]" />
           <Checkbox label="Four" name="option[]" />
-
           <h2>Radio</h2>
           <Radio label="One" name="option[]" />
           <Radio label="Two" name="option[]" />
           <Radio label="Three" name="option[]" />
           <Radio label="Four" name="option[]" />
-
           <h2>Input</h2>
           <Input disabled name="input" className="input" placeholder="Placeholder" />
           <Input
@@ -306,7 +294,6 @@ class App extends Component {
               height: '40px'
             }}
           />
-
           <h2>TextArea</h2>
           <TextArea
             name="textarea"
@@ -320,7 +307,6 @@ class App extends Component {
             Content
           </TextArea>
           <TextArea noWrapper name="textarea" className="textarea" />
-
           <h2>TextCounter</h2>
           <textarea
             name="text"
@@ -332,17 +318,14 @@ class App extends Component {
           />
           <br />
           <TextCounter left={text.length} total={50} />
-
           <h2>Icon</h2>
           <Icon type="fas fa-angle-right" /> <Icon type="fas fa-align-justify" /> <Icon type="fab fa-apple" />{' '}
           <Icon type="fab fa-facebook-square" />
-
           <h2>RenderIf</h2>
           <PrimaryButton onClick={this.handleClick}>Click it</PrimaryButton>
           <RenderIf isTrue={clicked}>
             <p>This should be render when the button is clicked!</p>
           </RenderIf>
-
           <h2>Modal</h2>
           <PrimaryButton onClick={this.handleModal}>Open Modal</PrimaryButton>
           <Modal
@@ -362,13 +345,13 @@ class App extends Component {
                 name="input2"
                 className="input2"
                 style={{
-                  width: '96%',
+                  width: '96%'
                 }}
               />
             </p>
 
             <p>
-             <label>Content:</label>
+              <label>Content:</label>
 
               <TextArea
                 noWrapper
@@ -385,26 +368,19 @@ class App extends Component {
               <PrimaryButton>Save</PrimaryButton>
             </p>
           </Modal>
-
           <h2>Pagination</h2>
           <h3>Primary Theme</h3>
           <Pagination theme="primary" page={2} total={100} url="/page/" />
-
           <h3>Success Theme</h3>
           <Pagination theme="success" page={4} total={100} url="/page/" />
-
           <h3>Danger Theme</h3>
           <Pagination theme="danger" page={10} total={100} url="/page/" />
-
           <h3>Warning Theme</h3>
           <Pagination theme="warning" page={1} total={100} url="/page/" />
-
           <h3>Light Theme</h3>
           <Pagination theme="light" page={7} total={100} url="/page/" />
-
           <h3>Dark Theme</h3>
           <Pagination theme="dark" page={10} total={100} url="/page/" />
-
           <h2>Spinners</h2>
           <div className={styles.spinners}>
             <Spinner spinner="audio" style={{ width: '30px' }} />{' '}
@@ -416,7 +392,6 @@ class App extends Component {
             <Spinner spinner="tail-spin" style={{ width: '30px' }} />{' '}
             <Spinner spinner="three-dots" style={{ width: '30px' }} />
           </div>
-
           <h2>Placeholder</h2>
           <Placeholder />
         </div>
