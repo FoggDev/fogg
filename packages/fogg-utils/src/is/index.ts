@@ -55,3 +55,7 @@ export function isUndefined(v: unknown): boolean {
 export function isBrowser(): boolean {
   return typeof window !== 'undefined'
 }
+
+export function isSymbol(v: unknown): boolean {
+  return typeof v === 'symbol' || isObject(v)
+}
