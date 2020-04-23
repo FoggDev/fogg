@@ -40,7 +40,8 @@
     "src/Table/index.tsx",
     "src/Tags/index.tsx",
     "src/TextArea/index.tsx",
-    "src/TextCounter/index.tsx"
+    "src/TextCounter/index.tsx",
+    "src/Toggle/index.tsx"
   ],
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules", "**/__tests__/*"]

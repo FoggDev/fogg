@@ -25,6 +25,7 @@ import Select from '../src/Select'
 import Tags from '../src/Tags'
 import Table from '../src/Table'
 import Modal from '../src/Modal'
+import Toggle from '../src/Toggle'
 
 import styles from './App.scss'
 
@@ -113,6 +114,13 @@ class App extends Component {
       <div className={styles.App}>
         <div>
           <h1>fogg-ui</h1>
+          <h2>Toggle</h2>
+          <p>
+            <Toggle label="Show system fields" />
+          </p>
+          <p>
+            <Toggle type="round" onClick={(): void => console.log('CLICKED!')} label="Show system fields" />
+          </p>
           <h2>Alerts</h2>
           <Alert primary>This is my primary alert</Alert>
           <Alert secondary>This is my secondary alert</Alert>
