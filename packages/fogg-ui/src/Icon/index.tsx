@@ -4,7 +4,7 @@ import React, { FC, ReactElement } from 'react'
 interface iProps {
   children?: ReactElement | string
   className?: string
-  type: string
+  type?: string
   title?: string
   onClick?(): void
 }
