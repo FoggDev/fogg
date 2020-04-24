@@ -2,7 +2,7 @@
 import React, { FC, ReactElement } from 'react'
 
 interface iProps {
-  children?: ReactElement
+  children?: ReactElement | string
   className?: string
   type: string
   title?: string
