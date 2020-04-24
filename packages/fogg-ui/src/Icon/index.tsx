@@ -1,15 +1,16 @@
 // Dependencies
-import React, { FC } from 'react'
+import React, { FC, ReactElement } from 'react'
 
 interface iProps {
+  children?: ReactElement
   className?: string
   type: string
   title?: string
   onClick?(): void
 }
 
-const Icon: FC<iProps> = props => {
-  const { type, className = '' } = props
+const Icon: FC<iProps> = (props): ReactElement => {
+  const { type, className = '', children } = props
   const iconProps = { ...props }
 
   delete iconProps.type
@@ -20,6 +21,14 @@ const Icon: FC<iProps> = props => {
     style = {
       cursor: 'pointer'
     }
+  }
+
+  if (children) {
+    return (
+      <i style={style} className={className} {...iconProps}>
+        {children}
+      </i>
+    )
   }
 
   return <i style={style} className={`${type} ${className}`} {...iconProps} />
