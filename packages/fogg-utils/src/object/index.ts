@@ -10,6 +10,10 @@ export function getEmptyValues(values: any): object {
   Object.keys(values).forEach((field: string) => {
     const v = isString(values[field]) ? values[field].trim() : values[field]
 
+    if (v === '') {
+      emptyValues.hasEmptyValues = true
+    }
+
     emptyValues[field] = v === ''
   })
 

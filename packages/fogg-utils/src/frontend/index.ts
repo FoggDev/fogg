@@ -77,7 +77,9 @@ export function isValidHexColor(hexCode: string): boolean {
 }
 
 export function generateHexCode(): string {
-  return `#${Math.floor(Math.random() * 16777215).toString(16)}`
+  return `#${Math.floor(Math.random() * 16777215)
+    .toString(16)
+    .substring(0, 7)}`
 }
 
 export function invertHexCode(hexCode?: any): string {

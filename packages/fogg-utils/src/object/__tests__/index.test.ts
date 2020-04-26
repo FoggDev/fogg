@@ -34,6 +34,7 @@ describe('#getEmptyValues', () => {
     }
 
     const expectedValues = {
+      hasEmptyValues: true,
       firstName: true,
       lastName: false,
       age: false,
