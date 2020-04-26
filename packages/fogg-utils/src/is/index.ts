@@ -59,3 +59,7 @@ export function isBrowser(): boolean {
 export function isSymbol(v: unknown): boolean {
   return typeof v === 'symbol' || isObject(v)
 }
+
+export function isEmptyObject(v: object): boolean {
+  return Object.keys(v).length === 0
+}

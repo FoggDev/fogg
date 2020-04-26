@@ -34,15 +34,41 @@ describe('#getEmptyValues', () => {
     }
 
     const expectedValues = {
-      hasEmptyValues: true,
       firstName: true,
-      lastName: false,
-      age: false,
       email: true
     }
 
     const emptyValues = getEmptyValues(values)
 
     expect(emptyValues).toEqual(expectedValues)
+  })
+
+  it('should get false if there is not empty values', () => {
+    const values = {
+      firstName: 'baz',
+      lastName: 'foo',
+      age: 20,
+      email: 'foo@baz.com'
+    }
+
+    const emptyValues = getEmptyValues(values)
+
+    expect(emptyValues).toBe(false)
+  })
+
+  it('should get just required empty values', () => {
+    const values = {
+      firstName: '',
+      lastName: '',
+      age: 20,
+      email: ''
+    }
+
+    const emptyValues = getEmptyValues(values, ['firstName', 'email'])
+
+    expect(emptyValues).toEqual({
+      firstName: true,
+      email: true
+    })
   })
 })
