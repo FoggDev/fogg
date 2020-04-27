@@ -106,7 +106,7 @@ const Modal: FC<iProps> = ({ children, isOpen, onOpen, onClose, label, options =
             <img style={{ width: '10px' }} alt="Close" src={require(`./icons/close.svg`)} />
           </StyledClose>
 
-          <StyledContent>
+          <StyledContent style={{ maxHeight: height !== '100%' ? height : '500px' }}>
             {label && <h2 className="label">{label}</h2>}
             {children}
           </StyledContent>
