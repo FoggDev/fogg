@@ -86,12 +86,19 @@ class App extends Component {
   state = {
     text: '',
     clicked: false,
-    isOpen: false
+    isOpen: false,
+    checked: true
   }
 
   handleModal = () => {
     this.setState({
       isOpen: !this.state.isOpen
+    })
+  }
+
+  handleChecked = () => {
+    this.setState({
+      checked: !this.state.checked
     })
   }
 
@@ -369,6 +376,15 @@ class App extends Component {
                   width: '96%',
                   height: '200px'
                 }}
+              />
+            </p>
+
+            <p>
+              <Toggle
+                checked={this.state.checked}
+                type="round"
+                onClick={(): void => this.handleChecked()}
+                label="Show system fields"
               />
             </p>
 

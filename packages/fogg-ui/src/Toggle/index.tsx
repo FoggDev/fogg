@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 interface iProps {
   label?: string
+  checked?: boolean
   color?: string
   type?: string
   onClick?(e: any): any
@@ -88,12 +89,12 @@ const StyledRoundSpan = styled(StyledSquareSpan)`
   }
 `
 
-const Toggle: FC<iProps> = ({ label = '', color = '#2196f3', type, onClick }): ReactElement => {
+const Toggle: FC<iProps> = ({ label = '', color = '#2196f3', type, onClick, checked = false }): ReactElement => {
   return (
     <>
       <StyledDiv>
         <StyledLabel>
-          <StyledInput type="checkbox" color={color} onClick={onClick} />
+          <StyledInput type="checkbox" color={color} onClick={onClick} checked={checked} />
           {type === 'round' ? <StyledRoundSpan /> : <StyledSquareSpan />}
         </StyledLabel>
 
