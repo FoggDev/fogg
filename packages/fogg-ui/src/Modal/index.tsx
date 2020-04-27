@@ -70,12 +70,14 @@ interface iProps {
   children: ReactElement | ReactElement[]
   options?: {
     position?: 'top' | 'center'
+    height?: string
     width?: string
   }
 }
 
 const Modal: FC<iProps> = ({ children, isOpen, onOpen, onClose, label, options = {} }) => {
   let width = '70%'
+  let height = '100%'
   const margin = `${options.position === 'top' ? '2%' : '14%'} auto`
 
   if (!isOpen) {
@@ -90,12 +92,16 @@ const Modal: FC<iProps> = ({ children, isOpen, onOpen, onClose, label, options =
     width = options.width
   }
 
+  if (options.height) {
+    height = options.height
+  }
+
   return (
     <>
       <StyledBody />
 
       <StyledModal>
-        <StyledContainer style={{ width, margin }}>
+        <StyledContainer style={{ width, height, margin }}>
           <StyledClose onClick={onClose}>
             <img style={{ width: '10px' }} alt="Close" src={require(`./icons/close.svg`)} />
           </StyledClose>
