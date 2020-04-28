@@ -56,6 +56,15 @@ const StyledContent = styled.div`
   overflow-x: hidden;
   text-align: left;
 
+  .label {
+    margin: 0;
+    padding: 0;
+    margin-bottom: 15px;
+    font-size: 20px;
+    font-weight: 500;
+    word-wrap: break-word;
+  }
+
   textarea {
     resize: none;
   }
