@@ -37,9 +37,8 @@ const StyledBaseButton = styled.a<iStyledProps>`
   ${({ disabled }): any =>
     disabled &&
     `
-    color: currentColor;
+    opacity: 0.8;
     cursor: not-allowed;
-    opacity: 0.5;
     text-decoration: none;
     pointer-events: none;
   `}

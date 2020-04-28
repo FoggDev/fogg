@@ -87,7 +87,8 @@ class App extends Component {
     text: '',
     clicked: false,
     isOpen: false,
-    checked: true
+    checked: true,
+    loading: false
   }
 
   handleModal = () => {
@@ -112,6 +113,18 @@ class App extends Component {
     this.setState({
       clicked: true
     })
+  }
+
+  handleLoadingClick = () => {
+    this.setState({
+      loading: true
+    })
+
+    setTimeout(() => {
+      this.setState({
+        loading: false
+      })
+    }, 4000)
   }
 
   render() {
@@ -252,6 +265,61 @@ class App extends Component {
             }}
           />
           <h2>Buttons</h2>
+          <h3>Button with Spinner</h3>
+          <p>
+            <DarkButton
+              onClick={this.handleLoadingClick}
+              isLoading={this.state.loading}
+              loadingText="Creating Field..."
+            >
+              Create Field
+            </DarkButton>
+          </p>
+          <p>
+            <DangerButton
+              onClick={this.handleLoadingClick}
+              isLoading={this.state.loading}
+              loadingText="Creating Field..."
+            >
+              Create Field
+            </DangerButton>
+          </p>
+          <p>
+            <LightButton
+              onClick={this.handleLoadingClick}
+              isLoading={this.state.loading}
+              loadingText="Creating Field..."
+            >
+              Create Field
+            </LightButton>
+          </p>
+          <p>
+            <PrimaryButton
+              onClick={this.handleLoadingClick}
+              isLoading={this.state.loading}
+              loadingText="Creating Field..."
+            >
+              Create Field
+            </PrimaryButton>
+          </p>
+          <p>
+            <SuccessButton
+              onClick={this.handleLoadingClick}
+              isLoading={this.state.loading}
+              loadingText="Creating Field..."
+            >
+              Create Field
+            </SuccessButton>
+          </p>
+          <p>
+            <WarningButton
+              onClick={this.handleLoadingClick}
+              isLoading={this.state.loading}
+              loadingText="Creating Field..."
+            >
+              Create Field
+            </WarningButton>
+          </p>
           <h3>Colors</h3>
           <p>
             <PrimaryButton href="http://dev.education">Primary</PrimaryButton>
@@ -409,9 +477,10 @@ class App extends Component {
           <div className={styles.spinners}>
             <Spinner spinner="audio" style={{ width: '30px' }} />{' '}
             <Spinner spinner="ball-triangle" style={{ width: '30px' }} />{' '}
-            <Spinner spinner="bars" style={{ width: '30px' }} /> <Spinner spinner="circles" style={{ width: '30px' }} />{' '}
-            <Spinner spinner="grid" style={{ width: '30px' }} /> <Spinner spinner="oval" style={{ width: '30px' }} />{' '}
-            <Spinner spinner="puff" style={{ width: '30px' }} /> <Spinner spinner="rings" style={{ width: '30px' }} />{' '}
+            <Spinner spinner="bars" style={{ width: '30px' }} />
+            <Spinner spinner="circles" style={{ width: '30px' }} /> <Spinner spinner="grid" style={{ width: '30px' }} />
+            <Spinner spinner="oval" style={{ width: '30px' }} /> <Spinner spinner="puff" style={{ width: '30px' }} />
+            <Spinner spinner="rings" style={{ width: '30px' }} />{' '}
             <Spinner spinner="spinning-circles" style={{ width: '30px' }} />{' '}
             <Spinner spinner="tail-spin" style={{ width: '30px' }} />{' '}
             <Spinner spinner="three-dots" style={{ width: '30px' }} />
