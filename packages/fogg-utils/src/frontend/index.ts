@@ -51,20 +51,27 @@ export function getModuleInfo(router: Router): PathInfo {
   }
 }
 
-export function getParams(mapParams: string[]): any {
+export function getParamsFromUrl(mapParams: string[], asPath?: any): any {
+  let pathname = ''
+
   if (isBrowser()) {
-    const { pathname } = window.location
-    const chunks = pathname.split('/').filter(v => v)
-    const params: any = {}
+    pathname = window.location.pathname
+  } else if (asPath) {
+    pathname = asPath.split('?')[0] // eslint-disable-line prefer-destructuring
 
-    mapParams.forEach((param, i) => {
-      params[param] = chunks[i] || null
-    })
-
-    return params
+    if (pathname.substr(-1) === '/') {
+      pathname = pathname.slice(0, -1)
+    }
   }
 
-  return {}
+  const chunks = pathname.split('/').filter(v => v)
+  const params: any = {}
+
+  mapParams.forEach((param, i) => {
+    params[param] = chunks[i] || null
+  })
+
+  return params
 }
 
 export function scrollToTop(): void {
