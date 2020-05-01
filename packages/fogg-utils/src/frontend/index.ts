@@ -51,13 +51,13 @@ export function getModuleInfo(router: Router): PathInfo {
   }
 }
 
-export function getParamsFromUrl(mapParams: string[], asPath?: any): any {
+export function getParamsFromUrl(mapParams: string[], baseUrl?: any): any {
   let pathname = ''
 
-  if (isBrowser()) {
+  if (isBrowser() && !baseUrl) {
     pathname = window.location.pathname
-  } else if (asPath) {
-    pathname = asPath.split('?')[0] // eslint-disable-line prefer-destructuring
+  } else if (baseUrl) {
+    pathname = baseUrl.split('?')[0] // eslint-disable-line prefer-destructuring
 
     if (pathname.substr(-1) === '/') {
       pathname = pathname.slice(0, -1)
