@@ -26,7 +26,7 @@ export function cx(...classes: string[]): string {
 
 export function redirectTo(url = '/'): void {
   if (isBrowser()) {
-    window.location.href = url
+    window.location.href = url === '_self' ? window.location.pathname : url
   }
 }
 
