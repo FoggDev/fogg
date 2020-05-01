@@ -86,7 +86,7 @@ interface iProps {
 
 const Modal: FC<iProps> = ({ children, isOpen, onOpen, onClose, label, options = {} }) => {
   let width = '70%'
-  let height = '100%'
+  let height = ''
   const margin = `${options.position === 'top' ? '2%' : '14%'} auto`
 
   if (!isOpen) {
