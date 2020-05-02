@@ -16,3 +16,15 @@ export function camelCase(str: string): string {
     return result + (index ? capitalize(word) : word)
   }, '')
 }
+
+export function arrayIn(arr: string[], str: string): boolean {
+  let found = false
+
+  arr.forEach((item: string) => {
+    if (str.includes(item)) {
+      found = true
+    }
+  })
+
+  return found
+}

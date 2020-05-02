@@ -1,4 +1,21 @@
-import { capitalize, camelCase } from '../index'
+import { arrayIn, capitalize, camelCase } from '../index'
+
+describe('#arrayIn', () => {
+  it('should return true if a value from array exists on string', () => {
+    const whitelist = ['login']
+    const fakeWhitelist = ['getUsers']
+    const query = `
+      mutation {
+        login(input: {email: "carlos.santana@dev.education", password: "12345678"}) {
+          token
+        }
+      }
+    `
+
+    expect(arrayIn(whitelist, query)).toBe(true)
+    expect(arrayIn(fakeWhitelist, query)).toBe(false)
+  })
+})
 
 describe('#capitalize', () => {
   it('should return a capitalized string', () => {
