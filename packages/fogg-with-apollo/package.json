@@ -1,0 +1,36 @@
+{
+  "name": "fogg-with-apollo",
+  "version": "1.0.0",
+  "description": "Fogg With Apollo",
+  "scripts": {
+    "build": "tsc",
+    "prepublish": "npm run build"
+  },
+  "author": "Carlos Santana",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/foggdev/fogg.git",
+    "directory": "packages/fogg-with-apollo"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist/"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@apollo/react-ssr": "^3.1.5",
+    "apollo-client": "^2.6.8",
+    "graphql": "^15.0.0",
+    "http": "0.0.1-security",
+    "next": "^9.3.6",
+    "react": "^16.13.1"
+  },
+  "devDependencies": {
+    "@types/node": "^13.13.4",
+    "@types/react": "^16.9.34",
+    "@types/react-dom": "^16.9.7",
+    "prettier": "^2.0.5",
+    "typescript": "^3.8.3"
+  }
+}
