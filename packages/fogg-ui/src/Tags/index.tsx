@@ -117,11 +117,21 @@ const Tags: FC<iProps> = (props): ReactElement => {
           {tagsArr.map((tag, index) => (
             <div key={`${tag.name}-${index}`} className="tag">
               <span title={tag.name}>{tag.name}</span>
-              <Icon title="Remove tag" type="fas fa-times" onClick={(): void => onClick(tag.name)} />
+              <Icon
+                title="Remove tag"
+                type="fas fa-times"
+                onClick={(): void => onClick(tag.name)}
+              />
             </div>
           ))}
 
-          <input name="tag" placeholder="Add new tag" onKeyPress={onKeyPressed} onChange={onChange} value={newTag} />
+          <input
+            name="tag"
+            placeholder="Add new tag"
+            onKeyPress={onKeyPressed}
+            onChange={onChange}
+            value={newTag}
+          />
         </div>
       </StyledTags>
     </div>

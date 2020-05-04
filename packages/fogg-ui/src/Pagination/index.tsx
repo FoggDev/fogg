@@ -141,7 +141,13 @@ const Pagination: FC<iProps> = (props): ReactElement => {
 
   const getCurrentPage = (start: number, end: number): number => (start === 0 ? 1 : start / end + 1)
 
-  const getPageNav = (firstPage: number, lastPage: number, start: number, end: number, url: string): ReactNode[] => {
+  const getPageNav = (
+    firstPage: number,
+    lastPage: number,
+    start: number,
+    end: number,
+    url: string
+  ): ReactNode[] => {
     const { theme } = props
     const pageNav = []
 

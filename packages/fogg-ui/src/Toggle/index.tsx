@@ -89,7 +89,13 @@ const StyledRoundSpan = styled(StyledSquareSpan)`
   }
 `
 
-const Toggle: FC<iProps> = ({ label = '', color = '#2196f3', type, onClick, checked = false }): ReactElement => {
+const Toggle: FC<iProps> = ({
+  label = '',
+  color = '#2196f3',
+  type,
+  onClick,
+  checked = false
+}): ReactElement => {
   return (
     <>
       <StyledDiv>

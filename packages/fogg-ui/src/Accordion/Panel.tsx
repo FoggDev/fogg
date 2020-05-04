@@ -87,7 +87,11 @@ const Panel: FC<iProps> = ({ title, content, activeTab, index, activateTab }) =>
     <StyledPanel open={isOpen}>
       <StyledPanelHeader onClick={activateTab}>
         <span>
-          <img style={{ width: '10px' }} alt="Spinner" src={require(`./icons/${isOpen ? 'minus' : 'plus'}.svg`)} />
+          <img
+            style={{ width: '10px' }}
+            alt="Spinner"
+            src={require(`./icons/${isOpen ? 'minus' : 'plus'}.svg`)}
+          />
         </span>
         <StyledPanelHeaderSpan>{title}</StyledPanelHeaderSpan>
       </StyledPanelHeader>
