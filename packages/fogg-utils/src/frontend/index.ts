@@ -101,3 +101,7 @@ export function invertHexCode(hexCode?: any): string {
     .substr(1)
     .toUpperCase()}`
 }
+
+export function waitFor(time: number): Promise<any> {
+  return new Promise(resolve => setTimeout(resolve, time * 1000))
+}
