@@ -5,6 +5,7 @@
   "scripts": {
     "build": "tsc",
     "lint": "eslint . --ext .js,.tsx,.ts",
+    "lint:fix": "eslint --ext .tsx,.ts --fix src",
     "test": "jest --config jestconfig.json",
     "prepublish": "npm run lint && npm run build"
   },

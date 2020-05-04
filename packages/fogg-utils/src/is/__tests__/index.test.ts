@@ -1,4 +1,14 @@
-import { isArray, isDefined, isFunction, isJson, isNumber, isObject, isPassword, isString, isUndefined } from '../index'
+import {
+  isArray,
+  isDefined,
+  isFunction,
+  isJson,
+  isNumber,
+  isObject,
+  isPassword,
+  isString,
+  isUndefined
+} from '../index'
 
 describe('#isArray', () => {
   it('should return true if is an Array', () => {

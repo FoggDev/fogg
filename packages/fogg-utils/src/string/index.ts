@@ -10,11 +10,14 @@ export function capitalize(str: any): string {
 }
 
 export function camelCase(str: string): string {
-  return words(str.replace(/['\u2019]/g, '')).reduce((result: string, word: string, index: number) => {
-    word = word.toLowerCase()
+  return words(str.replace(/['\u2019]/g, '')).reduce(
+    (result: string, word: string, index: number) => {
+      word = word.toLowerCase()
 
-    return result + (index ? capitalize(word) : word)
-  }, '')
+      return result + (index ? capitalize(word) : word)
+    },
+    ''
+  )
 }
 
 export function arrayIn(arr: string[], str: string): boolean {

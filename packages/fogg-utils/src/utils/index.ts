@@ -26,7 +26,11 @@ const rsCombo = `[${rsComboRange}]`
 const rsDigit = '\\d'
 const rsDingbat = `[${rsDingbatRange}]`
 const rsLower = `[${rsLowerRange}]`
-const rsMisc = `[^${rsAstralRange}${rsBreakRange + rsDigit + rsDingbatRange + rsLowerRange + rsUpperRange}]`
+const rsMisc = `[^${rsAstralRange}${rsBreakRange +
+  rsDigit +
+  rsDingbatRange +
+  rsLowerRange +
+  rsUpperRange}]`
 const rsFitz = '\\ud83c[\\udffb-\\udfff]'
 const rsModifier = `(?:${rsCombo}|${rsFitz})`
 const rsNonAstral = `[^${rsAstralRange}]`
@@ -40,7 +44,8 @@ const rsOptContrLower = `(?:${rsApos}(?:d|ll|m|re|s|t|ve))?`
 const rsOptContrUpper = `(?:${rsApos}(?:D|LL|M|RE|S|T|VE))?`
 const reOptMod = `${rsModifier}?`
 const rsOptVar = `[${rsVarRange}]?`
-const rsOptJoin = `(?:${rsZWJ}(?:${[rsNonAstral, rsRegional, rsSurrPair].join('|')})${rsOptVar + reOptMod})*`
+const rsOptJoin = `(?:${rsZWJ}(?:${[rsNonAstral, rsRegional, rsSurrPair].join('|')})${rsOptVar +
+  reOptMod})*`
 const rsOrdLower = '\\d*(?:1st|2nd|3rd|(?![123])\\dth)(?=\\b|[A-Z_])'
 const rsOrdUpper = '\\d*(?:1ST|2ND|3RD|(?![123])\\dTH)(?=\\b|[a-z_])'
 const rsSeq = rsOptVar + reOptMod + rsOptJoin
@@ -60,7 +65,9 @@ const reUnicodeWords = RegExp(
   'g'
 )
 
-const hasUnicodeWord = RegExp.prototype.test.bind(/[a-z][A-Z]|[A-Z]{2,}[a-z]|[0-9][a-zA-Z]|[a-zA-Z][0-9]|[^a-zA-Z0-9 ]/)
+const hasUnicodeWord = RegExp.prototype.test.bind(
+  /[a-z][A-Z]|[A-Z]{2,}[a-z]|[0-9][a-zA-Z]|[a-zA-Z][0-9]|[^a-zA-Z0-9 ]/
+)
 
 // eslint-disable-next-line no-control-regex
 const reAsciiWord = /[^\x00-\x2f\x3a-\x40\x5b-\x60\x7b-\x7f]+/g
