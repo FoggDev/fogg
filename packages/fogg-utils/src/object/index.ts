@@ -19,3 +19,11 @@ export function getEmptyValues(values: any, required: any = []): any {
 
   return !isEmptyObject(emptyValues) ? emptyValues : false
 }
+
+export function getDebug(data: any): any {
+  if (data._DEBUG) {
+    return JSON.parse(data._DEBUG)
+  }
+
+  return null
+}

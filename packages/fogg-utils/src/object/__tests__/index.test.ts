@@ -1,4 +1,4 @@
-import { cloneObject, getEmptyValues } from '../index'
+import { cloneObject, getEmptyValues, getDebug } from '../index'
 
 describe('#cloneObject', () => {
   it('should clone an object', () => {
@@ -70,5 +70,30 @@ describe('#getEmptyValues', () => {
       firstName: true,
       email: true
     })
+  })
+})
+
+describe('#getDebug', () => {
+  it('should get the debug data', () => {
+    const query = {
+      _DEBUG: JSON.stringify({
+        foo: 'bar'
+      })
+    }
+
+    const debug = getDebug(query)
+
+    expect(debug.foo).toEqual('bar')
+  })
+
+  it('should clone an object and have a different instance', () => {
+    const obj = {
+      foo: true,
+      baz: false
+    }
+
+    const clonedObj = cloneObject(obj)
+
+    expect(clonedObj === obj).toBe(false)
   })
 })
