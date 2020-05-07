@@ -16,6 +16,10 @@ interface PathInfo {
   id: string
 }
 
+export function buildUrl(params: any[]): any {
+  return params.filter(v => v).join('/')
+}
+
 export function slugFn(str = ''): string {
   return slug(str, { lower: true })
 }
