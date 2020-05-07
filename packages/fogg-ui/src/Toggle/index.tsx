@@ -6,6 +6,8 @@ interface iProps {
   checked?: boolean
   color?: string
   type?: string
+  readOnly?: boolean
+  onChange?(e: any): any
   onClick?(e: any): any
 }
 
@@ -93,14 +95,21 @@ const Toggle: FC<iProps> = ({
   label = '',
   color = '#2196f3',
   type,
-  onClick,
+  readOnly,
+  onChange,
   checked = false
 }): ReactElement => {
   return (
     <>
       <StyledDiv>
         <StyledLabel>
-          <StyledInput type="checkbox" color={color} onClick={onClick} checked={checked} />
+          <StyledInput
+            type="checkbox"
+            color={color}
+            onChange={onChange}
+            checked={checked}
+            readOnly={readOnly}
+          />
           {type === 'round' ? <StyledRoundSpan /> : <StyledSquareSpan />}
         </StyledLabel>
 

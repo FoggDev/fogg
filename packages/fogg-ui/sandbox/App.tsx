@@ -41,7 +41,8 @@ const panels = [
       'The most common issue is the use of a product key for a product not currently supported by the site such as an Upgrade key, an MSDN key, product keys for pre-installed media or an Enterprise edition key. For access to MSDN products or Enterprise edition visit the MSDN Portal or the Volume Licensing Service Center. Upgrades and pre-installed media are not currently supported by the tools on the site.'
   },
   {
-    title: "I don't see the Windows 8.1 or Windows 10 edition I'm looking for. Where else should I check?",
+    title:
+      "I don't see the Windows 8.1 or Windows 10 edition I'm looking for. Where else should I check?",
     content:
       'If you are looking for MSDN products or Enterprise editions visit the MSDN Portal or the Volume Licensing Service Center.'
   }
@@ -139,7 +140,11 @@ class App extends Component {
             <Toggle label="Show system fields" />
           </p>
           <p>
-            <Toggle type="round" onClick={(): void => console.log('CLICKED!')} label="Show system fields" />
+            <Toggle
+              type="round"
+              onChange={(): void => console.log('CLICKED!')}
+              label="Show system fields"
+            />
           </p>
           <h2>Alerts</h2>
           <Alert primary>This is my primary alert</Alert>
@@ -402,8 +407,8 @@ class App extends Component {
           <br />
           <TextCounter left={text.length} total={50} />
           <h2>Icon</h2>
-          <Icon type="fas fa-angle-right" /> <Icon type="fas fa-align-justify" /> <Icon type="fab fa-apple" />{' '}
-          <Icon type="fab fa-facebook-square" />
+          <Icon type="fas fa-angle-right" /> <Icon type="fas fa-align-justify" />{' '}
+          <Icon type="fab fa-apple" /> <Icon type="fab fa-facebook-square" />
           <h2>RenderIf</h2>
           <PrimaryButton onClick={this.handleClick}>Click it</PrimaryButton>
           <RenderIf isTrue={clicked}>
@@ -478,8 +483,10 @@ class App extends Component {
             <Spinner spinner="audio" style={{ width: '30px' }} />{' '}
             <Spinner spinner="ball-triangle" style={{ width: '30px' }} />{' '}
             <Spinner spinner="bars" style={{ width: '30px' }} />
-            <Spinner spinner="circles" style={{ width: '30px' }} /> <Spinner spinner="grid" style={{ width: '30px' }} />
-            <Spinner spinner="oval" style={{ width: '30px' }} /> <Spinner spinner="puff" style={{ width: '30px' }} />
+            <Spinner spinner="circles" style={{ width: '30px' }} />{' '}
+            <Spinner spinner="grid" style={{ width: '30px' }} />
+            <Spinner spinner="oval" style={{ width: '30px' }} />{' '}
+            <Spinner spinner="puff" style={{ width: '30px' }} />
             <Spinner spinner="rings" style={{ width: '30px' }} />{' '}
             <Spinner spinner="spinning-circles" style={{ width: '30px' }} />{' '}
             <Spinner spinner="tail-spin" style={{ width: '30px' }} />{' '}
