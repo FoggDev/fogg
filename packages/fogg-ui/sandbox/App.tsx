@@ -5,6 +5,7 @@ import React, { Component } from 'react'
 import Alert from '../src/Alert'
 import Accordion from '../src/Accordion'
 import Badge from '../src/Badge'
+import LinkButton from '../src/Button/Link'
 import DangerButton from '../src/Button/Danger'
 import DarkButton from '../src/Button/Dark'
 import LightButton from '../src/Button/Light'
@@ -358,6 +359,16 @@ class App extends Component {
             <PrimaryButton large block>
               Block level button
             </PrimaryButton>
+          </p>
+          <h3>Link Button</h3>
+          <p>
+            <LinkButton color="rgb(102, 99, 253)" bold>
+              Cancel
+            </LinkButton>
+
+            <LinkButton color="red" bg="#fadad7" bold fontSize="12px">
+              Delete Field
+            </LinkButton>
           </p>
           <h2>Accordion</h2>
           <Accordion panels={panels} />
