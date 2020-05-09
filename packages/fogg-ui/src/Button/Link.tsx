@@ -28,6 +28,7 @@ const StyledButton = styled(StyledBaseButton)<iProps>`
     color: ${color || colors.primary.background};
     font-weight: ${bold ? '600' : '400'};
     font-size: ${fontSize || '1rem'};
+    border: 2px solid transparent;
 
     &:hover {
       color: ${color || colors.primary.background};
