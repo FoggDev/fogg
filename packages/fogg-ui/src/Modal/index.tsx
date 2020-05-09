@@ -68,9 +68,22 @@ const StyledContainer = styled.div<iContainerProps>`
 
 const StyledClose = styled.span`
   cursor: pointer;
-  margin-top: -10px;
+  margin-top: -6px;
   position: absolute;
-  right: 6px;
+  right: 10px;
+
+  @media (max-width: 768px) {
+    margin-top: 0;
+    right: 15px;
+  }
+`
+
+const StyledImg = styled.img`
+  width: 12px;
+
+  @media (max-width: 768px) {
+    width: 16px;
+  }
 `
 
 const StyledContent = styled.div`
@@ -138,7 +151,7 @@ const Modal: FC<iProps> = ({ children, isOpen, onOpen, onClose, label, options =
       <StyledModal>
         <StyledContainer maxWidth={width} height={height} margin={margin}>
           <StyledClose onClick={onClose}>
-            <img style={{ width: '10px' }} alt="Close" src={require(`./icons/close.svg`)} />
+            <StyledImg alt="Close" src={require(`./icons/close.svg`)} />
           </StyledClose>
 
           <StyledContent style={{ maxHeight: height !== '100%' ? height : '500px' }}>
