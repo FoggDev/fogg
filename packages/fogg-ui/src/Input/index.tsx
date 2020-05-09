@@ -1,6 +1,6 @@
 // Dependencies
 import React, { FC } from 'react'
-import styled from 'styled-components'
+import styled, { createGlobalStyle } from 'styled-components'
 
 interface iProps {
   autoComplete?: string
@@ -26,6 +26,16 @@ interface iStyledProps {
   hasError?: boolean
 }
 
+const StyledBody = createGlobalStyle`
+  textarea,
+  input {
+      border-radius: 0;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+  }
+`
+
 const StyledInput = styled.input<iStyledProps>`
   background: white;
   border-radius: 5px;
@@ -37,6 +47,7 @@ const StyledInput = styled.input<iStyledProps>`
   padding: 8px;
   transition: all 0.3s ease 0s;
   width: 93%;
+  border-radius: 0;
 
   ${({ hasError }): any =>
     hasError &&
@@ -106,9 +117,12 @@ const Input: FC<iProps> = props => {
   }
 
   return (
-    <div style={{ marginTop: '5px', marginBottom: '20px' }}>
-      <StyledInput {...props} />
-    </div>
+    <>
+      <StyledBody />
+      <div style={{ marginTop: '5px', marginBottom: '20px' }}>
+        <StyledInput {...props} />
+      </div>
+    </>
   )
 }
 

@@ -16,6 +16,13 @@ const StyledBody = createGlobalStyle`
   ::-webkit-scrollbar { width: 8px; height: 3px; }
   ::-webkit-scrollbar-track-piece { background-color: #fff; }
   ::-webkit-scrollbar-thumb { height: 20px; background-color: #222; border-radius: 10px; }
+
+  input {
+      border-radius: 0;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+  }
 `
 
 const StyledModal = styled.div`
@@ -30,7 +37,13 @@ const StyledModal = styled.div`
   background-color: rgba(0, 0, 0, 0.7);
 `
 
-const StyledContainer = styled.div`
+interface iContainerProps {
+  height?: string
+  margin?: string
+  maxWidth?: string
+}
+
+const StyledContainer = styled.div<iContainerProps>`
   position: relative;
   background-color: white;
   padding: 12px;
@@ -38,6 +51,19 @@ const StyledContainer = styled.div`
   -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.62);
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.62);
   border: 1px solid #333;
+
+  ${({ maxWidth, height, margin }): any => `
+    max-width: ${maxWidth};
+    height: ${height};
+    margin: ${margin};
+  `}
+
+  @media (max-width: 768px) {
+    height: 100%;
+    margin: 0;
+    border: none;
+    max-width: 100%;
+  }
 `
 
 const StyledClose = styled.span`
@@ -110,7 +136,7 @@ const Modal: FC<iProps> = ({ children, isOpen, onOpen, onClose, label, options =
       <StyledBody />
 
       <StyledModal>
-        <StyledContainer style={{ width, height, margin }}>
+        <StyledContainer maxWidth={width} height={height} margin={margin}>
           <StyledClose onClick={onClose}>
             <img style={{ width: '10px' }} alt="Close" src={require(`./icons/close.svg`)} />
           </StyledClose>
