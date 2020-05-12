@@ -61,5 +61,5 @@ export function isSymbol(v: unknown): boolean {
 }
 
 export function isEmptyObject(v: object): boolean {
-  return Object.keys(v).length === 0
+  return v ? Object.keys(v).length === 0 : false
 }
