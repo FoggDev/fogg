@@ -7,7 +7,8 @@ import {
   isObject,
   isPassword,
   isString,
-  isUndefined
+  isUndefined,
+  isEmptyObject
 } from '../index'
 
 describe('#isArray', () => {
@@ -129,5 +130,20 @@ describe('#isUndefined', () => {
   it('should return false if a variable is not undefined', () => {
     const test = 'foo'
     expect(isUndefined(test)).toBe(false)
+  })
+})
+
+describe('#isEmptyObject', () => {
+  it('should return true if object is empty', () => {
+    const obj = {}
+    expect(isEmptyObject(obj)).toBe(true)
+    expect(isEmptyObject(undefined)).toBe(true)
+  })
+
+  it('should return false if object is not empty', () => {
+    const obj = {
+      foo: 'bar'
+    }
+    expect(isEmptyObject(obj)).toBe(false)
   })
 })

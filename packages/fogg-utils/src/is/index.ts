@@ -60,6 +60,6 @@ export function isSymbol(v: unknown): boolean {
   return typeof v === 'symbol' || isObject(v)
 }
 
-export function isEmptyObject(v: object): boolean {
-  return v ? Object.keys(v).length === 0 : false
+export function isEmptyObject(v: any): boolean {
+  return v ? Object.keys(v).length === 0 : true
 }
