@@ -1,5 +1,5 @@
 // Dependencies
-import React, { Component } from 'react'
+import React, { Component, ReactElement } from 'react'
 
 // Components
 import Alert from '../src/Alert'
@@ -27,6 +27,7 @@ import Tags from '../src/Tags'
 import Table from '../src/Table'
 import Modal from '../src/Modal'
 import Toggle from '../src/Toggle'
+import Menu from '../src/Menu'
 
 import styles from './App.scss'
 
@@ -89,35 +90,42 @@ class App extends Component {
     text: '',
     clicked: false,
     isOpen: false,
+    isOpenMenu: false,
     checked: true,
     loading: false
   }
 
-  handleModal = () => {
+  handleModal = (): void => {
     this.setState({
       isOpen: !this.state.isOpen
     })
   }
 
-  handleChecked = () => {
+  handleMenu = (): void => {
+    this.setState({
+      isOpenMenu: !this.state.isOpenMenu
+    })
+  }
+
+  handleChecked = (): void => {
     this.setState({
       checked: !this.state.checked
     })
   }
 
-  handleTextField = (e: any, field: string) => {
+  handleTextField = (e: any, field: string): void => {
     this.setState({
       [field]: e.target.value
     })
   }
 
-  handleClick = () => {
+  handleClick = (): void => {
     this.setState({
       clicked: true
     })
   }
 
-  handleLoadingClick = () => {
+  handleLoadingClick = (): void => {
     this.setState({
       loading: true
     })
@@ -129,7 +137,7 @@ class App extends Component {
     }, 4000)
   }
 
-  render() {
+  render(): ReactElement {
     const { clicked, text } = this.state
 
     return (
@@ -157,7 +165,7 @@ class App extends Component {
           <Alert light>This is my light alert</Alert>
           <Alert dark>This is my dark alert</Alert>
           <h2>Badges</h2>
-          <Badge primary onClick={() => console.log('PRIMARY')}>
+          <Badge primary onClick={(): void => console.log('PRIMARY')}>
             Primary
           </Badge>
           <Badge secondary>Secondary</Badge>
@@ -170,7 +178,7 @@ class App extends Component {
           <Select
             name="language"
             label="Select language"
-            onClick={({ option, value }: { option: string; value: any }) => {
+            onClick={({ option, value }: { option: string; value: any }): void => {
               console.log(option, value)
             }}
             options={[
@@ -205,7 +213,7 @@ class App extends Component {
             name="language"
             type="warning"
             label="Select language"
-            onClick={({ option, value }: { option: string; value: any }) => {
+            onClick={({ option, value }: { option: string; value: any }): void => {
               console.log(option, value)
             }}
             options={[
@@ -240,7 +248,7 @@ class App extends Component {
             name="published"
             type="warning"
             label="Published"
-            onClick={({ option, value }: { option: string; value: any }) => {
+            onClick={({ option, value }: { option: string; value: any }): void => {
               console.log(option, value)
             }}
             options={[
@@ -256,7 +264,7 @@ class App extends Component {
             ]}
           />
           <h2>Tags</h2>
-          <Tags tags={[{ name: 'react' }]} getTags={tags => console.log(tags)} />
+          <Tags tags={[{ name: 'react' }]} getTags={(tags): void => console.log(tags)} />
           <h2>Table</h2>
           <Table
             data={{
@@ -409,7 +417,7 @@ class App extends Component {
           <h2>TextCounter</h2>
           <textarea
             name="text"
-            onChange={e => {
+            onChange={(e): void => {
               this.handleTextField(e, 'text')
             }}
             value={text}
@@ -425,6 +433,40 @@ class App extends Component {
           <RenderIf isTrue={clicked}>
             <p>This should be render when the button is clicked!</p>
           </RenderIf>
+          <h2>Menu</h2>
+          <PrimaryButton onClick={this.handleMenu}>Open Menu</PrimaryButton>
+          <div style={{ position: 'relative', marginBottom: '100px' }}>
+            <Menu
+              isOpen={this.state.isOpenMenu}
+              items={[
+                {
+                  option: 'Create Model',
+                  icon: 'create',
+                  onClick: (): void => console.log('Item 1')
+                },
+                {
+                  option: 'Edit Model',
+                  icon: 'edit',
+                  onClick: (): void => console.log('Item 1')
+                },
+                {
+                  option: 'Delete Model',
+                  icon: 'trash',
+                  onClick: (): void => console.log('Item 2')
+                },
+                {
+                  option: 'Create User',
+                  icon: 'boy',
+                  onClick: (): void => console.log('Item 2')
+                },
+                {
+                  option: 'Create User',
+                  icon: 'girl',
+                  onClick: (): void => console.log('Item 2')
+                }
+              ]}
+            />
+          </div>
           <h2>Modal</h2>
           <PrimaryButton onClick={this.handleModal}>Open Modal</PrimaryButton>
           <Modal
@@ -433,7 +475,7 @@ class App extends Component {
             options={{
               position: 'top'
             }}
-            onOpen={() => console.log('on open')}
+            onOpen={(): void => console.log('on open')}
             onClose={this.handleModal}
           >
             <p>

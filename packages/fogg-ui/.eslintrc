@@ -71,6 +71,8 @@
     "react/jsx-props-no-spreading": "off",
     "@typescript-eslint/class-name-casing": "off",
     "@typescript-eslint/member-delimiter-style": "off",
-    "@typescript-eslint/no-explicit-any": "off"
+    "@typescript-eslint/no-explicit-any": "off",
+    "react/state-in-constructor": "off",
+    "react/no-access-state-in-setstate": "off"
   }
 }

@@ -30,6 +30,7 @@
     "src/Icon/index.tsx",
     "src/Input/index.tsx",
     "src/Modal/index.tsx",
+    "src/Menu/index.tsx",
     "src/Pagination/index.tsx",
     "src/Placeholder/index.tsx",
     "src/Radio/index.tsx",
