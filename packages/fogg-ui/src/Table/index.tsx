@@ -4,6 +4,7 @@ import moment from 'moment'
 import Icon from '../Icon'
 
 interface iProps {
+  className?: string
   data: {
     caption: string
     head: string[]
@@ -23,7 +24,7 @@ const StyledTable = styled.table`
   border-collapse: collapse;
   border-spacing: 0;
   margin-top: 25px;
-  width: 95%;
+  width: 100%;
 
   caption {
     color: #555;
@@ -31,7 +32,6 @@ const StyledTable = styled.table`
     background-color: white;
     border: 1px solid #eee;
     border-bottom: 0;
-    border-radius: 4px 4px 0 0;
     padding: 25px 30px;
     position: relative;
     text-align: left;
@@ -94,12 +94,12 @@ const StyledTable = styled.table`
   }
 `
 
-const Table: FC<iProps> = ({ data }): ReactElement => {
+const Table: FC<iProps> = ({ className = '', data }): ReactElement => {
   const { caption, head, body, rows, count, actions = null } = data
-  const $window: any = window
+  const $window: any = typeof window !== 'undefined' ? window : {}
 
   return (
-    <StyledTable>
+    <StyledTable className={className}>
       <caption>
         <div className="app">{caption}</div>
         <div className="count">
