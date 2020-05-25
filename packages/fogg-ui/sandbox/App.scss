@@ -1,12 +1,10 @@
 .App {
-  font-family: -apple-system,BlinkMacSystemFont,Roboto,"Helvetica Neue",Arial,sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue', Arial, sans-serif;
   font-size: 1rem;
   background-color: #fff;
-  border: 1px solid #EEE;
-  padding: 50px;
   margin: 0 auto;
   padding-bottom: 500px;
-  width: 960px;
+  width: 90%;
 
   h1 {
     text-align: center;
@@ -19,7 +17,7 @@
   .spinners {
     display: flex;
     justify-content: space-between;
-    background: #34495E;
+    background: #34495e;
     padding: 20px;
   }
 }

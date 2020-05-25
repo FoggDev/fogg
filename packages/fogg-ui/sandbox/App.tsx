@@ -52,12 +52,12 @@ const panels = [
 
 const rows = [
   {
-    id: '946cd97d-5d00-4597-91b3-47b71209f2a3',
+    id: '146cd97d-5d00-4597-91b3-47b71209f2a3',
     title: 'My first post super looooooooooooooooooong',
     readingTime: '3 minutes',
     language: 'en',
     createdAt: '2019-12-23T04:44:17.883Z',
-    published: true,
+    status: 'Published',
     tags: [
       {
         name: 'react'
@@ -68,11 +68,44 @@ const rows = [
     ]
   },
   {
-    id: 'be22fde5-bb2f-4f6b-8dfa-1ab5bf91182b',
+    id: '2e22fde5-bb2f-4f6b-8dfa-1ab5bf91182b',
     title: 'My second post super looooooooooooooooooong',
     readingTime: '7 minutes',
     language: 'es',
-    published: false,
+    status: 'Changed',
+    createdAt: '2019-12-23T05:44:17.883Z',
+    tags: [
+      {
+        name: 'graphql'
+      },
+      {
+        name: 'apollo'
+      }
+    ]
+  },
+  {
+    id: '3e22fde5-bb2f-4f6b-8dfa-1ab5bf91182b',
+    title: 'My second post super looooooooooooooooooong',
+    readingTime: '7 minutes',
+    language: 'es',
+    status: 'Deleted',
+    createdAt: '2019-12-23T04:44:17.883Z',
+    tags: [
+      {
+        name: 'graphql'
+      },
+      {
+        name: 'apollo'
+      }
+    ]
+  },
+  {
+    id: '4e22fde5-bb2f-4f6b-8dfa-1ab5bf91182b',
+    title:
+      'My second post super looooooooooooooooooong looooooooooooooooooong looooooooooooooooooong looooooooooooooooooong looooooooooooooooooong looooooooooooooooooong',
+    readingTime: '7 minutes',
+    language: 'es',
+    status: 'Draft',
     createdAt: '2019-12-23T04:44:17.883Z',
     tags: [
       {
@@ -145,16 +178,16 @@ class App extends Component {
         <div>
           <h1>fogg-ui</h1>
           <h2>Toggle</h2>
-          <p>
+          <div>
             <Toggle label="Show system fields" />
-          </p>
-          <p>
+          </div>
+          <div>
             <Toggle
               type="round"
               onChange={(): void => console.log('CLICKED!')}
               label="Show system fields"
             />
-          </p>
+          </div>
           <h2>Alerts</h2>
           <Alert primary>This is my primary alert</Alert>
           <Alert secondary>This is my secondary alert</Alert>
@@ -268,15 +301,13 @@ class App extends Component {
           <h2>Table</h2>
           <Table
             data={{
-              caption: 'Posts',
-              head: ['Title', 'Reading Time', 'Language', 'Tags', 'Published', 'Date'],
-              body: ['title', 'readingTime', 'language', 'tags.name', 'published', 'createdAt'],
-              rows,
-              actions: {
-                edit: '/dashboard/blog/update',
-                delete: '/dashboard/blog/delete'
-              }
+              head: ['ID', 'Title', 'Reading Time', 'Language', 'Tags', 'Date', 'Status'],
+              body: ['id', 'title', 'readingTime', 'language', 'tags.name', 'createdAt', 'status'],
+              rows
             }}
+            onDelete={(ids: any): void => console.log('Delete', ids)}
+            onPublish={(ids: any): void => console.log('Publish', ids)}
+            onUnpublish={(ids: any): void => console.log('Unpublish', ids)}
           />
           <h2>Buttons</h2>
           <h3>Button with Spinner</h3>
@@ -509,7 +540,7 @@ class App extends Component {
               <Toggle
                 checked={this.state.checked}
                 type="round"
-                onClick={(): void => this.handleChecked()}
+                onChange={(): void => this.handleChecked()}
                 label="Show system fields"
               />
             </p>

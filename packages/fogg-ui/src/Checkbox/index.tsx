@@ -56,7 +56,7 @@ const StyledSpan = styled.span.attrs({
   left: 0;
   height: 25px;
   width: 25px;
-  background-color: #eaeaea;
+  background-color: #eee;
 
   &:after {
     content: '';
