@@ -5,9 +5,10 @@ import Icon from '../Icon'
 
 interface iProps {
   className?: string
-  onDelete?: any
-  onPublish?: any
-  onUnpublish?: any
+  onDelete: any
+  onPublish: any
+  onUnpublish: any
+  url: string
   data: {
     head: string[]
     body: string[]
@@ -251,7 +252,8 @@ const Table: FC<iProps> = ({
   data,
   onDelete,
   onPublish,
-  onUnpublish
+  onUnpublish,
+  url
 }): ReactElement => {
   const { head, body, rows = [], count } = data
   const total = count || rows.length
@@ -259,11 +261,6 @@ const Table: FC<iProps> = ({
   const [checkbox, setCheckbox] = useState(createCheckboxes(false, rows, total))
   const selectedCheckboxes = getCheckedCheckboxes(checkbox)
   const checkedCheckboxes = selectedCheckboxes.length
-  let url = ''
-
-  if (typeof window !== 'undefined') {
-    url = window.location.pathname
-  }
 
   useEffect(() => {
     const allChecks = Object.values(checkbox).filter((check: any) => check.checked)
