@@ -27,7 +27,7 @@ const StyledTable = styled.table`
 
   caption {
     color: #a9b9c0;
-    font-size: 13px;
+    font-size: 12px;
     background-color: white;
     border-bottom: 0;
     position: relative;
@@ -47,6 +47,26 @@ const StyledTable = styled.table`
       padding: 10px 8px;
       text-align: left;
       text-transform: none;
+
+      @media screen and (max-width: 768px) {
+        font-size: 11.5px;
+        min-width: 68px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+
+        &:first-child {
+          min-width: 10px;
+        }
+      }
+
+      @media screen and (max-width: 640px) {
+        font-size: 11px;
+
+        &.date {
+          color: #f7f7f7;
+          min-width: 5px;
+        }
+      }
 
       &.actions {
         background-color: #fbfbfb;
@@ -104,11 +124,30 @@ const StyledTable = styled.table`
         color: #666;
         font-size: 14px;
         height: 50px;
-        max-width: 220px;
+        max-width: 140px;
         overflow: hidden;
         padding: 0px 10px;
         text-overflow: ellipsis;
         white-space: nowrap;
+
+        @media screen and (max-width: 768px) {
+          font-size: 11.5px;
+          max-width: 108px;
+
+          .at,
+          .hour {
+            display: none;
+          }
+        }
+
+        @media screen and (max-width: 640px) {
+          max-width: 40px;
+          font-size: 11px;
+
+          .date {
+            display: none;
+          }
+        }
 
         &.checkbox {
           width: 10px;
@@ -133,6 +172,10 @@ const StyledTable = styled.table`
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+
+            @media screen and (max-width: 640px) {
+              width: 50px;
+            }
           }
         }
 
@@ -264,7 +307,9 @@ const Table: FC<iProps> = ({
                   <input type="checkbox" checked={allCheckboxes} onClick={handleAllCheckbox} />
                 </th>
               )}
-              <th key={`th-${index}`}>{th}</th>
+              <th key={`th-${index}`} className={th.toLocaleLowerCase()}>
+                {th}
+              </th>
             </Fragment>
           ))}
         </tr>
@@ -338,10 +383,16 @@ const Table: FC<iProps> = ({
                 }
 
                 if (parent === 'createdAt') {
+                  const date = moment(row[parent])
+                    .format('MM/DD/YYYY,hh:mm a')
+                    .split(',')
+
                   return (
-                    <td key={`tr-${trIndex}`}>
+                    <td key={`tr-${trIndex}`} className={parent}>
                       <a href={id}>
-                        <span>{moment(row[parent]).format('MM/DD/YYYY, hh:mm a')}</span>
+                        <span className="date">{date[0]}</span>
+                        <span className="at"> at </span>
+                        <span className="hour">{date[1]}</span>
                       </a>
                     </td>
                   )
