@@ -259,6 +259,11 @@ const Table: FC<iProps> = ({
   const [checkbox, setCheckbox] = useState(createCheckboxes(false, rows, total))
   const selectedCheckboxes = getCheckedCheckboxes(checkbox)
   const checkedCheckboxes = selectedCheckboxes.length
+  let url = ''
+
+  if (typeof window !== 'undefined') {
+    url = window.location.pathname
+  }
 
   useEffect(() => {
     const allChecks = Object.values(checkbox).filter((check: any) => check.checked)
@@ -368,7 +373,7 @@ const Table: FC<iProps> = ({
 
                   return (
                     <td key={`tr-${trIndex}`}>
-                      <a href={id}>
+                      <a href={`${url}/${id}`}>
                         <span>{values}</span>
                       </a>
                     </td>
@@ -382,7 +387,7 @@ const Table: FC<iProps> = ({
 
                   return (
                     <td key={`tr-${trIndex}`} className={parent}>
-                      <a href={id}>
+                      <a href={`${url}/${id}`}>
                         <span className="date">{date[0]}</span>
                         <span className="at"> at </span>
                         <span className="hour">{date[1]}</span>
@@ -403,7 +408,7 @@ const Table: FC<iProps> = ({
                         />
                       </td>
                       <td key={`tr-${trIndex}`} className={tr} title={row[parent].toString()}>
-                        <a href={id}>
+                        <a href={`${url}/${id}`}>
                           <span>{row[parent].toString()}</span>
                         </a>
                       </td>
@@ -419,7 +424,7 @@ const Table: FC<iProps> = ({
                       .toLowerCase()
                       .replace(/\s+/g, '')}`}
                   >
-                    <a href={id}>{row[parent].toString()}</a>
+                    <a href={`${url}/${id}`}>{row[parent].toString()}</a>
                   </td>
                 )
               })}
