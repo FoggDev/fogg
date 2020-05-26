@@ -100,7 +100,7 @@ const StyledTable = styled.table`
 
         input[type='checkbox'] {
           appearance: checkbox;
-          transform: scale(1.2);
+          transform: scale(1);
         }
       }
     }
@@ -148,7 +148,7 @@ const StyledTable = styled.table`
 
           input[type='checkbox'] {
             appearance: checkbox;
-            transform: scale(1.2);
+            transform: scale(1);
           }
         }
 
