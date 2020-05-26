@@ -57,10 +57,6 @@ const StyledTable = styled.table`
         &:first-child {
           min-width: 10px;
         }
-      }
-
-      @media screen and (max-width: 640px) {
-        font-size: 11px;
 
         &.date {
           color: #f7f7f7;
@@ -134,6 +130,7 @@ const StyledTable = styled.table`
           font-size: 11.5px;
           max-width: 108px;
 
+          .date,
           .at,
           .hour {
             display: none;
@@ -143,10 +140,6 @@ const StyledTable = styled.table`
         @media screen and (max-width: 640px) {
           max-width: 40px;
           font-size: 11px;
-
-          .date {
-            display: none;
-          }
         }
 
         &.checkbox {
@@ -304,7 +297,7 @@ const Table: FC<iProps> = ({
             <Fragment key={`head-fragment-${index}`}>
               {index === 0 && (
                 <th className="checkbox">
-                  <input type="checkbox" checked={allCheckboxes} onClick={handleAllCheckbox} />
+                  <input type="checkbox" checked={allCheckboxes} onChange={handleAllCheckbox} />
                 </th>
               )}
               <th key={`th-${index}`} className={th.toLocaleLowerCase()}>
@@ -406,7 +399,7 @@ const Table: FC<iProps> = ({
                           type="checkbox"
                           name="option[]"
                           checked={checkbox[rowIndex].checked}
-                          onClick={(): void => handleCheckbox(rowIndex)}
+                          onChange={(): void => handleCheckbox(rowIndex)}
                         />
                       </td>
                       <td key={`tr-${trIndex}`} className={tr} title={row[parent].toString()}>
