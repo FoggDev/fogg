@@ -27,3 +27,42 @@ export function getDebug(data: any): any {
 
   return null
 }
+
+export function getValuesForTable(data: any, excludeMore?: any): any {
+  if (!data) {
+    return null
+  }
+
+  const exclude: any = excludeMore || ['updatedAt']
+  const entries: any = {}
+  const systemHead = []
+  const systemBody = []
+  let head = []
+  let body = []
+
+  for (const field of data) {
+    if (!exclude.includes(field.identifier)) {
+      if (field.isSystem && field.identifier !== 'id') {
+        systemHead.push(field.fieldName)
+        systemBody.push(field.identifier)
+      } else {
+        head.push(field.fieldName)
+        body.push(field.identifier)
+      }
+
+      for (const value of field.values) {
+        entries[value.entry] = entries[value.entry] || {}
+        entries[value.entry][field.identifier] = value.value
+      }
+    }
+  }
+
+  head = head.concat(systemHead)
+  body = body.concat(systemBody)
+
+  return {
+    head,
+    body,
+    rows: Object.values(entries)
+  }
+}
