@@ -351,7 +351,11 @@ const Table: FC<iProps> = ({
             <tr key={`row-${rowIndex}`}>
               {body.map((tr, trIndex) => {
                 const [parent, child] = tr.split('.')
-                let values = typeof row[parent][child] === 'string' ? row[parent][child] : ''
+                let values = ''
+
+                if (row && row[parent] && typeof row[parent][child] === 'string') {
+                  values = row[parent][child]
+                }
 
                 if (!id && tr === 'id') {
                   id = row[parent].toString()
@@ -413,15 +417,16 @@ const Table: FC<iProps> = ({
                   )
                 }
 
-                return (
-                  <td
-                    key={`tr-${trIndex}`}
-                    className={`${parent} ${tr} ${row[parent]
+                const rowClass = row[parent]
+                  ? row[parent]
                       .toString()
                       .toLowerCase()
-                      .replace(/\s+/g, '')}`}
-                  >
-                    <a href={`${url}/${id}`}>{row[parent].toString()}</a>
+                      .replace(/\s+/g, '')
+                  : ''
+
+                return (
+                  <td key={`tr-${trIndex}`} className={`${parent} ${tr} ${rowClass}`}>
+                    <a href={`${url}/${id}`}>{row[parent] && row[parent].toString()}</a>
                   </td>
                 )
               })}

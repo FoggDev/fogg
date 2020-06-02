@@ -50,73 +50,24 @@ const panels = [
   }
 ]
 
-const rows = [
-  {
-    id: '146cd97d-5d00-4597-91b3-47b71209f2a3',
-    title: 'My first post super looooooooooooooooooong',
-    readingTime: '3 minutes',
-    language: 'en',
-    createdAt: '2019-12-23T04:44:17.883Z',
-    status: 'Published',
-    tags: [
-      {
-        name: 'react'
-      },
-      {
-        name: 'php'
-      }
-    ]
-  },
-  {
-    id: '2e22fde5-bb2f-4f6b-8dfa-1ab5bf91182b',
-    title: 'My second post super looooooooooooooooooong',
-    readingTime: '7 minutes',
-    language: 'es',
-    status: 'Changed',
-    createdAt: '2019-12-23T05:44:17.883Z',
-    tags: [
-      {
-        name: 'graphql'
-      },
-      {
-        name: 'apollo'
-      }
-    ]
-  },
-  {
-    id: '3e22fde5-bb2f-4f6b-8dfa-1ab5bf91182b',
-    title: 'My second post super looooooooooooooooooong',
-    readingTime: '7 minutes',
-    language: 'es',
-    status: 'Deleted',
-    createdAt: '2019-12-23T04:44:17.883Z',
-    tags: [
-      {
-        name: 'graphql'
-      },
-      {
-        name: 'apollo'
-      }
-    ]
-  },
-  {
-    id: '4e22fde5-bb2f-4f6b-8dfa-1ab5bf91182b',
-    title:
-      'My second post super looooooooooooooooooong looooooooooooooooooong looooooooooooooooooong looooooooooooooooooong looooooooooooooooooong looooooooooooooooooong',
-    readingTime: '7 minutes',
-    language: 'es',
-    status: 'Draft',
-    createdAt: '2019-12-23T04:44:17.883Z',
-    tags: [
-      {
-        name: 'graphql'
-      },
-      {
-        name: 'apollo'
-      }
-    ]
-  }
-]
+const tableData = {
+  head: ['ID', 'Title', 'Slug', 'Created At', 'Status'],
+  body: ['id', 'title', 'slug', 'createdAt', 'status'],
+  rows: [
+    {
+      id: '1231f240-347f-44d1-9007-7b933fb612dc',
+      createdAt: '2020-05-31 17:17:49.168-07',
+      status: 'Draft',
+      title: 'My blog post 1'
+    },
+    {
+      id: 'abc1f240-347f-44d1-9007-7b933fb612dc',
+      createdAt: '2020-05-31 17:17:49.168-07',
+      status: 'Published',
+      title: 'My blog post 2'
+    }
+  ]
+}
 
 class App extends Component {
   state = {
@@ -300,11 +251,8 @@ class App extends Component {
           <Tags tags={[{ name: 'react' }]} getTags={(tags): void => console.log(tags)} />
           <h2>Table</h2>
           <Table
-            data={{
-              head: ['ID', 'Title', 'Reading Time', 'Language', 'Tags', 'Date', 'Status'],
-              body: ['id', 'title', 'readingTime', 'language', 'tags.name', 'createdAt', 'status'],
-              rows
-            }}
+            url="#"
+            data={tableData}
             onDelete={(ids: any): void => console.log('Delete', ids)}
             onPublish={(ids: any): void => console.log('Publish', ids)}
             onUnpublish={(ids: any): void => console.log('Unpublish', ids)}
