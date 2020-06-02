@@ -51,20 +51,39 @@ const panels = [
 ]
 
 const tableData = {
-  head: ['ID', 'Title', 'Slug', 'Created At', 'Status'],
-  body: ['id', 'title', 'slug', 'createdAt', 'status'],
+  head: ['ID', 'Title', 'Slug', 'Content', 'Created At', 'Status'],
+  body: ['id', 'title', 'slug', 'content', 'createdAt', 'status'],
   rows: [
     {
       id: '1231f240-347f-44d1-9007-7b933fb612dc',
       createdAt: '2020-05-31 17:17:49.168-07',
       status: 'Draft',
-      title: 'My blog post 1'
+      title: 'My blog post 1',
+      slug: 'my-blog-post-1',
+      content: `
+        <p><img src="https://learntechsystems.com/wp-content/uploads/2020/05/part3.jpeg" /></p>
+        <p>Hi, continuing with the third post and this is the final post about the GraphQL introduction.
+
+        So, there is a way to alter the data because for now we only know to get data with queries, but to change, update, mutate the data we need to implement “mutations” in GraphQL this is really easy to do.
+
+        1.- Go inside the Schema and insert type mutation like this</p>
+
+        <p>2.- Then we need to create the function that will update the data</p>
+
+        <p>3.- Then call the updateCourseTopic in root object like this</p>
+
+        <p><img src="https://learntechsystems.com/wp-content/uploads/2020/05/Screenshot-2020-05-28-at-23.13.32.png" />
+
+        <p>4.- Then call the updateCourseTopic in root object like this</p>
+      `
     },
     {
       id: 'abc1f240-347f-44d1-9007-7b933fb612dc',
       createdAt: '2020-05-31 17:17:49.168-07',
       status: 'Published',
-      title: 'My blog post 2'
+      title: 'My blog post 2',
+      slug: 'my-blog-post-2',
+      content: '<p>Content 2 <strong>Content</strong></p>'
     }
   ]
 }

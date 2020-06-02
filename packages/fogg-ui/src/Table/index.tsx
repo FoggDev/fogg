@@ -2,6 +2,7 @@ import React, { FC, ReactElement, Fragment, useState, useEffect } from 'react'
 import styled from 'styled-components'
 import moment from 'moment'
 import Icon from '../Icon'
+import Modal from '../Modal'
 
 interface iProps {
   className?: string
@@ -16,6 +17,15 @@ interface iProps {
     count?: number
   }
 }
+
+const StyledModalContent = styled.div`
+  width: 100%;
+  margin: 0 auto;
+
+  img {
+    width: 98%;
+  }
+`
 
 const StyledTable = styled.table`
   background: white;
@@ -173,6 +183,17 @@ const StyledTable = styled.table`
           }
         }
 
+        &.content {
+          span {
+            display: inline-block;
+            padding: 10px;
+
+            &:hover {
+              background-color: #fff;
+            }
+          }
+        }
+
         &.status {
           a {
             text-transform: uppercase;
@@ -255,12 +276,18 @@ const Table: FC<iProps> = ({
   onUnpublish,
   url
 }): ReactElement => {
+  const [allCheckboxes, setAllCheckboxes] = useState(false)
+  const [isOpen, handleIsOpen] = useState(false)
+  const [html, setHtml] = useState('')
   const { head, body, rows = [], count } = data
   const total = count || rows.length
-  const [allCheckboxes, setAllCheckboxes] = useState(false)
   const [checkbox, setCheckbox] = useState(createCheckboxes(false, rows, total))
   const selectedCheckboxes = getCheckedCheckboxes(checkbox)
   const checkedCheckboxes = selectedCheckboxes.length
+  const handleModal = (html: any): any => {
+    setHtml(html)
+    handleIsOpen(!isOpen)
+  }
 
   useEffect(() => {
     const allChecks = Object.values(checkbox).filter((check: any) => check.checked)
@@ -288,153 +315,178 @@ const Table: FC<iProps> = ({
   }
 
   return (
-    <StyledTable className={className}>
-      <caption>
-        {total} {total === 1 ? 'entry' : 'entries'} found
-      </caption>
+    <>
+      <Modal
+        isOpen={isOpen}
+        label="Content"
+        options={{
+          position: html.includes('img') ? 'top' : 'center',
+          height: html.includes('img') ? '800px' : '500px',
+          width: html.includes('img') ? '90%' : '60%'
+        }}
+        onClose={(): void => handleIsOpen(!isOpen)}
+      >
+        <StyledModalContent dangerouslySetInnerHTML={{ __html: html }} />
+      </Modal>
 
-      <thead>
-        <tr key="head">
-          {head.map((th, index) => (
-            <Fragment key={`head-fragment-${index}`}>
-              {index === 0 && (
-                <th className="checkbox">
-                  <input type="checkbox" checked={allCheckboxes} onChange={handleAllCheckbox} />
+      <StyledTable className={className}>
+        <caption>
+          {total} {total === 1 ? 'entry' : 'entries'} found
+        </caption>
+
+        <thead>
+          <tr key="head">
+            {head.map((th, index) => (
+              <Fragment key={`head-fragment-${index}`}>
+                {index === 0 && (
+                  <th className="checkbox">
+                    <input type="checkbox" checked={allCheckboxes} onChange={handleAllCheckbox} />
+                  </th>
+                )}
+                <th key={`th-${index}`} className={th.toLocaleLowerCase()}>
+                  {th}
                 </th>
-              )}
-              <th key={`th-${index}`} className={th.toLocaleLowerCase()}>
-                {th}
-              </th>
-            </Fragment>
-          ))}
-        </tr>
+              </Fragment>
+            ))}
+          </tr>
 
-        <tr
-          key="selected"
-          style={{
-            display: checkedCheckboxes > 0 ? 'table-row' : 'none',
-            borderTop: '1px solid #eee'
-          }}
-        >
-          <th className="actions" colSpan={head.length + 1}>
-            {checkedCheckboxes} {checkedCheckboxes === 1 ? 'entry' : 'entries'} selected:{' '}
-            <span
-              className="action onDelete"
-              onClick={(): void => onDelete(selectedCheckboxes)}
-              title="Delete"
-            >
-              <Icon type="fas fa-trash" /> Delete
-            </span>{' '}
-            <span
-              className="action onPublish"
-              onClick={(): void => onPublish(selectedCheckboxes)}
-              title="Publish"
-            >
-              <Icon type="fas fa-upload" /> Publish
-            </span>{' '}
-            <span
-              className="action onUnpublish"
-              onClick={(): void => onUnpublish(selectedCheckboxes)}
-              title="Unpublish"
-            >
-              <Icon type="fas fa-download" /> Unpublish
-            </span>{' '}
-          </th>
-        </tr>
-      </thead>
+          <tr
+            key="selected"
+            style={{
+              display: checkedCheckboxes > 0 ? 'table-row' : 'none',
+              borderTop: '1px solid #eee'
+            }}
+          >
+            <th className="actions" colSpan={head.length + 1}>
+              {checkedCheckboxes} {checkedCheckboxes === 1 ? 'entry' : 'entries'} selected:{' '}
+              <span
+                className="action onDelete"
+                onClick={(): void => onDelete(selectedCheckboxes)}
+                title="Delete"
+              >
+                <Icon type="fas fa-trash" /> Delete
+              </span>{' '}
+              <span
+                className="action onPublish"
+                onClick={(): void => onPublish(selectedCheckboxes)}
+                title="Publish"
+              >
+                <Icon type="fas fa-upload" /> Publish
+              </span>{' '}
+              <span
+                className="action onUnpublish"
+                onClick={(): void => onUnpublish(selectedCheckboxes)}
+                title="Unpublish"
+              >
+                <Icon type="fas fa-download" /> Unpublish
+              </span>{' '}
+            </th>
+          </tr>
+        </thead>
 
-      <tbody>
-        {rows.map((row, rowIndex) => {
-          let id: any = null
+        <tbody>
+          {rows.map((row, rowIndex) => {
+            let id: any = null
 
-          return (
-            <tr key={`row-${rowIndex}`}>
-              {body.map((tr, trIndex) => {
-                const [parent, child] = tr.split('.')
-                let values = ''
+            return (
+              <tr key={`row-${rowIndex}`}>
+                {body.map((tr, trIndex) => {
+                  const [parent, child] = tr.split('.')
+                  let values = ''
 
-                if (row && row[parent] && typeof row[parent][child] === 'string') {
-                  values = row[parent][child]
-                }
-
-                if (!id && tr === 'id') {
-                  id = row[parent].toString()
-                }
-
-                if (child) {
-                  if (Array.isArray(row[parent])) {
-                    row[parent].forEach((item: any) => {
-                      if (item[child]) {
-                        values += `${item[child]} `
-                      } else {
-                        values += `${item} `
-                      }
-                    })
+                  if (row && row[parent] && typeof row[parent][child] === 'string') {
+                    values = row[parent][child]
                   }
 
-                  return (
-                    <td key={`tr-${trIndex}`}>
-                      <a href={`${url}/${id}`}>
-                        <span>{values}</span>
-                      </a>
-                    </td>
-                  )
-                }
+                  if (!id && tr === 'id') {
+                    id = row[parent].toString()
+                  }
 
-                if (row[parent] && parent === 'createdAt') {
-                  const date = moment(row[parent])
-                    .format('MM/DD/YYYY,hh:mm a')
-                    .split(',')
+                  if (child) {
+                    if (Array.isArray(row[parent])) {
+                      row[parent].forEach((item: any) => {
+                        if (item[child]) {
+                          values += `${item[child]} `
+                        } else {
+                          values += `${item} `
+                        }
+                      })
+                    }
 
-                  return (
-                    <td key={`tr-${trIndex}`} className={parent}>
-                      <a href={`${url}/${id}`}>
-                        <span className="date">{date[0]}</span>
-                        <span className="at"> at </span>
-                        <span className="hour">{date[1]}</span>
-                      </a>
-                    </td>
-                  )
-                }
-
-                if (trIndex === 0) {
-                  return (
-                    <Fragment key="checkbox-fragment">
-                      <td className="checkbox">
-                        <input
-                          type="checkbox"
-                          name="option[]"
-                          checked={checkbox[rowIndex].checked}
-                          onChange={(): void => handleCheckbox(rowIndex)}
-                        />
-                      </td>
-                      <td key={`tr-${trIndex}`} className={tr} title={row[parent].toString()}>
+                    return (
+                      <td key={`tr-${trIndex}`}>
                         <a href={`${url}/${id}`}>
-                          <span>{row[parent].toString()}</span>
+                          <span>{values}</span>
                         </a>
                       </td>
-                    </Fragment>
+                    )
+                  }
+
+                  if (row[parent] && parent === 'content') {
+                    return (
+                      <td key={`tr-${trIndex}`} className={parent}>
+                        <span onClick={(): void => handleModal(row[parent])}>
+                          <Icon type="fas fa-quote-right" />
+                        </span>
+                      </td>
+                    )
+                  }
+
+                  if (row[parent] && parent === 'createdAt') {
+                    const date = moment(row[parent])
+                      .format('MM/DD/YYYY,hh:mm a')
+                      .split(',')
+
+                    return (
+                      <td key={`tr-${trIndex}`} className={parent}>
+                        <a href={`${url}/${id}`}>
+                          <span className="date">{date[0]}</span>
+                          <span className="at"> at </span>
+                          <span className="hour">{date[1]}</span>
+                        </a>
+                      </td>
+                    )
+                  }
+
+                  if (trIndex === 0) {
+                    return (
+                      <Fragment key="checkbox-fragment">
+                        <td className="checkbox">
+                          <input
+                            type="checkbox"
+                            name="option[]"
+                            checked={checkbox[rowIndex].checked}
+                            onChange={(): void => handleCheckbox(rowIndex)}
+                          />
+                        </td>
+                        <td key={`tr-${trIndex}`} className={tr} title={row[parent].toString()}>
+                          <a href={`${url}/${id}`}>
+                            <span>{row[parent].toString()}</span>
+                          </a>
+                        </td>
+                      </Fragment>
+                    )
+                  }
+
+                  const rowClass = row[parent]
+                    ? row[parent]
+                        .toString()
+                        .toLowerCase()
+                        .replace(/\s+/g, '')
+                    : ''
+
+                  return (
+                    <td key={`tr-${trIndex}`} className={`${parent} ${tr} ${rowClass}`}>
+                      <a href={`${url}/${id}`}>{row[parent] && row[parent].toString()}</a>
+                    </td>
                   )
-                }
-
-                const rowClass = row[parent]
-                  ? row[parent]
-                      .toString()
-                      .toLowerCase()
-                      .replace(/\s+/g, '')
-                  : ''
-
-                return (
-                  <td key={`tr-${trIndex}`} className={`${parent} ${tr} ${rowClass}`}>
-                    <a href={`${url}/${id}`}>{row[parent] && row[parent].toString()}</a>
-                  </td>
-                )
-              })}
-            </tr>
-          )
-        })}
-      </tbody>
-    </StyledTable>
+                })}
+              </tr>
+            )
+          })}
+        </tbody>
+      </StyledTable>
+    </>
   )
 }
 
