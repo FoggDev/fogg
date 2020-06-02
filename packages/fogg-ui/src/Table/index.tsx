@@ -381,7 +381,7 @@ const Table: FC<iProps> = ({
                   )
                 }
 
-                if (parent === 'createdAt') {
+                if (row[parent] && parent === 'createdAt') {
                   const date = moment(row[parent])
                     .format('MM/DD/YYYY,hh:mm a')
                     .split(',')
