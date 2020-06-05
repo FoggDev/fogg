@@ -8,6 +8,7 @@ interface iProps {
   className?: string
   children?: string
   disabled?: boolean
+  hasError?: boolean
   id?: string
   name?: string
   noWrapper?: boolean
@@ -20,7 +21,11 @@ interface iProps {
   style?: object
 }
 
-const StyledTextarea = styled.textarea`
+interface iStyledProps {
+  hasError?: boolean
+}
+
+const StyledTextarea = styled.textarea<iStyledProps>`
   background-color: white;
   border-radius: 6px;
   border: 1px solid #EEE;
@@ -32,6 +37,12 @@ const StyledTextarea = styled.textarea`
   overflow: hidden;
   transition: all 0.3s ease 0s;
   width: 93%;
+
+  ${({ hasError }): any =>
+    hasError &&
+    `
+    border: 1px solid red;
+  `}
 
   ::placeholder {
     color: #EEE;
