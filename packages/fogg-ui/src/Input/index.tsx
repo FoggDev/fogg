@@ -29,10 +29,10 @@ interface iStyledProps {
 const StyledBody = createGlobalStyle`
   textarea,
   input {
-      border-radius: 0;
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      appearance: none;
+    border-radius: 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
   }
 `
 
