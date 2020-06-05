@@ -79,6 +79,12 @@ const StyledTable = styled.table`
         background-color: #fbfbfb;
       }
 
+      &.noData {
+        background-color: #fbfbfb;
+        text-align: center;
+        padding: 20px;
+      }
+
       .action {
         display: inline-block;
         margin-left: 10px;
@@ -320,9 +326,9 @@ const Table: FC<iProps> = ({
         isOpen={isOpen}
         label="Content"
         options={{
-          position: html.includes('img') ? 'top' : 'center',
-          height: html.includes('img') ? '800px' : '500px',
-          width: html.includes('img') ? '90%' : '60%'
+          position: 'top',
+          height: html.includes('img') ? '700px' : '500px',
+          width: html.includes('img') ? '80%' : '60%'
         }}
         onClose={(): void => handleIsOpen(!isOpen)}
       >
@@ -380,6 +386,18 @@ const Table: FC<iProps> = ({
               >
                 <Icon type="fas fa-download" /> Unpublish
               </span>{' '}
+            </th>
+          </tr>
+
+          <tr
+            key="noData"
+            style={{
+              display: total === 0 ? 'table-row' : 'none',
+              borderTop: '1px solid #eee'
+            }}
+          >
+            <th className="noData" colSpan={head.length + 1}>
+              No data found
             </th>
           </tr>
         </thead>
