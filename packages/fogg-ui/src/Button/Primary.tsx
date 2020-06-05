@@ -61,7 +61,7 @@ const Button: FC<iProps> = props => {
   }
 
   return (
-    <StyledButton {...props} disabled={isLoading}>
+    <StyledButton {...props} disabled={isLoading || disabled}>
       {buttonText}
     </StyledButton>
   )
