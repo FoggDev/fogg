@@ -77,6 +77,8 @@ export function getValuesForTable(
     }
   }
 
+  const total = rows.length
+
   rows = chunk(rows, chunks)
   head = head.concat(systemHead)
   body = body.concat(systemBody)
@@ -84,6 +86,7 @@ export function getValuesForTable(
   return {
     head,
     body,
-    rows
+    rows,
+    total
   }
 }

@@ -165,7 +165,8 @@ describe('#getValuesForTable', () => {
             title: 'Blog post 1'
           }
         ]
-      ]
+      ],
+      total: 2
     })
   })
 
@@ -190,7 +191,8 @@ describe('#getValuesForTable', () => {
             title: 'My blog post 2'
           }
         ]
-      ]
+      ],
+      total: 2
     })
   })
 })
