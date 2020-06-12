@@ -28,10 +28,17 @@ export function getDebug(data: any): any {
   return null
 }
 
-export function getValuesForTable(data: any, excludeMore?: any): any {
+export function getValuesForTable(
+  data: any,
+  excludeMore?: any,
+  orderBy?: any,
+  direction?: any
+): any {
   if (!data) {
     return null
   }
+
+  direction = direction || 'asc'
 
   const exclude: any = excludeMore || ['updatedAt']
   const entries: any = {}
@@ -57,12 +64,22 @@ export function getValuesForTable(data: any, excludeMore?: any): any {
     }
   }
 
+  const rows = Object.values(entries)
+
+  if (orderBy) {
+    if (direction === 'asc') {
+      rows.sort((a: any, b: any) => (a[orderBy] > b[orderBy] ? 1 : -1))
+    } else {
+      rows.sort((a: any, b: any) => (a[orderBy] < b[orderBy] ? 1 : -1))
+    }
+  }
+
   head = head.concat(systemHead)
   body = body.concat(systemBody)
 
   return {
     head,
     body,
-    rows: Object.values(entries)
+    rows
   }
 }

@@ -45,13 +45,13 @@ const data = [
       {
         id: 'dcbaaabd-cb9e-4bec-a6b7-915486c6637c',
         entry: '247791ee-49e9-4f9a-a30e-be2524764d11',
-        value: '2020-05-27 22:42:56.383-07',
+        value: '2020-06-01 22:42:56.383-07',
         __typename: 'Value'
       },
       {
         id: '602c8183-71f2-454d-bf15-644df28f0edb',
         entry: '11111111-49e9-4f9a-a30e-be2524764d11',
-        value: '2020-05-27 22:44:55.797-07',
+        value: '2020-06-02 22:44:55.797-07',
         __typename: 'Value'
       }
     ],
@@ -79,7 +79,7 @@ const data = [
       {
         id: '9b055610-a977-46d1-8372-c43529abdc1f',
         entry: '11111111-49e9-4f9a-a30e-be2524764d11',
-        value: '2020-05-27 22:44:55.797-07',
+        value: '2020-05-28 22:44:55.797-07',
         __typename: 'Value'
       }
     ],
@@ -144,6 +144,29 @@ const data = [
 ]
 
 describe('#getValuesForTable', () => {
+  it('should order the data', () => {
+    const values = getValuesForTable(data, null, 'createdAt', 'desc')
+
+    expect(values).toEqual({
+      head: ['ID', 'Title', 'Status', 'Created At'],
+      body: ['id', 'title', 'status', 'createdAt'],
+      rows: [
+        {
+          status: 'Draft',
+          createdAt: '2020-05-28 22:44:55.797-07',
+          id: 'fe07c143-ecb5-4fd3-aa29-2058981ed328',
+          title: 'My blog post 2'
+        },
+        {
+          status: 'Draft',
+          createdAt: '2020-05-27 22:42:56.383-07',
+          id: 'dac4fcdd-0954-4e86-be6a-160be8ffbf2e',
+          title: 'Blog post 1'
+        }
+      ]
+    })
+  })
+
   it('should return the correct values', () => {
     const values = getValuesForTable(data)
 
@@ -159,7 +182,7 @@ describe('#getValuesForTable', () => {
         },
         {
           status: 'Draft',
-          createdAt: '2020-05-27 22:44:55.797-07',
+          createdAt: '2020-05-28 22:44:55.797-07',
           id: 'fe07c143-ecb5-4fd3-aa29-2058981ed328',
           title: 'My blog post 2'
         }
