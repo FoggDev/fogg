@@ -151,18 +151,20 @@ describe('#getValuesForTable', () => {
       head: ['ID', 'Title', 'Status', 'Created At'],
       body: ['id', 'title', 'status', 'createdAt'],
       rows: [
-        {
-          status: 'Draft',
-          createdAt: '2020-05-28 22:44:55.797-07',
-          id: 'fe07c143-ecb5-4fd3-aa29-2058981ed328',
-          title: 'My blog post 2'
-        },
-        {
-          status: 'Draft',
-          createdAt: '2020-05-27 22:42:56.383-07',
-          id: 'dac4fcdd-0954-4e86-be6a-160be8ffbf2e',
-          title: 'Blog post 1'
-        }
+        [
+          {
+            status: 'Draft',
+            createdAt: '2020-05-28 22:44:55.797-07',
+            id: 'fe07c143-ecb5-4fd3-aa29-2058981ed328',
+            title: 'My blog post 2'
+          },
+          {
+            status: 'Draft',
+            createdAt: '2020-05-27 22:42:56.383-07',
+            id: 'dac4fcdd-0954-4e86-be6a-160be8ffbf2e',
+            title: 'Blog post 1'
+          }
+        ]
       ]
     })
   })
@@ -174,18 +176,20 @@ describe('#getValuesForTable', () => {
       head: ['ID', 'Title', 'Status', 'Created At'],
       body: ['id', 'title', 'status', 'createdAt'],
       rows: [
-        {
-          status: 'Draft',
-          createdAt: '2020-05-27 22:42:56.383-07',
-          id: 'dac4fcdd-0954-4e86-be6a-160be8ffbf2e',
-          title: 'Blog post 1'
-        },
-        {
-          status: 'Draft',
-          createdAt: '2020-05-28 22:44:55.797-07',
-          id: 'fe07c143-ecb5-4fd3-aa29-2058981ed328',
-          title: 'My blog post 2'
-        }
+        [
+          {
+            status: 'Draft',
+            createdAt: '2020-05-27 22:42:56.383-07',
+            id: 'dac4fcdd-0954-4e86-be6a-160be8ffbf2e',
+            title: 'Blog post 1'
+          },
+          {
+            status: 'Draft',
+            createdAt: '2020-05-28 22:44:55.797-07',
+            id: 'fe07c143-ecb5-4fd3-aa29-2058981ed328',
+            title: 'My blog post 2'
+          }
+        ]
       ]
     })
   })

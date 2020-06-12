@@ -1,4 +1,5 @@
 import { isString, isEmptyObject } from '../is'
+import { chunk } from '../array'
 
 export function cloneObject(o: object): object {
   return { ...o }
@@ -32,13 +33,15 @@ export function getValuesForTable(
   data: any,
   excludeMore?: any,
   orderBy?: any,
-  direction?: any
+  direction?: any,
+  chunks?: any
 ): any {
   if (!data) {
     return null
   }
 
   direction = direction || 'asc'
+  chunks = chunks || 10
 
   const exclude: any = excludeMore || ['updatedAt']
   const entries: any = {}
@@ -64,7 +67,7 @@ export function getValuesForTable(
     }
   }
 
-  const rows = Object.values(entries)
+  let rows = Object.values(entries)
 
   if (orderBy) {
     if (direction === 'asc') {
@@ -74,6 +77,7 @@ export function getValuesForTable(
     }
   }
 
+  rows = chunk(rows, chunks)
   head = head.concat(systemHead)
   body = body.concat(systemBody)
 
