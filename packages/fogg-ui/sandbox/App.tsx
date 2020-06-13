@@ -533,17 +533,17 @@ class App extends Component {
           </Modal>
           <h2>Pagination</h2>
           <h3>Primary Theme</h3>
-          <Pagination theme="primary" page={2} total={100} url="/page/" />
+          <Pagination theme="primary" page={2} total={100} href="/page/" />
           <h3>Success Theme</h3>
-          <Pagination theme="success" page={4} total={100} url="/page/" />
+          <Pagination theme="success" page={4} total={100} href="/page/" />
           <h3>Danger Theme</h3>
-          <Pagination theme="danger" page={10} total={100} url="/page/" />
+          <Pagination theme="danger" page={10} total={100} href="/page/" />
           <h3>Warning Theme</h3>
-          <Pagination theme="warning" page={1} total={100} url="/page/" />
+          <Pagination theme="warning" page={1} total={100} href="/page/" />
           <h3>Light Theme</h3>
-          <Pagination theme="light" page={7} total={100} url="/page/" />
+          <Pagination theme="light" page={7} total={100} href="/page/" />
           <h3>Dark Theme</h3>
-          <Pagination theme="dark" page={10} total={100} url="/page/" />
+          <Pagination theme="dark" page={10} total={100} href="/page/" />
           <h2>Spinners</h2>
           <div className={styles.spinners}>
             <Spinner spinner="audio" style={{ width: '30px' }} />{' '}

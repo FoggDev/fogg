@@ -14,7 +14,7 @@ interface iProps {
   theme: string
   href: string
   as?: string
-  Link: any
+  Link?: any
 }
 
 const StyledUl = styled.ul`
