@@ -287,7 +287,7 @@ const Table: FC<iProps> = ({
   const [html, setHtml] = useState('')
   const { head, body, rows = [], count } = data
   const total = count || rows.length
-  const [checkbox, setCheckbox] = useState(createCheckboxes(false, rows, total))
+  const [checkbox, setCheckbox] = useState(createCheckboxes(false, rows, rows.length))
   const selectedCheckboxes = getCheckedCheckboxes(checkbox)
   const checkedCheckboxes = selectedCheckboxes.length
   const handleModal = (html: any): any => {
