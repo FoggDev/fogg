@@ -70,7 +70,7 @@ module.exports = {
     slug: 'slug',
     moment: 'moment'
   },
-  devtool: devMode ? 'source-map' : 'source-map',
+  devtool: devMode ? 'source-map' : '',
   plugins: [
     new MiniCssExtractPlugin({
       filename: 'style.css'

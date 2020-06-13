@@ -55,37 +55,52 @@ const tableData = {
   body: ['id', 'title', 'slug', 'content', 'createdAt', 'status'],
   rows: [
     {
-      id: '1231f240-347f-44d1-9007-7b933fb612dc',
-      createdAt: '2020-05-31 17:17:49.168-07',
+      createdAt: '2020-06-11T13:52:54-07:00',
       status: 'Draft',
-      title: 'My blog post 1',
-      slug: 'my-blog-post-1',
-      content: `
-        <p><img src="https://learntechsystems.com/wp-content/uploads/2020/05/part3.jpeg" /></p>
-        <p>Hi, continuing with the third post and this is the final post about the GraphQL introduction.
-
-        So, there is a way to alter the data because for now we only know to get data with queries, but to change, update, mutate the data we need to implement “mutations” in GraphQL this is really easy to do.
-
-        1.- Go inside the Schema and insert type mutation like this</p>
-
-        <p>2.- Then we need to create the function that will update the data</p>
-
-        <p>3.- Then call the updateCourseTopic in root object like this</p>
-
-        <p><img src="https://learntechsystems.com/wp-content/uploads/2020/05/Screenshot-2020-05-28-at-23.13.32.png" />
-
-        <p>4.- Then call the updateCourseTopic in root object like this</p>
-      `
+      id: 'df188ad4-0c53-49c1-b4c1-a7042e574f85',
+      title: 'Post 111',
+      slug: 'post-111',
+      content: 'asdad',
+      author: 'asdasdasdasd'
     },
     {
-      id: 'abc1f240-347f-44d1-9007-7b933fb612dc',
-      createdAt: '2020-05-31 17:17:49.168-07',
+      createdAt: '2020-06-11T22:14:41-07:00',
+      status: 'Draft',
+      id: '0d56bfd1-be81-400c-96d8-8e9adea51dce',
+      title: 'ssadad',
+      slug: 'ssadad',
+      content: 'asdasd',
+      author: 'asdsadasd'
+    },
+    {
+      createdAt: '2020-06-11T22:15:05-07:00',
+      status: 'Draft',
+      id: 'cf2cb68c-bd90-450c-9812-093914627058',
+      title: 'sdfdsfsdf',
+      slug: 'sdfdsfsdf',
+      content: 'sfsdfsfsdfsf',
+      author: ''
+    },
+    {
+      createdAt: '2020-06-11T22:15:17-07:00',
       status: 'Published',
-      title: 'My blog post 2',
-      slug: 'my-blog-post-2',
-      content: '<p>Content 2 <strong>Content</strong></p>'
+      id: '8d65a77c-f5cf-4074-a276-19a4fe9803d8',
+      title: 'ssss',
+      slug: 'ssss',
+      content: 'sdfdsfdsfsf',
+      author: ''
+    },
+    {
+      createdAt: '2020-06-12T13:07:33-07:00',
+      status: 'Published',
+      id: 'c4e22661-ca68-4f77-b0c6-72da7fe7c117',
+      title: 'Mi nuevo post',
+      slug: 'mi-nuevo-post',
+      content: '<p>Content</p>',
+      author: 'Carlos Santana'
     }
-  ]
+  ],
+  count: 5
 }
 
 class App extends Component {

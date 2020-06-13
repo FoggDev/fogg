@@ -317,7 +317,7 @@ const Table: FC<iProps> = ({
 
   const handleAllCheckbox = (): any => {
     setAllCheckboxes(!allCheckboxes)
-    setCheckbox(createCheckboxes(!allCheckboxes, rows, total))
+    setCheckbox(createCheckboxes(!allCheckboxes, rows, rows.length))
   }
 
   return (
