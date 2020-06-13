@@ -12,7 +12,9 @@ interface iProps {
   page: number
   total: number
   theme: string
-  url: string
+  href: string
+  as?: string
+  Link: any
 }
 
 const StyledUl = styled.ul`
@@ -30,109 +32,111 @@ const StyledLi = styled.li`
   margin: 5px;
 `
 
-const StyledLink = styled.a`
-  color: #777;
-  text-decoration: none;
-  padding: 15px 20px;
-  border-radius: 5px;
-  &:hover {
-    background: #555;
-    color: #FFF;
-  }
-
-  &.active {
-    background: blue;
-    color: white;
-
+const StyledLink = styled.span`
+  a {
+    color: #777;
+    text-decoration: none;
+    padding: 15px 20px;
+    border-radius: 5px;
     &:hover {
+      background: #555;
+      color: #FFF;
+    }
+
+    &.active {
       background: blue;
       color: white;
+
+      &:hover {
+        background: blue;
+        color: white;
+      }
     }
+
+    ${({ theme }): any =>
+      theme === 'primary' &&
+      `
+      &.active {
+        background: ${colors.primary.background};
+        color: white;
+
+        &:hover {
+          background: ${colors.primary.hover};
+          color: white;
+        }
+      }
+    `}
+
+    ${({ theme }): any =>
+      theme === 'success' &&
+      `
+      &.active {
+        background: ${colors.success.background};
+        color: white;
+
+        &:hover {
+          background: ${colors.success.hover};
+          color: white;
+        }
+      }
+    `}
+
+    ${({ theme }): any =>
+      theme === 'danger' &&
+      `
+      &.active {
+        background: ${colors.danger.background};
+        color: white;
+
+        &:hover {
+          background: ${colors.danger.hover};
+          color: white;
+        }
+      }
+    `}
+
+    ${({ theme }): any =>
+      theme === 'warning' &&
+      `
+      &.active {
+        background: ${colors.warning.background};
+        color: white;
+
+        &:hover {
+          background: ${colors.warning.hover};
+          color: white;
+        }
+      }
+    `}
+
+    ${({ theme }): any =>
+      theme === 'light' &&
+      `
+      &.active {
+        background: ${colors.light.background};
+        color: ${colors.light.color};
+
+        &:hover {
+          background: ${colors.light.hover};
+          color: white;
+        }
+      }
+    `}
+
+    ${({ theme }): any =>
+      theme === 'dark' &&
+      `
+      &.active {
+        background: ${colors.dark.background};
+        color: white;
+
+        &:hover {
+          background: ${colors.dark.hover};
+          color: white;
+        }
+      }
+    `}
   }
-
-  ${({ theme }): any =>
-    theme === 'primary' &&
-    `
-    &.active {
-      background: ${colors.primary.background};
-      color: white;
-
-      &:hover {
-        background: ${colors.primary.hover};
-        color: white;
-      }
-    }
-  `}
-
-  ${({ theme }): any =>
-    theme === 'success' &&
-    `
-    &.active {
-      background: ${colors.success.background};
-      color: white;
-
-      &:hover {
-        background: ${colors.success.hover};
-        color: white;
-      }
-    }
-  `}
-
-  ${({ theme }): any =>
-    theme === 'danger' &&
-    `
-    &.active {
-      background: ${colors.danger.background};
-      color: white;
-
-      &:hover {
-        background: ${colors.danger.hover};
-        color: white;
-      }
-    }
-  `}
-
-  ${({ theme }): any =>
-    theme === 'warning' &&
-    `
-    &.active {
-      background: ${colors.warning.background};
-      color: white;
-
-      &:hover {
-        background: ${colors.warning.hover};
-        color: white;
-      }
-    }
-  `}
-
-  ${({ theme }): any =>
-    theme === 'light' &&
-    `
-    &.active {
-      background: ${colors.light.background};
-      color: ${colors.light.color};
-
-      &:hover {
-        background: ${colors.light.hover};
-        color: white;
-      }
-    }
-  `}
-
-  ${({ theme }): any =>
-    theme === 'dark' &&
-    `
-    &.active {
-      background: ${colors.dark.background};
-      color: white;
-
-      &:hover {
-        background: ${colors.dark.hover};
-        color: white;
-      }
-    }
-  `}
 `
 
 const Pagination: FC<iProps> = (props): ReactElement => {
@@ -145,10 +149,9 @@ const Pagination: FC<iProps> = (props): ReactElement => {
     firstPage: number,
     lastPage: number,
     start: number,
-    end: number,
-    url: string
+    end: number
   ): ReactNode[] => {
-    const { theme } = props
+    const { theme, Link, href, as } = props
     const pageNav = []
 
     for (let i = firstPage; i < lastPage; i += 1) {
@@ -156,18 +159,40 @@ const Pagination: FC<iProps> = (props): ReactElement => {
       const next = i * end
 
       if (start === next) {
+        if (Link) {
+          pageNav.push(
+            <StyledLi key={i}>
+              <StyledLink theme={theme} className="active">
+                <Link href={href} as={as}>
+                  {pge}
+                </Link>
+              </StyledLink>
+            </StyledLi>
+          )
+        } else {
+          pageNav.push(
+            <StyledLi key={i}>
+              <StyledLink theme={theme} className="active">
+                <a href="#">{pge}</a>
+              </StyledLink>
+            </StyledLi>
+          )
+        }
+      } else if (Link) {
         pageNav.push(
           <StyledLi key={i}>
-            <StyledLink theme={theme} href="#" className="active">
-              {pge}
+            <StyledLink theme={theme}>
+              <Link href={`${href}${pge}`} as={`${as}${pge}`}>
+                {pge}
+              </Link>
             </StyledLink>
           </StyledLi>
         )
       } else {
         pageNav.push(
           <StyledLi key={i}>
-            <StyledLink theme={theme} href={`${url}${pge}`}>
-              {pge}
+            <StyledLink theme={theme}>
+              <a href={`${href}${pge}`}>{pge}</a>
             </StyledLink>
           </StyledLi>
         )
@@ -177,33 +202,61 @@ const Pagination: FC<iProps> = (props): ReactElement => {
     return pageNav
   }
 
-  const getPageNext = (currentPage: number, pages: number, url: string): ReactNode => {
-    const { theme } = props
+  const getPageNext = (currentPage: number, pages: number): ReactNode => {
+    const { theme, Link, href, as } = props
 
     if (currentPage <= pages - 1) {
-      return (
-        <StyledLi>
-          <StyledLink theme={theme} href={`${url}${currentPage + 1}`} className="next">
-            <Icon type="fas fa-chevron-right" />
-          </StyledLink>
-        </StyledLi>
-      )
+      if (Link) {
+        return (
+          <StyledLi>
+            <StyledLink theme={theme} className="next">
+              <Link href={`${href}${currentPage + 1}`} as={`${as}${currentPage + 1}`}>
+                <Icon type="fas fa-chevron-right" />
+              </Link>
+            </StyledLink>
+          </StyledLi>
+        )
+      } else {
+        return (
+          <StyledLi>
+            <StyledLink theme={theme} className="next">
+              <a href={`${href}${currentPage + 1}`}>
+                <Icon type="fas fa-chevron-right" />
+              </a>
+            </StyledLink>
+          </StyledLi>
+        )
+      }
     }
 
     return <div />
   }
 
-  const getPagePrevious = (start: number, currentPage: number, url: string): ReactNode => {
-    const { theme } = props
+  const getPagePrevious = (start: number, currentPage: number): ReactNode => {
+    const { theme, Link, href, as } = props
 
     if (start > 0) {
-      return (
-        <StyledLi>
-          <StyledLink theme={theme} href={`${url}${currentPage - 1}`} className="previous">
-            <Icon type="fas fa-chevron-left" />
-          </StyledLink>
-        </StyledLi>
-      )
+      if (Link) {
+        return (
+          <StyledLi>
+            <StyledLink theme={theme} className="previous">
+              <Link href={`${href}${currentPage - 1}`} as={`${as}${currentPage - 1}`}>
+                <Icon type="fas fa-chevron-left" />
+              </Link>
+            </StyledLink>
+          </StyledLi>
+        )
+      } else {
+        return (
+          <StyledLi>
+            <StyledLink theme={theme} className="previous">
+              <a href={`${href}${currentPage - 1}`}>
+                <Icon type="fas fa-chevron-left" />
+              </a>
+            </StyledLink>
+          </StyledLi>
+        )
+      }
     }
 
     return null
@@ -219,9 +272,9 @@ const Pagination: FC<iProps> = (props): ReactElement => {
     total: number,
     end: number,
     start: number,
-    url: string,
     elementsPerPage?: number
   ): ReactElement => {
+    const { href, as } = props
     const limit = elementsPerPage || maxElementsPerPage
 
     let currentPage: number
@@ -261,10 +314,10 @@ const Pagination: FC<iProps> = (props): ReactElement => {
         lastPage = pages
       }
 
-      pageNav = getPageNav(firstPage, lastPage, start, end, url)
+      pageNav = getPageNav(firstPage, lastPage, start, end)
       currentPage = getCurrentPage(start, end)
-      pageNext = getPageNext(currentPage, pages, url)
-      pagePrevious = getPagePrevious(start, currentPage, url)
+      pageNext = getPageNext(currentPage, pages)
+      pagePrevious = getPagePrevious(start, currentPage)
     }
 
     return (
@@ -277,11 +330,11 @@ const Pagination: FC<iProps> = (props): ReactElement => {
   }
 
   const getPagination = (): ReactElement => {
-    const { page, total, url } = props
+    const { page, total } = props
     const start = getPaginationStart(page)
 
     if (total > maxElementsPerPage) {
-      return buildPagination(total, maxElementsPerPage, start, url)
+      return buildPagination(total, maxElementsPerPage, start)
     }
 
     return <div />
