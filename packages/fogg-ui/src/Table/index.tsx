@@ -298,7 +298,7 @@ const Table: FC<iProps> = ({
   useEffect(() => {
     const allChecks = Object.values(checkbox).filter((check: any) => check.checked)
 
-    if (allChecks.length < total) {
+    if (allChecks.length < rows.length) {
       setAllCheckboxes(false)
     } else {
       setAllCheckboxes(true)
@@ -392,7 +392,7 @@ const Table: FC<iProps> = ({
           <tr
             key="noData"
             style={{
-              display: total === 0 ? 'table-row' : 'none',
+              display: rows.length === 0 ? 'table-row' : 'none',
               borderTop: '1px solid #eee'
             }}
           >

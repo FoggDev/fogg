@@ -100,7 +100,7 @@ const tableData = {
       author: 'Carlos Santana'
     }
   ],
-  count: 5
+  count: 15
 }
 
 class App extends Component {
