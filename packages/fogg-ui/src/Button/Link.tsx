@@ -44,22 +44,20 @@ const StyledButton = styled(StyledBaseButton)<iProps>`
 `
 
 const Button: FC<iProps> = props => {
-  const { children, className, Link, href, as } = props
+  const { children, className, Link } = props
   const buttonText: any = children
 
   if (Link) {
     return (
       <StyledButton className={className}>
-        <Link href={href} as={as}>
-          {buttonText}
-        </Link>
+        <Link {...props}>{buttonText}</Link>
       </StyledButton>
     )
   }
 
   return (
     <StyledButton className={className}>
-      <a href={href}>{buttonText}</a>
+      <a {...props}>{buttonText}</a>
     </StyledButton>
   )
 }

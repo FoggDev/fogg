@@ -48,17 +48,7 @@ const StyledButton = styled(StyledBaseButton)<iProps>`
 `
 
 const Button: FC<iProps> = props => {
-  const {
-    children,
-    className,
-    disabled,
-    isLoading,
-    loadingText,
-    spinner = 'rolling',
-    Link,
-    href,
-    as
-  } = props
+  const { children, className, disabled, isLoading, loadingText, spinner = 'rolling', Link } = props
   let buttonText: any = children
 
   if (isLoading) {
@@ -72,16 +62,14 @@ const Button: FC<iProps> = props => {
   if (Link) {
     return (
       <StyledButton className={className} disabled={isLoading || disabled}>
-        <Link href={href} as={as}>
-          {buttonText}
-        </Link>
+        <Link {...props}>{buttonText}</Link>
       </StyledButton>
     )
   }
 
   return (
     <StyledButton className={className} disabled={isLoading || disabled}>
-      <a href={href}>{buttonText}</a>
+      <a {...props}>{buttonText}</a>
     </StyledButton>
   )
 }
