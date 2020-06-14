@@ -9,7 +9,6 @@ interface iProps {
   className?: string
   disabled?: boolean
   href?: string
-  as?: string
   large?: boolean
   name?: string
   onClick?(e: any): any
@@ -20,44 +19,41 @@ interface iProps {
   bold?: boolean
   bg?: string
   fontSize?: string
-  Link?: any
 }
 
 const StyledButton = styled(StyledBaseButton)<iProps>`
+  display: inline-block;
+
   ${({ color, bold, bg, fontSize }): any => `
-    box-sizing: border-box;
-    background-color: transparent;
-    color: ${color || colors.primary.background};
-    font-weight: ${bold ? '600' : '400'};
-    font-size: ${fontSize || '1rem'};
-    border: 2px solid transparent;
-
-    &:hover {
+    a {
+      box-sizing: border-box;
+      background-color: transparent;
       color: ${color || colors.primary.background};
-      background-color: ${bg || '#EEE'};
-    }
-
-    &:active {
-      border: 2px solid ${bg ? color : '#CCC'};
+      font-weight: ${bold ? '600' : '400'};
+      font-size: ${fontSize || '1rem'};
+      border: 2px solid transparent;
+      &:hover {
+        color: ${color || colors.primary.background};
+        background-color: ${bg || '#EEE'};
+      }
+      &:active {
+        border: 2px solid ${bg ? color : '#CCC'};
+      }
     }
   `}
 `
 
 const Button: FC<iProps> = props => {
-  const { children, className, Link } = props
-  const buttonText: any = children
+  const { children, disabled, href } = props
+  const buttonProps = { ...props }
 
-  if (Link) {
-    return (
-      <StyledButton className={className}>
-        <Link {...props}>{buttonText}</Link>
-      </StyledButton>
-    )
+  if (disabled && href) {
+    delete buttonProps.href
   }
 
   return (
-    <StyledButton className={className}>
-      <a {...props}>{buttonText}</a>
+    <StyledButton {...props} disabled={disabled}>
+      <a {...props}>{children}</a>
     </StyledButton>
   )
 }
