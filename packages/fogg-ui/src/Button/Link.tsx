@@ -1,14 +1,15 @@
-import React, { FC } from 'react'
+import React, { FC, ReactElement } from 'react'
 import styled from 'styled-components'
 import colors from '../colors'
 import StyledBaseButton from './StyledBaseButton'
 
 interface iProps {
   block?: boolean
-  children?: string
+  children?: string | ReactElement
   className?: string
   disabled?: boolean
   href?: string
+  as?: string
   large?: boolean
   name?: string
   onClick?(e: any): any
@@ -19,6 +20,7 @@ interface iProps {
   bold?: boolean
   bg?: string
   fontSize?: string
+  Link?: any
 }
 
 const StyledButton = styled(StyledBaseButton)<iProps>`
@@ -42,11 +44,22 @@ const StyledButton = styled(StyledBaseButton)<iProps>`
 `
 
 const Button: FC<iProps> = props => {
-  const { children, disabled } = props
+  const { children, className, Link, href, as } = props
+  const buttonText: any = children
+
+  if (Link) {
+    return (
+      <StyledButton className={className}>
+        <Link href={href} as={as}>
+          {buttonText}
+        </Link>
+      </StyledButton>
+    )
+  }
 
   return (
-    <StyledButton {...props} disabled={disabled}>
-      {children}
+    <StyledButton className={className}>
+      <a href={href}>{buttonText}</a>
     </StyledButton>
   )
 }

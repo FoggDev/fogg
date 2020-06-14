@@ -1,46 +1,64 @@
-import React, { FC } from 'react'
+import React, { FC, ReactElement } from 'react'
 import styled from 'styled-components'
 import Spinner from '../Spinner'
 import colors from '../colors'
 import StyledBaseButton from './StyledBaseButton'
 
 interface iProps {
-  children?: string
+  block?: boolean
+  children?: string | ReactElement
   className?: string
   disabled?: boolean
   href?: string
+  as?: string
+  large?: boolean
   name?: string
   onClick?(e: any): any
   outline?: boolean
+  small?: boolean
+  xLarge?: boolean
   isLoading?: boolean
   loadingText?: string
   spinner?: string
+  Link?: any
 }
 
 const StyledButton = styled(StyledBaseButton)<iProps>`
-  position: relative;
+  a {
+    position: relative;
 
-  img {
-    position: absolute;
-    top: 9px;
-    left: 6px;
-  }
-
-  ${({ outline, disabled }): any => `
-    background-color: ${outline ? 'transparent ' : colors.warning.background};
-    border-color: ${colors.warning.background};
-    color: ${outline ? colors.warning.background : colors.color};
-
-    &:hover {
-      color: ${colors.color}
-      background-color: ${disabled ? colors.warning.background : colors.warning.hover};
-      border-color: ${colors.warning.hover};
+    img {
+      position: absolute;
+      top: 9px;
+      left: 6px;
     }
-  `}
+
+    ${({ outline, disabled }): any => `
+      background-color: ${outline ? 'transparent ' : colors.warning.background};
+      border-color: ${colors.warning.background};
+      color: ${outline ? colors.warning.background : colors.color};
+
+      &:hover {
+        color: ${colors.color}
+        background-color: ${disabled ? colors.warning.background : colors.warning.hover};
+        border-color: ${disabled ? colors.warning.background : colors.warning.hover};
+      }
+    `}
+  }
 `
 
 const Button: FC<iProps> = props => {
-  const { children, disabled, isLoading, loadingText, spinner = 'rolling' } = props
+  const {
+    children,
+    className,
+    disabled,
+    isLoading,
+    loadingText,
+    spinner = 'rolling',
+    Link,
+    href,
+    as
+  } = props
   let buttonText: any = children
 
   if (isLoading) {
@@ -51,9 +69,19 @@ const Button: FC<iProps> = props => {
     )
   }
 
+  if (Link) {
+    return (
+      <StyledButton className={className} disabled={isLoading || disabled}>
+        <Link href={href} as={as}>
+          {buttonText}
+        </Link>
+      </StyledButton>
+    )
+  }
+
   return (
-    <StyledButton {...props} disabled={isLoading || disabled}>
-      {buttonText}
+    <StyledButton className={className} disabled={isLoading || disabled}>
+      <a href={href}>{buttonText}</a>
     </StyledButton>
   )
 }
