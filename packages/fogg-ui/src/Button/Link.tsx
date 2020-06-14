@@ -42,12 +42,7 @@ const StyledButton = styled(StyledBaseButton)<iProps>`
 `
 
 const Button: FC<iProps> = props => {
-  const { children, disabled, href } = props
-  const buttonProps = { ...props }
-
-  if (disabled && href) {
-    delete buttonProps.href
-  }
+  const { children, disabled } = props
 
   return (
     <StyledButton {...props} disabled={disabled}>

@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, ReactElement } from 'react'
 import styled from 'styled-components'
 import Spinner from '../Spinner'
 import colors from '../colors'
@@ -6,10 +6,11 @@ import StyledBaseButton from './StyledBaseButton'
 
 interface iProps {
   block?: boolean
-  children?: string
+  children?: string | ReactElement
   className?: string
   disabled?: boolean
   href?: string
+  as?: string
   large?: boolean
   name?: string
   onClick?(e: any): any
@@ -19,6 +20,7 @@ interface iProps {
   isLoading?: boolean
   loadingText?: string
   spinner?: string
+  Link?: any
 }
 
 const StyledButton = styled(StyledBaseButton)<iProps>`
@@ -44,9 +46,18 @@ const StyledButton = styled(StyledBaseButton)<iProps>`
 `
 
 const Button: FC<iProps> = props => {
-  const { children, disabled, href, isLoading, loadingText, spinner = 'rolling' } = props
+  const {
+    children,
+    className,
+    disabled,
+    isLoading,
+    loadingText,
+    spinner = 'rolling',
+    Link,
+    href,
+    as
+  } = props
   let buttonText: any = children
-  const buttonProps = { ...props }
 
   if (isLoading) {
     buttonText = (
@@ -56,12 +67,19 @@ const Button: FC<iProps> = props => {
     )
   }
 
-  if (disabled && href) {
-    delete buttonProps.href
+  if (Link) {
+    console.log('USING LINK')
+    return (
+      <StyledButton className={className} disabled={isLoading || disabled}>
+        <Link href={href} as={as}>
+          {buttonText}
+        </Link>
+      </StyledButton>
+    )
   }
 
   return (
-    <StyledButton {...props} disabled={isLoading || disabled}>
+    <StyledButton className={className} disabled={isLoading || disabled}>
       {buttonText}
     </StyledButton>
   )

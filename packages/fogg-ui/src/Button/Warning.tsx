@@ -40,9 +40,8 @@ const StyledButton = styled(StyledBaseButton)<iProps>`
 `
 
 const Button: FC<iProps> = props => {
-  const { children, disabled, href, isLoading, loadingText, spinner = 'rolling' } = props
+  const { children, disabled, isLoading, loadingText, spinner = 'rolling' } = props
   let buttonText: any = children
-  const buttonProps = { ...props }
 
   if (isLoading) {
     buttonText = (
@@ -50,10 +49,6 @@ const Button: FC<iProps> = props => {
         <Spinner spinner={spinner} style={{ width: '18px' }} /> &nbsp;&nbsp;&nbsp; {loadingText}
       </>
     )
-  }
-
-  if (disabled && href) {
-    delete buttonProps.href
   }
 
   return (
