@@ -48,8 +48,33 @@ const StyledButton = styled(StyledBaseButton)<iProps>`
 `
 
 const Button: FC<iProps> = props => {
-  const { children, className, disabled, isLoading, loadingText, spinner = 'rolling', Link } = props
+  const {
+    Link,
+    as,
+    children,
+    className,
+    disabled,
+    href,
+    isLoading,
+    loadingText,
+    onClick,
+    spinner = 'rolling'
+  } = props
+
   let buttonText: any = children
+  const linkProps: any = {
+    className,
+    disabled,
+    href
+  }
+
+  if (as) {
+    linkProps.as = as
+  }
+
+  if (onClick) {
+    linkProps.onClick = onClick
+  }
 
   if (isLoading) {
     buttonText = (
@@ -59,21 +84,17 @@ const Button: FC<iProps> = props => {
     )
   }
 
-  // Fix to remove React Warning
-  delete props.isLoading
-  delete props.loadingText
-
   if (Link) {
     return (
       <StyledButton className={className} disabled={isLoading || disabled}>
-        <Link {...props}>{buttonText}</Link>
+        <Link {...linkProps}>{buttonText}</Link>
       </StyledButton>
     )
   }
 
   return (
     <StyledButton className={className} disabled={isLoading || disabled}>
-      <a {...props}>{buttonText}</a>
+      <a {...linkProps}>{buttonText}</a>
     </StyledButton>
   )
 }
