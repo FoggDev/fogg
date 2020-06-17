@@ -59,6 +59,10 @@ const Button: FC<iProps> = props => {
     )
   }
 
+  // Fix to remove React Warning
+  delete props.isLoading
+  delete props.loadingText
+
   if (Link) {
     return (
       <StyledButton className={className} disabled={isLoading || disabled}>
