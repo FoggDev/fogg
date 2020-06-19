@@ -9,6 +9,7 @@ type Tag = {
 }
 
 interface iProps {
+  label: string
   tags: Tag[]
   getTags(tags: Tag[]): void
 }
@@ -19,7 +20,7 @@ const StyledTags = styled.div`
   flex-direction: column;
   border: none;
   padding: 20px 5px 20px 2px;
-  width: 60%;
+  width: 100%;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
@@ -67,7 +68,7 @@ const StyledTags = styled.div`
 `
 
 const Tags: FC<iProps> = (props): ReactElement => {
-  const { tags = [], getTags } = props
+  const { tags = [], getTags, label = 'Add new tag' } = props
   const [tagsArr, setTags] = useState(tags)
   const [newTag, setTag] = useState('')
   const [fetchTags, setFetchTags] = useState(true)
@@ -117,17 +118,13 @@ const Tags: FC<iProps> = (props): ReactElement => {
           {tagsArr.map((tag, index) => (
             <div key={`${tag.name}-${index}`} className="tag">
               <span title={tag.name}>{tag.name}</span>
-              <Icon
-                title="Remove tag"
-                type="fas fa-times"
-                onClick={(): void => onClick(tag.name)}
-              />
+              <Icon title="Remove" type="fas fa-times" onClick={(): void => onClick(tag.name)} />
             </div>
           ))}
 
           <input
             name="tag"
-            placeholder="Add new tag"
+            placeholder={label}
             onKeyPress={onKeyPressed}
             onChange={onChange}
             value={newTag}
