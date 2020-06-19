@@ -5,7 +5,7 @@ import slug from 'slug'
 import Icon from '../Icon'
 
 type Tag = {
-  name: string
+  value: string
 }
 
 interface iProps {
@@ -79,14 +79,14 @@ const Tags: FC<iProps> = (props): ReactElement => {
     }
   })
 
-  const findTagIndex = (tagName: string): number => tagsArr.findIndex(t => t.name === tagName)
+  const findTagIndex = (tagValue: string): number => tagsArr.findIndex(t => t.value === tagValue)
 
   const onKeyPressed = ({ key }: { key: string }): void => {
     if (key === 'Enter') {
       const tagIndex = findTagIndex(newTag)
 
       if (tagIndex === -1 && newTag.trim() !== '') {
-        const newTags = [...tagsArr, { name: slug(newTag, { lower: true }) }]
+        const newTags = [...tagsArr, { value: slug(newTag, { lower: true }) }]
 
         setTags(newTags)
         setTag('')
@@ -116,9 +116,9 @@ const Tags: FC<iProps> = (props): ReactElement => {
       <StyledTags>
         <div className="container">
           {tagsArr.map((tag, index) => (
-            <div key={`${tag.name}-${index}`} className="tag">
-              <span title={tag.name}>{tag.name}</span>
-              <Icon title="Remove" type="fas fa-times" onClick={(): void => onClick(tag.name)} />
+            <div key={`${tag.value}-${index}`} className="tag">
+              <span title={tag.value}>{tag.value}</span>
+              <Icon title="Remove" type="fas fa-times" onClick={(): void => onClick(tag.value)} />
             </div>
           ))}
 
