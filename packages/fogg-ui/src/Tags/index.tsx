@@ -10,6 +10,7 @@ type Tag = {
 
 interface iProps {
   label?: string
+  disableSlug?: boolean
   tags: Tag[]
   getTags(tags: Tag[]): void
 }
@@ -68,7 +69,7 @@ const StyledTags = styled.div`
 `
 
 const Tags: FC<iProps> = (props): ReactElement => {
-  const { tags = [], getTags, label = 'Add new tag' } = props
+  const { tags = [], getTags, label = 'Add new tag', disableSlug = false } = props
   const [tagsArr, setTags] = useState(tags)
   const [newTag, setTag] = useState('')
   const [fetchTags, setFetchTags] = useState(true)
@@ -86,7 +87,8 @@ const Tags: FC<iProps> = (props): ReactElement => {
       const tagIndex = findTagIndex(newTag)
 
       if (tagIndex === -1 && newTag.trim() !== '') {
-        const newTags = [...tagsArr, { value: slug(newTag, { lower: true }) }]
+        const newVal = !disableSlug ? slug(newTag, { lower: true }) : newTag
+        const newTags = [...tagsArr, { value: newVal }]
 
         setTags(newTags)
         setTag('')
