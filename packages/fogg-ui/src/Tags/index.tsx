@@ -1,5 +1,5 @@
 // Dependencies
-import React, { FC, ReactElement, useState, useCallback } from 'react'
+import React, { FC, ReactElement, useState, useEffect } from 'react'
 import styled from 'styled-components'
 import slug from 'slug'
 import Icon from '../Icon'
@@ -9,7 +9,7 @@ type Tag = {
 }
 
 interface iProps {
-  label: string
+  label?: string
   tags: Tag[]
   getTags(tags: Tag[]): void
 }
@@ -73,11 +73,11 @@ const Tags: FC<iProps> = (props): ReactElement => {
   const [newTag, setTag] = useState('')
   const [fetchTags, setFetchTags] = useState(true)
 
-  useCallback(() => {
+  useEffect(() => {
     if (fetchTags) {
       getTags(tagsArr)
     }
-  }, [])
+  })
 
   const findTagIndex = (tagName: string): number => tagsArr.findIndex(t => t.name === tagName)
 
