@@ -40,7 +40,7 @@ const StyledTags = styled.div`
     display: inline-block;
     cursor: pointer;
     color: #888;
-    border-radius: 15px;
+    border-radius: 5px;
     height: 30px;
     line-height: 30px;
     padding-left: 15px;
