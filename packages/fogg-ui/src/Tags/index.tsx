@@ -5,12 +5,12 @@ import slug from 'slug'
 import Icon from '../Icon'
 
 type Tag = {
+  option: string
   value: string
 }
 
 interface iProps {
   label?: string
-  disableSlug?: boolean
   tags: Tag[]
   getTags(tags: Tag[]): void
 }
@@ -69,7 +69,7 @@ const StyledTags = styled.div`
 `
 
 const Tags: FC<iProps> = (props): ReactElement => {
-  const { tags = [], getTags, label = 'Add new tag', disableSlug = false } = props
+  const { tags = [], getTags, label = 'Add new tag' } = props
   const [tagsArr, setTags] = useState(tags)
   const [newTag, setTag] = useState('')
   const [fetchTags, setFetchTags] = useState(true)
@@ -87,8 +87,8 @@ const Tags: FC<iProps> = (props): ReactElement => {
       const tagIndex = findTagIndex(newTag)
 
       if (tagIndex === -1 && newTag.trim() !== '') {
-        const newVal = !disableSlug ? slug(newTag, { lower: true }) : newTag
-        const newTags = [...tagsArr, { value: newVal }]
+        const newVal = slug(newTag, { lower: true })
+        const newTags = [...tagsArr, { option: newTag, value: newVal }]
 
         setTags(newTags)
         setTag('')
@@ -119,7 +119,7 @@ const Tags: FC<iProps> = (props): ReactElement => {
         <div className="container">
           {tagsArr.map((tag, index) => (
             <div key={`${tag.value}-${index}`} className="tag">
-              <span title={tag.value}>{tag.value}</span>
+              <span title={tag.option}>{tag.option}</span>
               <Icon title="Remove" type="fas fa-times" onClick={(): void => onClick(tag.value)} />
             </div>
           ))}

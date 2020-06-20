@@ -282,7 +282,10 @@ class App extends Component {
             ]}
           />
           <h2>Tags</h2>
-          <Tags tags={[{ value: 'react' }]} getTags={(tags): void => console.log(tags)} />
+          <Tags
+            tags={[{ option: 'React', value: 'react' }]}
+            getTags={(tags): void => console.log(tags)}
+          />
           <h2>Table</h2>
           <Table
             url="#"
