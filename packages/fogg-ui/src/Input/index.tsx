@@ -11,6 +11,7 @@ interface iProps {
   id?: string
   name?: string
   min?: string
+  max?: string
   noWrapper?: boolean
   onBlur?(e: any): any
   onChange?(e: any): any
