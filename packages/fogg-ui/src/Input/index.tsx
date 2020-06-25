@@ -10,6 +10,7 @@ interface iProps {
   hasError?: boolean
   id?: string
   name?: string
+  min?: string
   noWrapper?: boolean
   onBlur?(e: any): any
   onChange?(e: any): any
