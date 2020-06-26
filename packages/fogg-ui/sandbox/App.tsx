@@ -5,6 +5,7 @@ import React, { Component, ReactElement } from 'react'
 import Alert from '../src/Alert'
 import Accordion from '../src/Accordion'
 import Badge from '../src/Badge'
+import File from '../src/File'
 import LinkButton from '../src/Button/Link'
 import DangerButton from '../src/Button/Danger'
 import DarkButton from '../src/Button/Dark'
@@ -110,7 +111,8 @@ class App extends Component {
     isOpen: false,
     isOpenMenu: false,
     checked: true,
-    loading: false
+    loading: false,
+    selectedFile: {}
   }
 
   handleModal = (): void => {
@@ -153,6 +155,15 @@ class App extends Component {
         loading: false
       })
     }, 4000)
+  }
+
+  handleFile = (e: any): void => {
+    if (e.target.files[0]) {
+      this.setState({
+        selectedFile: e.target.files[0]
+      })
+    }
+    console.log('FILES2===', e.target.files[0].name)
   }
 
   render(): ReactElement {
@@ -406,6 +417,13 @@ class App extends Component {
           <Radio label="Two" name="option[]" />
           <Radio label="Three" name="option[]" />
           <Radio label="Four" name="option[]" />
+          <h2>File Input</h2>
+          <File
+            selectedFile={this.state.selectedFile}
+            label="Choose a file"
+            onChange={this.handleFile}
+            theme="success"
+          />
           <h2>Input</h2>
           <Input disabled name="input" className="input" placeholder="Placeholder" />
           <Input

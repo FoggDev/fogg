@@ -27,6 +27,7 @@
     "src/Button/Warning.tsx",
     "src/Center/index.tsx",
     "src/Checkbox/index.tsx",
+    "src/File/index.tsx",
     "src/Icon/index.tsx",
     "src/Input/index.tsx",
     "src/Modal/index.tsx",
