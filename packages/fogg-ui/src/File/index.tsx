@@ -28,6 +28,7 @@ const StyledWrapper = styled.div`
   overflow: hidden;
   position: relative;
   cursor: pointer;
+  margin-right: 10px;
 
   &:hover {
     .button {
