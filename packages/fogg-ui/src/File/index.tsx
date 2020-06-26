@@ -21,6 +21,7 @@ interface iProps {
   label?: string
   theme?: string
   selectedFile?: any
+  maxFileSize?: number
 }
 
 const StyledWrapper = styled.div`
@@ -68,11 +69,11 @@ const StyledInformation = styled.div`
   font-size: 12px;
 `
 
-const bytesToSize = (bytes: any): any => {
+const bytesToSize = (bytes: any, maxFileSize: number): any => {
   const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB']
   let allowed = true
 
-  if (bytes > 50000000) {
+  if (bytes > maxFileSize) {
     allowed = false
   }
 
@@ -92,10 +93,16 @@ const bytesToSize = (bytes: any): any => {
 }
 
 const File: FC<iProps> = props => {
-  const { label = 'Choose a file', name = 'file', theme = 'primary', selectedFile } = props
+  const {
+    label = 'Choose a file',
+    name = 'file',
+    theme = 'primary',
+    selectedFile,
+    maxFileSize = 10000000
+  } = props
   const validThemes = ['primary', 'default', 'success', 'danger', 'warning', 'light', 'dark']
   const currentTheme = validThemes.includes(theme) ? theme : 'primary'
-  const file = bytesToSize(selectedFile.size)
+  const file = bytesToSize(selectedFile.size, maxFileSize)
 
   return (
     <>
