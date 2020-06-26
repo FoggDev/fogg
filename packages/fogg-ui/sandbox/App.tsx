@@ -423,6 +423,7 @@ class App extends Component {
             label="Choose a file"
             onChange={this.handleFile}
             theme="success"
+            maxFileSize={52000000}
           />
           <h2>Input</h2>
           <Input disabled name="input" className="input" placeholder="Placeholder" />

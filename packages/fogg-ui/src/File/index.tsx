@@ -67,9 +67,16 @@ const StyledButton = styled.button`
 const StyledInformation = styled.div`
   color: #999;
   font-size: 12px;
+  margin-top: 13px;
 `
 
-const bytesToSize = (bytes: any, maxFileSize: number): any => {
+const StyledSpan = styled.span`
+  color: #ccc;
+  font-size: 10px;
+  margin-top: 2px;
+`
+
+const bytesToSize = (bytes: any, maxFileSize: number, round?: boolean): any => {
   const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB']
   let allowed = true
 
@@ -86,8 +93,14 @@ const bytesToSize = (bytes: any, maxFileSize: number): any => {
     return `${bytes} ${sizes[i]}`
   }
 
+  let size: any = (bytes / 1024 ** i).toFixed(1)
+
+  if (round) {
+    size = Math.ceil(size)
+  }
+
   return {
-    size: `${(bytes / 1024 ** i).toFixed(1)} ${sizes[i]}`,
+    size: `${size} ${sizes[i]}`,
     allowed
   }
 }
@@ -98,23 +111,32 @@ const File: FC<iProps> = props => {
     name = 'file',
     theme = 'primary',
     selectedFile,
-    maxFileSize = 10000000
+    maxFileSize = 12000000
   } = props
   const validThemes = ['primary', 'default', 'success', 'danger', 'warning', 'light', 'dark']
   const currentTheme = validThemes.includes(theme) ? theme : 'primary'
   const file = bytesToSize(selectedFile.size, maxFileSize)
+  const maxSize = bytesToSize(maxFileSize, maxFileSize, true)
 
   return (
     <>
       <div
-        style={{ display: 'flex', alignItems: 'center', marginTop: '5px', marginBottom: '20px' }}
+        style={{
+          display: 'flex',
+          alignItems: 'flex-start',
+          marginTop: '5px',
+          marginBottom: '20px'
+        }}
       >
-        <StyledWrapper theme={currentTheme}>
-          <StyledButton className="button" theme={currentTheme}>
-            <Icon type="fas fa-upload" /> {label}
-          </StyledButton>
-          <StyledInput type="file" name={name} id="file" {...props} />
-        </StyledWrapper>
+        <div>
+          <StyledWrapper theme={currentTheme} title={`Max File Size is ${maxSize.size}`}>
+            <StyledButton className="button" theme={currentTheme}>
+              <Icon type="fas fa-upload" /> {label}
+            </StyledButton>
+            <StyledInput type="file" name={name} id="file" {...props} />
+          </StyledWrapper>
+          <StyledSpan>Max File Size is {maxSize.size}</StyledSpan>
+        </div>
 
         {selectedFile.name && (
           <StyledInformation>
