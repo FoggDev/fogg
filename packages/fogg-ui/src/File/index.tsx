@@ -67,7 +67,7 @@ const StyledButton = styled.button`
 const StyledInformation = styled.div`
   color: #999;
   font-size: 12px;
-  margin-top: 13px;
+  margin-top: 9px;
 `
 
 const StyledSpan = styled.span`
