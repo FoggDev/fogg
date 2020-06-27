@@ -424,6 +424,7 @@ class App extends Component {
             onChange={this.handleFile}
             theme="success"
             maxFileSize={52000000}
+            allowedExtensions={['png', 'jpg', 'jpeg', 'gif', 'mp4', 'pdf', 'doc', 'docx']}
           />
           <h2>Input</h2>
           <Input disabled name="input" className="input" placeholder="Placeholder" />

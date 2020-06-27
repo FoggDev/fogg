@@ -5,6 +5,7 @@ import styled from 'styled-components'
 // Components
 import Icon from '../Icon'
 
+// Colors
 import colors from '../colors'
 
 interface iProps {
@@ -22,6 +23,7 @@ interface iProps {
   theme?: string
   selectedFile?: any
   maxFileSize?: number
+  allowedExtensions?: string[]
 }
 
 const StyledWrapper = styled.div`
@@ -76,6 +78,36 @@ const StyledSpan = styled.span`
   margin-top: 2px;
 `
 
+const StyledDiv = styled.div`
+  margin-top: -20px;
+`
+
+const StyledGoodExt = styled.span`
+  color: ${colors.success.background};
+`
+
+const StyledInvalidExt = styled.span`
+  color: red;
+`
+
+const getFileInfo = (file: any): any => {
+  if (!file) {
+    return {
+      fileName: '',
+      extension: ''
+    }
+  }
+
+  const parts = file.split('.')
+  const extension = parts.pop()
+  const fileName = parts.pop()
+
+  return {
+    fileName,
+    extension: extension.toLowerCase()
+  }
+}
+
 const bytesToSize = (bytes: any, maxFileSize: number, round?: boolean): any => {
   const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB']
   let allowed = true
@@ -84,7 +116,7 @@ const bytesToSize = (bytes: any, maxFileSize: number, round?: boolean): any => {
     allowed = false
   }
 
-  const n = parseInt(bytes)
+  const n = Number(bytes)
 
   // @ts-ignore
   const i = parseInt(Math.floor(Math.log(n) / Math.log(1024)), 10)
@@ -111,12 +143,15 @@ const File: FC<iProps> = props => {
     name = 'file',
     theme = 'primary',
     selectedFile,
-    maxFileSize = 12000000
+    maxFileSize = 12000000,
+    allowedExtensions = ['all']
   } = props
   const validThemes = ['primary', 'default', 'success', 'danger', 'warning', 'light', 'dark']
   const currentTheme = validThemes.includes(theme) ? theme : 'primary'
   const file = bytesToSize(selectedFile.size, maxFileSize)
   const maxSize = bytesToSize(maxFileSize, maxFileSize, true)
+  const { fileName, extension } = getFileInfo(selectedFile.name)
+  const isAllowedExt = allowedExtensions.includes(extension) || allowedExtensions.includes('all')
 
   return (
     <>
@@ -135,12 +170,17 @@ const File: FC<iProps> = props => {
             </StyledButton>
             <StyledInput type="file" name={name} id="file" {...props} />
           </StyledWrapper>
-          <StyledSpan>Max File Size is {maxSize.size}</StyledSpan>
         </div>
 
         {selectedFile.name && (
           <StyledInformation>
-            {selectedFile.name} (
+            {fileName}.
+            {isAllowedExt ? (
+              <StyledGoodExt>{extension}</StyledGoodExt>
+            ) : (
+              <StyledInvalidExt>{extension}</StyledInvalidExt>
+            )}{' '}
+            (
             <span style={{ color: file.allowed ? colors.success.background : 'red' }}>
               {file.size}
             </span>
@@ -148,6 +188,30 @@ const File: FC<iProps> = props => {
           </StyledInformation>
         )}
       </div>
+
+      <StyledDiv>
+        <StyledSpan>
+          <strong>Max File Size is:</strong> {maxSize.size}
+        </StyledSpan>
+        <br />
+        <StyledSpan>
+          <strong>Allowed extensions:</strong>{' '}
+          {allowedExtensions.map((ext: string, index: number) => (
+            <>
+              {ext === extension ? (
+                isAllowedExt ? (
+                  <StyledGoodExt>{ext}</StyledGoodExt>
+                ) : (
+                  <StyledInvalidExt>{ext}</StyledInvalidExt>
+                )
+              ) : (
+                <>{ext}</>
+              )}
+              {index < allowedExtensions.length - 1 ? ', ' : ''}
+            </>
+          ))}
+        </StyledSpan>
+      </StyledDiv>
     </>
   )
 }
