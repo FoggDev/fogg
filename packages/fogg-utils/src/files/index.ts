@@ -47,7 +47,7 @@ export function bytesToSize(bytes: any, maxFileSize: number, round?: boolean): a
   }
 }
 
-export const getFileExtensionFromURL = (fileUrl: any): any => {
+export function getFileExtensionFromURL(fileUrl: any): any {
   let file = ''
 
   if (fileUrl) {
@@ -55,6 +55,16 @@ export const getFileExtensionFromURL = (fileUrl: any): any => {
   }
 
   return getFileInfo(file)
+}
+
+export function getImageData(file: any): Promise<any> {
+  return new Promise((resolve, reject) => {
+    const img = new Image()
+
+    img.src = window.URL.createObjectURL(file)
+    img.onload = (): any => resolve({ width: img.width, height: img.height })
+    img.onerror = reject
+  })
 }
 
 export async function uploadFile(file: any, url: string): Promise<boolean> {
