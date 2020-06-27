@@ -47,6 +47,16 @@ export function bytesToSize(bytes: any, maxFileSize: number, round?: boolean): a
   }
 }
 
+export const getFileExtensionFromURL = (fileUrl: any): any => {
+  let file = ''
+
+  if (fileUrl) {
+    file = fileUrl.split('/').pop()
+  }
+
+  return getFileInfo(file)
+}
+
 export async function uploadFile(file: any, url: string): Promise<boolean> {
   if (!file) {
     return false
