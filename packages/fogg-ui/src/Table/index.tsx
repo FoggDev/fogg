@@ -684,7 +684,7 @@ const Table: FC<iProps> = ({
 
                   return (
                     <td key={`tr-${trIndex}`} className={`${parent} ${tr} ${rowClass}`}>
-                      {isFile && <>{row[parent] && row[parent].toString()}</>}
+                      {isFile && <a>{row[parent] && row[parent].toString()}</a>}
                       {!isFile && (
                         <a href={`${url}/${id}`}>{row[parent] && row[parent].toString()}</a>
                       )}
