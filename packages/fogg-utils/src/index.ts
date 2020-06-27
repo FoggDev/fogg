@@ -1,4 +1,5 @@
 export * from './array'
+export * from './files'
 export * from './frontend'
 export * from './graphql'
 export * from './is'
