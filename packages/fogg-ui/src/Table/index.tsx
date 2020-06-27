@@ -487,9 +487,12 @@ const Table: FC<iProps> = ({
 
                     return (
                       <td key={`tr-${trIndex}`}>
-                        <a href={`${url}/${id}`}>
-                          <span>{values}</span>
-                        </a>
+                        {isFile && <span>{values}</span>}
+                        {!isFile && (
+                          <a href={`${url}/${id}`}>
+                            <span>{values}</span>
+                          </a>
+                        )}
                       </td>
                     )
                   }
@@ -630,11 +633,21 @@ const Table: FC<iProps> = ({
 
                     return (
                       <td key={`tr-${trIndex}`} className={parent}>
-                        <a href={`${url}/${id}`}>
-                          <span className="date">{date[0]}</span>
-                          <span className="at"> at </span>
-                          <span className="hour">{date[1]}</span>
-                        </a>
+                        {isFile && (
+                          <>
+                            <span className="date">{date[0]}</span>
+                            <span className="at"> at </span>
+                            <span className="hour">{date[1]}</span>
+                          </>
+                        )}
+
+                        {!isFile && (
+                          <a href={`${url}/${id}`}>
+                            <span className="date">{date[0]}</span>
+                            <span className="at"> at </span>
+                            <span className="hour">{date[1]}</span>
+                          </a>
+                        )}
                       </td>
                     )
                   }
@@ -651,9 +664,12 @@ const Table: FC<iProps> = ({
                           />
                         </td>
                         <td key={`tr-${trIndex}`} className={tr} title={row[parent].toString()}>
-                          <a href={`${url}/${id}`}>
-                            <span>{row[parent].toString()}</span>
-                          </a>
+                          {isFile && <span>{row[parent].toString()}</span>}
+                          {!isFile && (
+                            <a href={`${url}/${id}`}>
+                              <span>{row[parent].toString()}</span>
+                            </a>
+                          )}
                         </td>
                       </Fragment>
                     )
@@ -668,7 +684,10 @@ const Table: FC<iProps> = ({
 
                   return (
                     <td key={`tr-${trIndex}`} className={`${parent} ${tr} ${rowClass}`}>
-                      <a href={`${url}/${id}`}>{row[parent] && row[parent].toString()}</a>
+                      {isFile && <>{row[parent] && row[parent].toString()}</>}
+                      {!isFile && (
+                        <a href={`${url}/${id}`}>{row[parent] && row[parent].toString()}</a>
+                      )}
                     </td>
                   )
                 })}
