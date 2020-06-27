@@ -46,6 +46,7 @@
   },
   "dependencies": {
     "@types/slug": "^0.9.1",
+    "isomorphic-unfetch": "^3.0.0",
     "slug": "^2.1.1"
   }
 }
