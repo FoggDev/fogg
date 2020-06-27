@@ -52,56 +52,57 @@ const panels = [
 ]
 
 const tableData = {
-  head: ['ID', 'Title', 'Slug', 'Content', 'Created At', 'Status'],
-  body: ['id', 'title', 'slug', 'content', 'createdAt', 'status'],
+  head: ['ID', 'File', 'Filename', 'FileUrl', 'Size', 'Information', 'Created At', 'Status'],
+  body: ['id', 'file', 'fileName', 'fileUrl', 'size', 'information', 'createdAt', 'status'],
   rows: [
     {
-      createdAt: '2020-06-11T13:52:54-07:00',
-      status: 'Draft',
-      id: 'df188ad4-0c53-49c1-b4c1-a7042e574f85',
-      title: 'Post 111',
-      slug: 'post-111',
-      content: 'asdad',
-      author: 'asdasdasdasd'
-    },
-    {
-      createdAt: '2020-06-11T22:14:41-07:00',
-      status: 'Draft',
-      id: '0d56bfd1-be81-400c-96d8-8e9adea51dce',
-      title: 'ssadad',
-      slug: 'ssadad',
-      content: 'asdasd',
-      author: 'asdsadasd'
-    },
-    {
-      createdAt: '2020-06-11T22:15:05-07:00',
-      status: 'Draft',
-      id: 'cf2cb68c-bd90-450c-9812-093914627058',
-      title: 'sdfdsfsdf',
-      slug: 'sdfdsfsdf',
-      content: 'sfsdfsfsdfsf',
-      author: ''
-    },
-    {
-      createdAt: '2020-06-11T22:15:17-07:00',
+      id: '1f5f0276-2927-423e-b1d9-d411a30686bb',
+      createdAt: '2020-06-27T11:06:53-07:00',
       status: 'Published',
-      id: '8d65a77c-f5cf-4074-a276-19a4fe9803d8',
-      title: 'ssss',
-      slug: 'ssss',
-      content: 'sdfdsfdsfsf',
-      author: ''
+      file: 'v32.png',
+      fileName: 'v32.png',
+      fileUrl: 'https://i0.wp.com/fishingbooker.com/blog/media/hero-lures.jpg',
+      size: '746.7 KB',
+      information: '1280x720px'
     },
     {
-      createdAt: '2020-06-12T13:07:33-07:00',
+      id: '62fb6d1b-9223-43c2-b316-ef7db5591e3a',
+      createdAt: '2020-06-27T00:53:33-07:00',
       status: 'Published',
-      id: 'c4e22661-ca68-4f77-b0c6-72da7fe7c117',
-      title: 'Mi nuevo post',
-      slug: 'mi-nuevo-post',
-      content: '<p>Content</p>',
-      author: 'Carlos Santana'
+      file: 'V40.png',
+      fileName: 'V40.png',
+      fileUrl: 'https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iNLRO79Fe4_c/v1/1400x-1.jpg',
+      size: '745.5 KB',
+      information: '1280x720px'
+    },
+    {
+      id: '12fb6d1b-9223-43c2-b316-ef7db5591e3a',
+      createdAt: '2020-06-27T00:53:33-07:00',
+      status: 'Published',
+      file: 'Video.mp4',
+      fileName: 'Video.mp4',
+      fileUrl: 'http://localhost:3000/files/videos/intro.mp4',
+      size: '1 MB',
+      information: ''
+    },
+    {
+      id: '12fb6d1b-9223-43c2-b316-ef7db5591e3a',
+      createdAt: '2020-06-27T00:53:33-07:00',
+      status: 'Published',
+      file: 'CV.pdf',
+      fileName: 'CV.pdf',
+      fileUrl: 'http://localhost:3000/files/documents/CV.pdf',
+      size: '1 MB',
+      information: ''
     }
   ],
-  count: 15
+  count: 15,
+  isFile: true,
+  fileTypes: {
+    documents: ['pdf', 'doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'zip'],
+    images: ['png', 'jpg', 'jpeg', 'gif'],
+    videos: ['mp4']
+  }
 }
 
 class App extends Component {
@@ -163,7 +164,6 @@ class App extends Component {
         selectedFile: e.target.files[0]
       })
     }
-    console.log('FILES2===', e.target.files[0].name)
   }
 
   render(): ReactElement {

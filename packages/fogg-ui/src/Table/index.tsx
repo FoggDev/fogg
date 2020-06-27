@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import moment from 'moment'
 import Icon from '../Icon'
 import Modal from '../Modal'
+import { getFileExtensionFromURL } from '../File'
 
 interface iProps {
   className?: string
@@ -15,6 +16,8 @@ interface iProps {
     body: string[]
     rows: any[]
     count?: number
+    isFile?: boolean
+    fileTypes: any
   }
 }
 
@@ -257,6 +260,40 @@ const StyledTable = styled.table`
   }
 `
 
+const StyledPreviewImage = styled.img`
+  background-color: #666;
+  border-radius: 10px;
+  width: 80px;
+`
+
+const StyledPlayIcon = styled.div`
+  i {
+    color: red;
+    font-size: 64px;
+
+    &:hover {
+      color: #444;
+    }
+  }
+`
+
+const StyledDocumentIcon = styled.div`
+  i {
+    color: #00aeef;
+    font-size: 64px;
+
+    &:hover {
+      color: #1565c0;
+    }
+  }
+`
+
+const StyledCenter = styled.div`
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+`
+
 const createCheckboxes = (state: boolean, ids: any[], count: number): any => {
   const checkboxes: any = {}
 
@@ -282,10 +319,16 @@ const Table: FC<iProps> = ({
   onUnpublish,
   url
 }): ReactElement => {
+  const defaultFileTypes = {
+    documents: ['pdf', 'doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'zip'],
+    images: ['png', 'jpg', 'jpeg', 'gif'],
+    videos: ['mp4']
+  }
+
   const [allCheckboxes, setAllCheckboxes] = useState(false)
   const [isOpen, handleIsOpen] = useState(false)
   const [html, setHtml] = useState('')
-  const { head, body, rows = [], count } = data
+  const { head, body, rows = [], count, isFile, fileTypes = defaultFileTypes } = data
   const total = count || rows.length
   const [checkbox, setCheckbox] = useState(createCheckboxes(false, rows, rows.length))
   const selectedCheckboxes = getCheckedCheckboxes(checkbox)
@@ -324,7 +367,7 @@ const Table: FC<iProps> = ({
     <>
       <Modal
         isOpen={isOpen}
-        label="Content"
+        label="Preview"
         options={{
           position: 'top',
           height: html.includes('img') ? '700px' : '500px',
@@ -342,18 +385,29 @@ const Table: FC<iProps> = ({
 
         <thead>
           <tr key="head">
-            {head.map((th, index) => (
-              <Fragment key={`head-fragment-${index}`}>
-                {index === 0 && (
-                  <th className="checkbox">
-                    <input type="checkbox" checked={allCheckboxes} onChange={handleAllCheckbox} />
+            {head.map((th, index) => {
+              if (isFile && th === 'File') {
+                return <th key={`th-${index}`} />
+              }
+
+              if (isFile && th === 'FileUrl') {
+                return <th key={`th-${index}`}>Preview</th>
+              }
+
+              return (
+                <Fragment key={`head-fragment-${index}`}>
+                  {index === 0 && (
+                    <th className="checkbox">
+                      <input type="checkbox" checked={allCheckboxes} onChange={handleAllCheckbox} />
+                    </th>
+                  )}
+
+                  <th key={`th-${index}`} className={th.toLocaleLowerCase()}>
+                    {th}
                   </th>
-                )}
-                <th key={`th-${index}`} className={th.toLocaleLowerCase()}>
-                  {th}
-                </th>
-              </Fragment>
-            ))}
+                </Fragment>
+              )
+            })}
           </tr>
 
           <tr
@@ -448,6 +502,125 @@ const Table: FC<iProps> = ({
                         </span>
                       </td>
                     )
+                  }
+
+                  if (isFile && row[parent] && parent === 'file') {
+                    return <td key={`tr-${trIndex}`} />
+                  }
+
+                  if (isFile && row[parent] && parent === 'fileUrl') {
+                    const { extension, fileName } = getFileExtensionFromURL(row[parent])
+                    const isImage = fileTypes.images.includes(extension)
+                    const isDocument = fileTypes.documents.includes(extension)
+                    const isVideo = fileTypes.videos.includes(extension)
+
+                    if (isImage) {
+                      const img = `
+                        <div style="display: flex; align-items: center; flex-direction: column;">
+                          <img src="${row[parent]}" alt="${row[parent]}" style="width: 90%; border: 3px solid #000; margin-bottom: 10px;" />
+                          <p>
+                            <a
+                              style="
+                                text-decoration: none;
+                                font-weight: 600;
+                                background-color: #00AEEF;
+                                border-color: #00AEEF;
+                                color: #FFF;
+                                border-radius: .25rem;
+                                padding: .375rem .75rem;
+                              "
+                              href="${row[parent]}"
+                              title="Download Image"
+                              download="${fileName}.${extension}"
+                              target="_blank"
+                            >
+                              Download
+                            </a>
+                          </p>
+                        </div>
+                      `
+
+                      return (
+                        <td key={`tr-${trIndex}`}>
+                          <a
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            title="Click to preview"
+                            onClick={(): void => handleModal(img)}
+                          >
+                            <StyledCenter>
+                              <StyledPreviewImage src={row[parent]} />
+                            </StyledCenter>
+                          </a>
+                        </td>
+                      )
+                    }
+
+                    if (isVideo) {
+                      const video = `
+                        <div style="display: flex; align-items: center; flex-direction: column;">
+                          <video width="80%" controls autoplay style="border-radius: 10px;">
+                            <source src="${row[parent]}" type="video/mp4">
+                          </video>
+                          <p>
+                            <a
+                              style="
+                                text-decoration: none;
+                                font-weight: 600;
+                                background-color: #00AEEF;
+                                border-color: #00AEEF;
+                                color: #FFF;
+                                border-radius: .25rem;
+                                padding: .375rem .75rem;
+                              "
+                              href="${row[parent]}"
+                              title="Download Video"
+                              target="_blank"
+                              download="${fileName}.${extension}"
+                            >
+                              Download
+                            </a>
+                          </p>
+                        </div>
+                      `
+
+                      return (
+                        <td key={`tr-${trIndex}`}>
+                          <a
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            title="Click to preview"
+                            onClick={(): void => handleModal(video)}
+                          >
+                            <StyledCenter>
+                              <StyledPlayIcon>
+                                <Icon type="fas fa-play-circle" />
+                              </StyledPlayIcon>
+                            </StyledCenter>
+                          </a>
+                        </td>
+                      )
+                    }
+
+                    if (isDocument) {
+                      return (
+                        <td key={`tr-${trIndex}`}>
+                          <a
+                            href={row[parent]}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            title="Click to download"
+                            download={`${fileName}.${extension}`}
+                          >
+                            <StyledCenter>
+                              <StyledDocumentIcon>
+                                <Icon type="fas fa-cloud-download-alt" />
+                              </StyledDocumentIcon>
+                            </StyledCenter>
+                          </a>
+                        </td>
+                      )
+                    }
                   }
 
                   if (row[parent] && parent === 'createdAt') {

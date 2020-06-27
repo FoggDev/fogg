@@ -90,7 +90,7 @@ const StyledInvalidExt = styled.span`
   color: red;
 `
 
-const getFileInfo = (file: any): any => {
+export const getFileInfo = (file: any): any => {
   if (!file) {
     return {
       fileName: '',
@@ -108,7 +108,17 @@ const getFileInfo = (file: any): any => {
   }
 }
 
-const bytesToSize = (bytes: any, maxFileSize: number, round?: boolean): any => {
+export const getFileExtensionFromURL = (fileUrl: any): any => {
+  let file = ''
+
+  if (fileUrl) {
+    file = fileUrl.split('/').pop()
+  }
+
+  return getFileInfo(file)
+}
+
+export const bytesToSize = (bytes: any, maxFileSize: number, round?: boolean): any => {
   const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB']
   let allowed = true
 
