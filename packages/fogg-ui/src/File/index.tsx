@@ -1,7 +1,7 @@
 // Dependencies
 import React, { FC } from 'react'
 import styled from 'styled-components'
-import { cx, getFileInfo, bytesToSize } from 'fogg-utils'
+import { getFileInfo, bytesToSize } from 'fogg-utils'
 
 // Components
 import Icon from '../Icon'

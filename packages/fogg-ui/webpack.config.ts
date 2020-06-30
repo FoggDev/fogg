@@ -68,7 +68,8 @@ module.exports = {
       amd: 'prop-types'
     },
     slug: 'slug',
-    moment: 'moment'
+    moment: 'moment',
+    'fogg-utils': 'fogg-utils'
   },
   devtool: devMode ? 'source-map' : '',
   plugins: [
