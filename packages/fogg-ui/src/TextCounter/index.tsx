@@ -22,7 +22,7 @@ const TextCounter: FC<iProps> = (props): ReactElement => {
   }
 
   return (
-    <span style={style}>
+    <span className="TextCounter" style={style}>
       {left}/{total}
     </span>
   )

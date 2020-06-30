@@ -44,7 +44,7 @@ const Menu: FC<iProps> = ({ isOpen, items }): ReactElement => {
 
   return (
     <>
-      <StyledMenu>
+      <StyledMenu className="Menu">
         {items.map((item, i: number) => (
           <div key={`menu-option-${i}`}>
             <a href={item.href || null} onClick={item.onClick || null}>

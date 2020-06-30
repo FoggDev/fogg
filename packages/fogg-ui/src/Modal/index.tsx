@@ -148,7 +148,7 @@ const Modal: FC<iProps> = ({ children, isOpen, onOpen, onClose, label, options =
     <>
       <StyledBody />
 
-      <StyledModal>
+      <StyledModal className="Modal">
         <StyledContainer maxWidth={width} height={height} margin={margin}>
           <StyledClose onClick={onClose}>
             <StyledImg alt="Close" src={require(`./icons/close.svg`)} />

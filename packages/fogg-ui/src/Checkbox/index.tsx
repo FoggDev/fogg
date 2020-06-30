@@ -69,7 +69,7 @@ const Checkbox: FC<iProps> = props => {
   const { label } = props
 
   return (
-    <StyledLabel>
+    <StyledLabel className="Checkbox">
       <>
         {label}
         <StyledInput {...props} type="checkbox" />

@@ -1,5 +1,6 @@
 import React, { FC, ReactElement, useState } from 'react'
 import styled from 'styled-components'
+import { cx } from 'fogg-utils'
 import Icon from '../Icon'
 import colors from '../colors'
 
@@ -106,7 +107,7 @@ const StyledSelect = styled.div<iStyledProps>`
 `
 
 const Select: FC<iProps> = (props): ReactElement => {
-  const { label = '', options = null, onClick, type = 'select' } = props
+  const { label = '', options = null, onClick, type = 'select', className = '' } = props
   const [open, setOpen] = useState(false)
   const [selectedOption, setValue] = useState({ option: '', value: '' })
 
@@ -133,7 +134,7 @@ const Select: FC<iProps> = (props): ReactElement => {
 
   return (
     <div style={{ marginTop: '5px', marginBottom: '20px' }}>
-      <StyledSelect {...props} type={type}>
+      <StyledSelect {...props} type={type} className={cx('Select', className)}>
         <a onClick={handleOpenOnClick}>
           <div>{selectedOption.option || label}</div>
           <div>

@@ -1,9 +1,9 @@
 import React, { FC, ReactElement, Fragment, useState, useEffect } from 'react'
 import styled from 'styled-components'
 import moment from 'moment'
+import { cx, getFileExtensionFromURL } from 'fogg-utils'
 import Icon from '../Icon'
 import Modal from '../Modal'
-import { getFileExtensionFromURL } from '../File'
 
 interface iProps {
   className?: string
@@ -378,7 +378,7 @@ const Table: FC<iProps> = ({
         <StyledModalContent dangerouslySetInnerHTML={{ __html: html }} />
       </Modal>
 
-      <StyledTable className={className}>
+      <StyledTable className={cx('Table', className)}>
         <caption>
           {total} {total === 1 ? 'entry' : 'entries'} found
         </caption>

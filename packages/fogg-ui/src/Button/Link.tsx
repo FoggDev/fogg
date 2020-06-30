@@ -1,5 +1,6 @@
 import React, { FC, ReactElement } from 'react'
 import styled from 'styled-components'
+import { cx } from 'fogg-utils'
 import colors from '../colors'
 import StyledBaseButton from './StyledBaseButton'
 
@@ -44,7 +45,7 @@ const StyledButton = styled(StyledBaseButton)<iProps>`
 `
 
 const Button: FC<iProps> = props => {
-  const { children, disabled, href } = props
+  const { children, disabled, href, className = '' } = props
   const buttonProps = { ...props }
 
   if (disabled && href) {
@@ -52,7 +53,7 @@ const Button: FC<iProps> = props => {
   }
 
   return (
-    <StyledButton {...props} disabled={disabled}>
+    <StyledButton {...props} disabled={disabled} className={cx('LinkButton', className)}>
       <a {...props}>{children}</a>
     </StyledButton>
   )

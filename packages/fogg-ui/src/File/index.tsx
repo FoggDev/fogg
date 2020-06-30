@@ -1,6 +1,7 @@
 // Dependencies
 import React, { FC } from 'react'
 import styled from 'styled-components'
+import { cx, getFileInfo, bytesToSize } from 'fogg-utils'
 
 // Components
 import Icon from '../Icon'
@@ -90,63 +91,6 @@ const StyledInvalidExt = styled.span`
   color: red;
 `
 
-export const getFileInfo = (file: any): any => {
-  if (!file) {
-    return {
-      fileName: '',
-      extension: ''
-    }
-  }
-
-  const parts = file.split('.')
-  const extension = parts.pop()
-  const fileName = parts.pop()
-
-  return {
-    fileName,
-    extension: extension.toLowerCase()
-  }
-}
-
-export const getFileExtensionFromURL = (fileUrl: any): any => {
-  let file = ''
-
-  if (fileUrl) {
-    file = fileUrl.split('/').pop()
-  }
-
-  return getFileInfo(file)
-}
-
-export const bytesToSize = (bytes: any, maxFileSize: number, round?: boolean): any => {
-  const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB']
-  let allowed = true
-
-  if (bytes > maxFileSize) {
-    allowed = false
-  }
-
-  const n = Number(bytes)
-
-  // @ts-ignore
-  const i = parseInt(Math.floor(Math.log(n) / Math.log(1024)), 10)
-
-  if (i === 0) {
-    return `${bytes} ${sizes[i]}`
-  }
-
-  let size: any = (bytes / 1024 ** i).toFixed(1)
-
-  if (round) {
-    size = Math.ceil(size)
-  }
-
-  return {
-    size: `${size} ${sizes[i]}`,
-    allowed
-  }
-}
-
 const File: FC<iProps> = props => {
   const {
     label = 'Choose a file',
@@ -166,6 +110,7 @@ const File: FC<iProps> = props => {
   return (
     <>
       <div
+        className="File"
         style={{
           display: 'flex',
           alignItems: 'flex-start',

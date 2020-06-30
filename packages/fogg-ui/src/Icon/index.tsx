@@ -1,5 +1,6 @@
 // Dependencies
 import React, { FC, ReactElement } from 'react'
+import { cx } from 'fogg-utils'
 
 interface iProps {
   children?: ReactElement | string
@@ -25,13 +26,13 @@ const Icon: FC<iProps> = (props): ReactElement => {
 
   if (children) {
     return (
-      <i style={style} className={className} {...iconProps}>
+      <i style={style} {...iconProps} className={cx('Icon', className)}>
         {children}
       </i>
     )
   }
 
-  return <i style={style} className={`${type} ${className}`} {...iconProps} />
+  return <i style={style} {...iconProps} className={cx('Icon', `${type} ${className}`)} />
 }
 
 export default Icon

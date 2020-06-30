@@ -179,7 +179,7 @@ const StyledLine = styled.div<iStyledProps>`
 `
 
 const Placeholder: FC<iProps> = ({ lines = 4, centered, right, media }): ReactElement => (
-  <StyledPlaceholder>
+  <StyledPlaceholder className="Placeholder">
     {Array.from(Array(!media ? lines : 3).keys()).map(line => (
       <StyledLine key={line} line={line} centered={centered} right={right} media={media} />
     ))}

@@ -1,5 +1,6 @@
 import React, { FC, ReactElement } from 'react'
 import styled from 'styled-components'
+import { cx } from 'fogg-utils'
 import Spinner from '../Spinner'
 import colors from '../colors'
 import StyledBaseButton from './StyledBaseButton'
@@ -52,7 +53,7 @@ const Button: FC<iProps> = props => {
     Link,
     as,
     children,
-    className,
+    className = '',
     disabled,
     href,
     isLoading,
@@ -86,14 +87,14 @@ const Button: FC<iProps> = props => {
 
   if (Link) {
     return (
-      <StyledButton className={className} disabled={isLoading || disabled}>
+      <StyledButton className={cx('LightButton', className)} disabled={isLoading || disabled}>
         <Link {...linkProps}>{buttonText}</Link>
       </StyledButton>
     )
   }
 
   return (
-    <StyledButton className={className} disabled={isLoading || disabled}>
+    <StyledButton className={cx('LightButton', className)} disabled={isLoading || disabled}>
       <a {...linkProps}>{buttonText}</a>
     </StyledButton>
   )

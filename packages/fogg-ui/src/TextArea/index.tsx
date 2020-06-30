@@ -1,6 +1,7 @@
 // Dependencies
 import React, { FC, ReactElement } from 'react'
 import styled from 'styled-components'
+import { cx } from 'fogg-utils'
 
 interface iProps {
   autoComplete?: string
@@ -99,15 +100,17 @@ const StyledTextarea = styled.textarea<iStyledProps>`
 `
 
 const TextArea: FC<iProps> = (props): ReactElement => {
-  const { noWrapper, children, value } = props
+  const { noWrapper, children, value, className = '' } = props
 
   if (noWrapper) {
-    return <StyledTextarea {...props} value={value || children} />
+    return (
+      <StyledTextarea {...props} className={cx('TextArea', className)} value={value || children} />
+    )
   }
 
   return (
     <div style={{ marginTop: '5px', marginBottom: '20px' }}>
-      <StyledTextarea {...props} value={value || children} />
+      <StyledTextarea {...props} className={cx('TextArea', className)} value={value || children} />
     </div>
   )
 }

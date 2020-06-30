@@ -9,6 +9,6 @@ const StyledP = styled.p`
   text-align: center;
 `
 
-const Center: FC<iProps> = ({ children }) => <StyledP>{children}</StyledP>
+const Center: FC<iProps> = ({ children }) => <StyledP className="Center">{children}</StyledP>
 
 export default Center

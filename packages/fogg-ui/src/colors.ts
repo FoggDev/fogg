@@ -7,22 +7,22 @@ const colors: any = {
   },
   primary: {
     background: '#00AEEF',
-    hover: '#43C8F5',
+    hover: '#23bff3',
     font: '#FFF'
   },
   success: {
     background: '#54D48A',
-    hover: '#7ADCA1',
+    hover: '#7ddea6',
     font: '#FFF'
   },
   danger: {
-    background: '#DA4453',
-    hover: '#ED5565',
+    background: '#dd0016',
+    hover: '#ff0019',
     font: '#FFF'
   },
   warning: {
     background: '#F6BB42',
-    hover: '#FFCE54',
+    hover: '#f7c152',
     font: '#FFF'
   },
   light: {
@@ -32,8 +32,8 @@ const colors: any = {
     font: '#FFF'
   },
   dark: {
-    background: '#343A40',
-    hover: '#22272A',
+    background: '#22272A',
+    hover: '#31383d',
     font: '#FFF'
   },
   disabled: {

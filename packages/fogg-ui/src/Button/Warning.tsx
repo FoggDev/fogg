@@ -1,5 +1,6 @@
 import React, { FC, ReactElement } from 'react'
 import styled from 'styled-components'
+import { cx } from 'fogg-utils'
 import Spinner from '../Spinner'
 import colors from '../colors'
 import StyledBaseButton from './StyledBaseButton'
@@ -35,13 +36,9 @@ const StyledButton = styled(StyledBaseButton)<iProps>`
 
     ${({ outline, disabled }): any => `
       background-color: ${outline ? 'transparent ' : colors.warning.background};
-      border-color: ${colors.warning.background};
-      color: ${outline ? colors.warning.background : colors.color};
 
       &:hover {
-        color: ${colors.color}
         background-color: ${disabled ? colors.warning.background : colors.warning.hover};
-        border-color: ${disabled ? colors.warning.background : colors.warning.hover};
       }
     `}
   }
@@ -52,7 +49,7 @@ const Button: FC<iProps> = props => {
     Link,
     as,
     children,
-    className,
+    className = '',
     disabled,
     href,
     isLoading,
@@ -87,14 +84,14 @@ const Button: FC<iProps> = props => {
 
   if (Link) {
     return (
-      <StyledButton className={className} disabled={isLoading || disabled}>
+      <StyledButton className={cx('WarningButton', className)} disabled={isLoading || disabled}>
         <Link {...linkProps}>{buttonText}</Link>
       </StyledButton>
     )
   }
 
   return (
-    <StyledButton className={className} disabled={isLoading || disabled}>
+    <StyledButton className={cx('WarningButton', className)} disabled={isLoading || disabled}>
       <a {...linkProps}>{buttonText}</a>
     </StyledButton>
   )

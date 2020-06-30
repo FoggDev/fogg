@@ -69,7 +69,7 @@ const Radio: FC<iProps> = (props): ReactElement => {
   const { label } = props
 
   return (
-    <StyledLabel>
+    <StyledLabel className="Radio">
       <>
         {label}
         <StyledInput {...props} type="radio" />

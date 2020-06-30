@@ -321,7 +321,7 @@ const Pagination: FC<iProps> = (props): ReactElement => {
     }
 
     return (
-      <StyledUl>
+      <StyledUl className="Pagination">
         {pagePrevious}
         {pageNav}
         {pageNext}

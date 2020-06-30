@@ -1,6 +1,7 @@
 // Dependencies
 import React, { FC } from 'react'
 import styled, { createGlobalStyle } from 'styled-components'
+import { cx } from 'fogg-utils'
 
 interface iProps {
   autoComplete?: string
@@ -112,17 +113,17 @@ const StyledInput = styled.input<iStyledProps>`
 `
 
 const Input: FC<iProps> = props => {
-  const { noWrapper } = props
+  const { noWrapper, className = '' } = props
 
   if (noWrapper) {
-    return <StyledInput {...props} />
+    return <StyledInput {...props} className={cx('Input', className)} />
   }
 
   return (
     <>
       <StyledBody />
       <div style={{ marginTop: '5px', marginBottom: '20px' }}>
-        <StyledInput {...props} />
+        <StyledInput {...props} className={cx('Input', className)} />
       </div>
     </>
   )

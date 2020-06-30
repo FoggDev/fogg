@@ -1,5 +1,6 @@
 import React, { FC } from 'react'
 import styled from 'styled-components'
+import { cx } from 'fogg-utils'
 
 interface iProps {
   center?: boolean
@@ -97,7 +98,7 @@ const StyledBadge = styled.div<iProps>`
 `
 
 const Badge: FC<iProps> = props => {
-  const { children } = props
+  const { children, className = '' } = props
   let style = {}
 
   if (props.onClick) {
@@ -107,7 +108,7 @@ const Badge: FC<iProps> = props => {
   }
 
   return (
-    <StyledBadge style={style} {...props}>
+    <StyledBadge style={style} {...props} className={cx('Badge', className)}>
       {children}
     </StyledBadge>
   )

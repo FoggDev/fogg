@@ -101,7 +101,7 @@ const Toggle: FC<iProps> = ({
 }): ReactElement => {
   return (
     <>
-      <StyledDiv>
+      <StyledDiv className="Toggle">
         <StyledLabel>
           <StyledInput
             type="checkbox"

@@ -1,5 +1,6 @@
 import React, { FC } from 'react'
 import styled from 'styled-components'
+import { cx } from 'fogg-utils'
 
 interface iProps {
   children?: string
@@ -105,9 +106,13 @@ const StyledAlert = styled.div<iProps>`
 `
 
 const Alert: FC<iProps> = props => {
-  const { children } = props
+  const { children, className = '' } = props
 
-  return <StyledAlert {...props}>{children}</StyledAlert>
+  return (
+    <StyledAlert {...props} className={cx('Alert', className)}>
+      {children}
+    </StyledAlert>
+  )
 }
 
 export default Alert

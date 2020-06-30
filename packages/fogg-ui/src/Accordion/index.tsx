@@ -26,7 +26,7 @@ const Accordion: FC<iProps> = ({ panels }) => {
   }
 
   return (
-    <StyledAccordion role="tablist">
+    <StyledAccordion role="tablist" className="Accordion">
       {panels.map((panel, key) => (
         <Panel
           key={`panel-${key}`}

@@ -115,7 +115,7 @@ const Tags: FC<iProps> = (props): ReactElement => {
 
   return (
     <div style={{ marginTop: '5px', marginBottom: '20px' }}>
-      <StyledTags>
+      <StyledTags className="Tags">
         <div className="container">
           {tagsArr.map((tag, index) => (
             <div key={`${tag.value}-${index}`} className="tag">
