@@ -5,7 +5,7 @@ import { InitApolloClient, InitApolloOptions } from './types'
 let _apolloClient: ApolloClient<any>
 
 export default function initApollo<TCache = any>(
-  clientFn: InitApolloClient<TCache>,
+  clientFn: any,
   options?: InitApolloOptions<TCache>
 ): ApolloClient<TCache> {
   if (!clientFn) {
@@ -26,7 +26,7 @@ export default function initApollo<TCache = any>(
 }
 
 function getClient<TCache>(
-  clientFn: InitApolloClient<TCache>,
+  clientFn: any,
   options: InitApolloOptions<TCache> = {}
 ) {
   if (typeof clientFn !== 'function') {
