@@ -22,8 +22,6 @@ export interface InitApolloOptions<TCache> {
   initialState?: TCache
 }
 
-export type InitApolloClient<TCache> = (options: InitApolloOptions<TCache>) => ApolloClient<TCache>
-
 export interface ApolloAppContext<C = any> extends NextPageContext {
   apolloClient: ApolloClient<C>
 }

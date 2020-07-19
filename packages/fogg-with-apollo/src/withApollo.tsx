@@ -6,7 +6,6 @@ import React from 'react'
 import initApollo from './apollo'
 import {
   ApolloContext,
-  InitApolloClient,
   WithApolloOptions,
   WithApolloProps,
   WithApolloState
@@ -17,7 +16,7 @@ function getDisplayName(Component: React.ComponentType<any>) {
 }
 
 export default function withApollo<TCache = any>(
-  client: InitApolloClient<TCache>,
+  client: any,
   options: WithApolloOptions = {}
 ) {
   type ApolloProps = WithApolloProps<TCache> & AppProps
@@ -69,7 +68,7 @@ export default function withApollo<TCache = any>(
           apolloState.data = apollo.cache.extract()
         }
 
-        ;(apollo as any).toJSON = () => {
+        ; (apollo as any).toJSON = () => {
           return null
         }
 

@@ -1,6 +1,6 @@
 import ApolloClient from 'apollo-client'
 import 'isomorphic-unfetch'
-import { InitApolloClient, InitApolloOptions } from './types'
+import { InitApolloOptions } from './types'
 
 let _apolloClient: ApolloClient<any>
 
