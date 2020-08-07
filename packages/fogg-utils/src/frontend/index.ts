@@ -101,17 +101,20 @@ export function generateHexCode(): string {
 
 export function invertHexCode(hexCode?: any): string {
   if (!hexCode) {
-    return '#fff'
+    return '#FFFFFF'
   }
 
-  const hex = hexCode.replace('#', '')
+  let hex = hexCode.replace('#', '')
 
-  const newHex = `${(Number(`0x1${hex}`) ^ 0xffffff)
-    .toString(16)
-    .substr(1)
-    .toUpperCase()}`
+  if (hex.length === 3) {
+    hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2]
+  }
 
-  return `#${newHex}`
+  const r = parseInt(hex.slice(0, 2), 16)
+  const g = parseInt(hex.slice(2, 4), 16)
+  const b = parseInt(hex.slice(4, 6), 16)
+
+  return r * 0.299 + g * 0.587 + b * 0.114 > 186 ? '#000000' : '#FFFFFF'
 }
 
 export function waitFor(time: number): Promise<any> {

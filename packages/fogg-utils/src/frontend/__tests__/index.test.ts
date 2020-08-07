@@ -23,7 +23,12 @@ describe('#generateHexCode', () => {
 
 describe('#invertHexCode', () => {
   it('should generate an inverted hex code with #', () => {
-    const hexCode = invertHexCode('#FFFFFF')
+    const hexCode = invertHexCode('#015856')
+    expect(hexCode).toBe('#FFFFFF')
+  })
+
+  it('should generate an inverted hex code with #', () => {
+    const hexCode = invertHexCode('#C1EA06')
     expect(hexCode).toBe('#000000')
   })
 
@@ -34,7 +39,7 @@ describe('#invertHexCode', () => {
 
   it('should generate an inverted hex code white by default', () => {
     const hexCode = invertHexCode()
-    expect(hexCode).toBe('#fff')
+    expect(hexCode).toBe('#FFFFFF')
   })
 })
 
