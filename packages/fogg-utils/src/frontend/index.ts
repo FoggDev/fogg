@@ -106,7 +106,7 @@ export function invertHexCode(hexCode?: any): string {
 
   const hex = hexCode.replace('#', '')
 
-  let newHex = `${(Number(`0x1${hex}`) ^ 0xffffff)
+  const newHex = `${(Number(`0x1${hex}`) ^ 0xffffff)
     .toString(16)
     .substr(1)
     .toUpperCase()}`
