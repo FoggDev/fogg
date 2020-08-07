@@ -88,9 +88,15 @@ export function isValidHexColor(hexCode: string): boolean {
 }
 
 export function generateHexCode(): string {
-  return `#${Math.floor(Math.random() * 16777215)
+  let newHex = `${Math.floor(Math.random() * 16777215)
     .toString(16)
     .substring(0, 7)}`
+
+  if (newHex.length < 6) {
+    newHex += 'f'
+  }
+
+  return `#${newHex}`
 }
 
 export function invertHexCode(hexCode?: any): string {
@@ -100,10 +106,12 @@ export function invertHexCode(hexCode?: any): string {
 
   const hex = hexCode.replace('#', '')
 
-  return `#${(Number(`0x1${hex}`) ^ 0xffffff)
+  let newHex = `${(Number(`0x1${hex}`) ^ 0xffffff)
     .toString(16)
     .substr(1)
     .toUpperCase()}`
+
+  return `#${newHex}`
 }
 
 export function waitFor(time: number): Promise<any> {
