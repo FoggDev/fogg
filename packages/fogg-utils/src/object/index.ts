@@ -1,7 +1,7 @@
 import { isString, isEmptyObject } from '../is'
 import { chunk } from '../array'
 
-export function cloneObject(o: object): object {
+export function cloneObject(o: any): any {
   return { ...o }
 }
 

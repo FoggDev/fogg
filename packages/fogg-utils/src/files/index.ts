@@ -47,8 +47,8 @@ export function bytesToSize(bytes: any, maxFileSize: number, round?: boolean): a
   }
 }
 
-export function getFileExtensionFromURL(fileUrl: any): any {
-  let file = ''
+export function getFileExtensionFromURL(fileUrl = ''): any {
+  let file: any = ''
 
   if (fileUrl) {
     file = fileUrl.split('/').pop()

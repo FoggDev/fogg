@@ -18,7 +18,7 @@ export function isFunction(v: any): boolean {
   return typeof v === 'function'
 }
 
-export function isJson(str: any): object | boolean {
+export function isJson(str: any): any {
   if (!str || str === null) {
     return false
   }

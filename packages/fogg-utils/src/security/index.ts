@@ -7,13 +7,10 @@ import { isString, isJson, isObject } from '../is'
 declare const Buffer: any
 
 export function encrypt(str: string): string {
-  return crypto
-    .createHash('sha1')
-    .update(str.toString())
-    .digest('hex')
+  return crypto.createHash('sha1').update(str.toString()).digest('hex')
 }
 
-export function getBase64(value: string): string | object | boolean {
+export function getBase64(value: string): any {
   let buffer = false
 
   if (isString(value)) {
@@ -27,7 +24,7 @@ export function getBase64(value: string): string | object | boolean {
   return buffer
 }
 
-export function setBase64(value: object | string): string | void {
+export function setBase64(value: any): any {
   if (isObject(value)) {
     return Buffer.from(JSON.stringify(value)).toString('base64')
   }

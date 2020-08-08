@@ -4,7 +4,7 @@ interface Error {
   message: string
 }
 
-export function getGraphQlError(error: object): Error {
+export function getGraphQlError(error: any): Error {
   return {
     error: true,
     message: error.toString().replace('Error: GraphQL error: ', '')
@@ -15,7 +15,7 @@ export function validateFields(
   validations: any,
   values: any,
   alert = 'Error trying to create the item'
-): object {
+): any {
   const messages: any = {}
 
   Object.keys(validations).forEach(field => {
