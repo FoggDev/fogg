@@ -20,7 +20,7 @@ interface iProps {
   pattern?: string
   placeholder?: string
   readOnly?: boolean
-  style?: object
+  style?: any
   type?: string
   value?: string
 }

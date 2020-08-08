@@ -55,12 +55,14 @@ const StyledLine = styled.div<iStyledProps>`
       width: 84%;
       margin-left: ${centered ? '15%' : '0px'};
 
-      ${media &&
+      ${
+        media &&
         `
         left: 70px;
         height: 16px;
         width: 30%;
-      `}
+      `
+      }
     `}
 
     ${({ line, centered, media }): any =>
@@ -70,10 +72,12 @@ const StyledLine = styled.div<iStyledProps>`
       width: 74%;
       margin-left: ${centered ? '20%' : '0px'};
 
-      ${media &&
+      ${
+        media &&
         `
         display: none;
-      `}
+      `
+      }
     `}
 
     ${({ line, centered }): any =>
@@ -127,14 +131,16 @@ const StyledLine = styled.div<iStyledProps>`
       width: 64%;
       margin-left: ${centered ? '25%' : '0px'};
 
-      ${media &&
+      ${
+        media &&
         `
         content: '';
         position: absolute;
         width: 55px;
         height: 55px;
         border-radius: 100%;
-      `}
+      `
+      }
     `}
 
     ${({ line, centered, media }): any =>
@@ -144,12 +150,14 @@ const StyledLine = styled.div<iStyledProps>`
       width: 54%;
       margin-left: ${centered ? '30%' : '0px'};
 
-      ${media &&
+      ${
+        media &&
         `
         left: 70px;
         height: 10px;
         width: 20%;
-      `}
+      `
+      }
     `}
 
     ${({ line, centered }): any =>

@@ -2,7 +2,7 @@ import React, { FC, ReactElement } from 'react'
 
 interface iProps {
   spinner: string
-  style: object
+  style: any
 }
 
 const Spinner: FC<iProps> = ({ spinner = 'puff', style = {} }): ReactElement => {

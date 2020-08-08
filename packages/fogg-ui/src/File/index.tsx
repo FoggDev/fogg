@@ -1,5 +1,5 @@
 // Dependencies
-import React, { FC } from 'react'
+import React, { FC, Fragment } from 'react'
 import styled from 'styled-components'
 import { getFileInfo, bytesToSize } from 'fogg-utils'
 
@@ -19,7 +19,7 @@ interface iProps {
   onBlur?(e: any): any
   onChange?(e: any): any
   onClick?(e: any): any
-  style?: object
+  style?: any
   label?: string
   theme?: string
   selectedFile?: any
@@ -152,7 +152,7 @@ const File: FC<iProps> = props => {
         <StyledSpan>
           <strong>Allowed extensions:</strong>{' '}
           {allowedExtensions.map((ext: string, index: number) => (
-            <>
+            <Fragment key={`file-${index}`}>
               {ext === extension ? (
                 isAllowedExt ? (
                   <StyledGoodExt>{ext}</StyledGoodExt>
@@ -163,7 +163,7 @@ const File: FC<iProps> = props => {
                 <>{ext}</>
               )}
               {index < allowedExtensions.length - 1 ? ', ' : ''}
-            </>
+            </Fragment>
           ))}
         </StyledSpan>
       </StyledDiv>

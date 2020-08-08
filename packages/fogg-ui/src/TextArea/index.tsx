@@ -19,7 +19,7 @@ interface iProps {
   placeholder?: string
   type?: string
   value?: string
-  style?: object
+  style?: any
 }
 
 interface iStyledProps {

@@ -52,9 +52,13 @@ const Button: FC<iProps> = props => {
     delete buttonProps.href
   }
 
+  if (buttonProps.bold) {
+    delete buttonProps.bold
+  }
+
   return (
     <StyledButton {...props} disabled={disabled} className={cx('LinkButton', className)}>
-      <a {...props}>{children}</a>
+      <a {...buttonProps}>{children}</a>
     </StyledButton>
   )
 }

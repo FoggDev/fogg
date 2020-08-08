@@ -175,7 +175,11 @@ class App extends Component {
           <h1>fogg-ui</h1>
           <h2>Toggle</h2>
           <div>
-            <Toggle label="Show system fields" />
+            <Toggle
+              type="square"
+              onChange={(): void => console.log('CLICKED!')}
+              label="Show system fields"
+            />
           </div>
           <div>
             <Toggle
