@@ -11,6 +11,7 @@ interface iProps {
   onPublish: any
   onUnpublish: any
   url: string
+  query?: string
   data: {
     head: string[]
     body: string[]
@@ -317,22 +318,24 @@ const Table: FC<iProps> = ({
   onDelete,
   onPublish,
   onUnpublish,
-  url
+  url,
+  query = '/'
 }): ReactElement => {
   const defaultFileTypes = {
     documents: ['pdf', 'doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'zip'],
     images: ['png', 'jpg', 'jpeg', 'gif'],
     videos: ['mp4']
   }
+  const { head, body, rows = [], count, isFile, fileTypes = defaultFileTypes } = data
+  const total = count || rows.length
 
   const [allCheckboxes, setAllCheckboxes] = useState(false)
   const [isOpen, handleIsOpen] = useState(false)
   const [html, setHtml] = useState('')
-  const { head, body, rows = [], count, isFile, fileTypes = defaultFileTypes } = data
-  const total = count || rows.length
   const [checkbox, setCheckbox] = useState(createCheckboxes(false, rows, rows.length))
   const selectedCheckboxes = getCheckedCheckboxes(checkbox)
-  const checkedCheckboxes = selectedCheckboxes.length
+  const checkedCheckboxes = selectedCheckboxes
+
   const handleModal = (html: any): any => {
     setHtml(html)
     handleIsOpen(!isOpen)
@@ -489,7 +492,7 @@ const Table: FC<iProps> = ({
                       <td key={`tr-${trIndex}`}>
                         {isFile && <span>{values}</span>}
                         {!isFile && (
-                          <a href={`${url}/${id}`}>
+                          <a href={`${url}${query}${id}`}>
                             <span>{values}</span>
                           </a>
                         )}
@@ -640,7 +643,7 @@ const Table: FC<iProps> = ({
                         )}
 
                         {!isFile && (
-                          <a href={`${url}/${id}`}>
+                          <a href={`${url}${query}${id}`}>
                             <span className="date">{date[0]}</span>
                             <span className="at"> at </span>
                             <span className="hour">{date[1]}</span>
@@ -664,7 +667,7 @@ const Table: FC<iProps> = ({
                         <td key={`tr-${trIndex}`} className={tr} title={row[parent].toString()}>
                           {isFile && <span>{row[parent].toString()}</span>}
                           {!isFile && (
-                            <a href={`${url}/${id}`}>
+                            <a href={`${url}${query}${id}`}>
                               <span>{row[parent].toString()}</span>
                             </a>
                           )}
@@ -681,7 +684,7 @@ const Table: FC<iProps> = ({
                     <td key={`tr-${trIndex}`} className={`${parent} ${tr} ${rowClass}`}>
                       {isFile && <a>{row[parent] && row[parent].toString()}</a>}
                       {!isFile && (
-                        <a href={`${url}/${id}`}>{row[parent] && row[parent].toString()}</a>
+                        <a href={`${url}${query}${id}`}>{row[parent] && row[parent].toString()}</a>
                       )}
                     </td>
                   )
