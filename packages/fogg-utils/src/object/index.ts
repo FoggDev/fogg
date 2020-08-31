@@ -29,26 +29,16 @@ export function getDebug(data: any): any {
   return null
 }
 
-export function getValuesForTable(
-  data: any,
-  excludeMore?: any,
-  orderBy?: any,
-  direction?: any,
-  chunks?: any
-): any {
+export function getEntries(data: any, exclude = ['updatedAt']): any {
   if (!data) {
     return null
   }
 
-  direction = direction || 'asc'
-  chunks = chunks || 10
-
-  const exclude: any = excludeMore || ['updatedAt']
   const entries: any = {}
   const systemHead = []
   const systemBody = []
-  let head = []
-  let body = []
+  const head = []
+  const body = []
 
   for (const field of data) {
     if (!exclude.includes(field.identifier)) {
@@ -67,7 +57,31 @@ export function getValuesForTable(
     }
   }
 
-  let rows = Object.values(entries)
+  return {
+    head,
+    body,
+    systemHead,
+    systemBody,
+    entries: Object.values(entries)
+  }
+}
+
+export function getValuesForTable(
+  data: any,
+  excludeMore?: any,
+  orderBy?: any,
+  direction?: any,
+  chunks?: any
+): any {
+  if (!data) {
+    return null
+  }
+
+  direction = direction || 'asc'
+  chunks = chunks || 10
+
+  const exclude: any = excludeMore || ['updatedAt']
+  const { head, body, entries: rows, systemHead, systemBody } = getEntries(data, exclude)
 
   if (orderBy) {
     if (direction === 'asc') {
@@ -77,16 +91,10 @@ export function getValuesForTable(
     }
   }
 
-  const total = rows.length
-
-  rows = chunk(rows, chunks)
-  head = head.concat(systemHead)
-  body = body.concat(systemBody)
-
   return {
-    head,
-    body,
-    rows,
-    total
+    head: head.concat(systemHead),
+    body: body.concat(systemBody),
+    rows: chunk(rows, chunks),
+    total: rows.length
   }
 }
