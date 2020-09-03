@@ -23,7 +23,7 @@ const StyledAlert = styled.div<iProps>`
   margin-bottom: 1rem;
   padding: 0.75rem 1.25rem;
   position: relative;
-  font-family: -apple-system,BlinkMacSystemFont,Roboto,"Helvetica Neue",Arial,sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue', Arial, sans-serif;
   font-size: 1rem;
   font-weight: 400;
   color: #004085;

@@ -42,7 +42,7 @@ const StyledLink = styled.span`
   border-radius: 5px;
   &:hover {
     background: #555;
-    color: #FFF;
+    color: #fff;
   }
 
   &.active {

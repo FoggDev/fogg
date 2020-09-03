@@ -33,7 +33,7 @@ const StyledLine = styled.div<iStyledProps>`
     content: '';
     position: absolute;
     animation: ${animationName};
-    animation-duration: .8s;
+    animation-duration: 0.8s;
     animation-fill-mode: forwards;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
@@ -109,7 +109,7 @@ const StyledLine = styled.div<iStyledProps>`
     content: '';
     position: absolute;
     animation: ${animationName};
-    animation-duration: .8s;
+    animation-duration: 0.8s;
     animation-fill-mode: forwards;
     animation-iteration-count: infinite;
     animation-timing-function: linear;

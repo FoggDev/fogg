@@ -23,14 +23,15 @@ const StyledBadge = styled.div<iProps>`
   border-radius: 0.25rem;
   color: #fff;
   display: inline-block;
-  font-family: -apple-system, BlinkMacSystemFont, "Inter UI", Roboto, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Inter UI', Roboto, sans-serif;
   font-size: 12px;
   font-weight: 500;
   line-height: 1;
   margin-right: 2px;
   padding: 3px 7px 4px;
   text-align: center;
-  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   vertical-align: baseline;
   white-space: nowrap;
   -webkit-touch-callout: none;

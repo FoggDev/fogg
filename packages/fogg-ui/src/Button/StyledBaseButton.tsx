@@ -19,19 +19,20 @@ const StyledBaseButton = styled.span<iStyledProps>`
     -ms-user-select: none;
     -webkit-user-select: none;
     background-color: transparent;
-    border-radius: .25rem;
+    border-radius: 0.25rem;
     border: 1px solid transparent;
     color: ${colors.color};
     cursor: pointer;
     display: inline-block;
-    font-family: -apple-system,BlinkMacSystemFont,Roboto,"Helvetica Neue",Arial,sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue', Arial, sans-serif;
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
     outline: none;
-    padding: .375rem .75rem;
+    padding: 0.375rem 0.75rem;
     text-align: center;
-    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+      border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
     user-select: none;
     vertical-align: middle;
 
