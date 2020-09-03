@@ -5,12 +5,13 @@ interface iProps {
   modelName: string
   title: string
   status: string
-  onClick: any
+  onClick?: any
 }
 
 const StyledBlock = styled.div`
   display: flex;
   border: 1px solid #ccc;
+  font-size: 18px;
   justify-content: space-between;
   cursor: pointer;
   border: 1px solid $frenchGray;
