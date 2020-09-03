@@ -41,7 +41,7 @@ export function getEntries(data: any, exclude = ['updatedAt']): any {
   const body = []
 
   for (const field of data) {
-    if (!exclude.includes(field.identifier)) {
+    if (!exclude.includes(field.identifier) && field.type !== 'Reference') {
       if (field.isSystem && field.identifier !== 'id') {
         systemHead.push(field.fieldName)
         systemBody.push(field.identifier)
