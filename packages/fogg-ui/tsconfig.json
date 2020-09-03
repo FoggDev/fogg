@@ -25,6 +25,7 @@
     "src/Button/StyledBaseButton.tsx",
     "src/Button/Success.tsx",
     "src/Button/Warning.tsx",
+    "src/EntryBlock/index.tsx",
     "src/Center/index.tsx",
     "src/Checkbox/index.tsx",
     "src/File/index.tsx",
