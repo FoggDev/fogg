@@ -4,6 +4,7 @@ import React, { Component, ReactElement } from 'react'
 // Components
 import Alert from '../src/Alert'
 import Accordion from '../src/Accordion'
+import EntryBlock from '../src/EntryBlock'
 import Badge from '../src/Badge'
 import File from '../src/File'
 import LinkButton from '../src/Button/Link'
@@ -173,6 +174,19 @@ class App extends Component {
       <div className={styles.App}>
         <div>
           <h1>fogg-ui</h1>
+          <h2>Block</h2>
+          <EntryBlock
+            onClick={() => console.log('Click')}
+            modelName="Code"
+            title="Home.tsx"
+            status="Published"
+          />
+          <EntryBlock
+            onClick={() => console.log('Click')}
+            modelName="Code"
+            title="Home.tsx"
+            status="Draft"
+          />
           <h2>Toggle</h2>
           <div>
             <Toggle
