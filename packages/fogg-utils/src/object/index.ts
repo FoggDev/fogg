@@ -1,4 +1,4 @@
-import { isString, isEmptyObject } from '../is'
+import { isString, isEmptyObject, isObject } from '../is'
 import { chunk } from '../array'
 
 export function cloneObject(o: any): any {
@@ -97,4 +97,12 @@ export function getValuesForTable(
     rows: chunk(rows, chunks),
     total: rows.length
   }
+}
+
+export function keys(obj: any): any[] {
+  if (isObject(obj)) {
+    return Object.keys(obj)
+  }
+
+  return []
 }

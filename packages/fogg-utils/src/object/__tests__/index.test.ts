@@ -1,4 +1,4 @@
-import { cloneObject, getEmptyValues, getDebug, getValuesForTable } from '../index'
+import { cloneObject, getEmptyValues, getDebug, getValuesForTable, keys } from '../index'
 
 const data = [
   {
@@ -292,5 +292,16 @@ describe('#getDebug', () => {
     const clonedObj = cloneObject(obj)
 
     expect(clonedObj === obj).toBe(false)
+  })
+})
+
+describe('#keys', () => {
+  it('should get the object keys', () => {
+    const obj = {
+      foo: 'bar',
+      baz: 'bar'
+    }
+
+    expect(keys(obj)).toEqual(['foo', 'baz'])
   })
 })
