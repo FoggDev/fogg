@@ -106,3 +106,7 @@ export function keys(obj: any): any[] {
 
   return []
 }
+
+export function hasOwnProperty(obj: any, prop: string): boolean {
+  return Object.prototype.hasOwnProperty.call(obj, prop)
+}

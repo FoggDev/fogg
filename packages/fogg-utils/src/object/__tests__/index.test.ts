@@ -1,4 +1,11 @@
-import { cloneObject, getEmptyValues, getDebug, getValuesForTable, keys } from '../index'
+import {
+  cloneObject,
+  getEmptyValues,
+  getDebug,
+  getValuesForTable,
+  keys,
+  hasOwnProperty
+} from '../index'
 
 const data = [
   {
@@ -303,5 +310,16 @@ describe('#keys', () => {
     }
 
     expect(keys(obj)).toEqual(['foo', 'baz'])
+  })
+})
+
+describe('#hasOwnProperty', () => {
+  it('should get find a node', () => {
+    const obj = {
+      foo: 'bar',
+      baz: 'bar'
+    }
+
+    expect(hasOwnProperty(obj, 'foo')).toBe(true)
   })
 })
