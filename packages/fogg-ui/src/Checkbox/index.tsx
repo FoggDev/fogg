@@ -4,6 +4,8 @@ import styled from 'styled-components'
 interface iProps {
   label?: string
   name?: string
+  onClick?: any
+  value?: string
 }
 
 const StyledLabel = styled.label`
