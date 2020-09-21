@@ -106,6 +106,10 @@ const StyledTable = styled.table`
         color: #de1212;
       }
 
+      .disabled {
+        color: #888;
+      }
+
       .onPublish {
         color: #0eb87f;
       }
@@ -301,7 +305,8 @@ const createCheckboxes = (state: boolean, ids: any[], count: number): any => {
   Array.from(Array(count).keys()).forEach((index: number) => {
     checkboxes[index] = {
       checked: state,
-      id: ids[index].id
+      id: ids[index].id,
+      status: ids[index].status
     }
   })
 
@@ -366,6 +371,34 @@ const Table: FC<iProps> = ({
     setCheckbox(createCheckboxes(!allCheckboxes, rows, rows.length))
   }
 
+  const renderDelete = (): any => {
+    const hasPublishedEntries = selectedCheckboxes.filter(
+      (selectedCheckbox: any) => selectedCheckbox.status === 'Published'
+    )
+
+    if (hasPublishedEntries.length === 0) {
+      return (
+        <>
+          <span
+            className="action onDelete"
+            onClick={(): void => onDelete(selectedCheckboxes)}
+            title="Delete"
+          >
+            <Icon type="fas fa-trash" /> Delete
+          </span>{' '}
+        </>
+      )
+    }
+
+    return (
+      <>
+        <span className="action onDelete disabled" title="Only Draft Entries can be deleted">
+          <Icon type="fas fa-trash" /> Delete
+        </span>{' '}
+      </>
+    )
+  }
+
   return (
     <>
       <Modal
@@ -422,13 +455,7 @@ const Table: FC<iProps> = ({
           >
             <th className="actions" colSpan={head.length + 1}>
               {checkedCheckboxes} {checkedCheckboxes === 1 ? 'entry' : 'entries'} selected:{' '}
-              <span
-                className="action onDelete"
-                onClick={(): void => onDelete(selectedCheckboxes)}
-                title="Delete"
-              >
-                <Icon type="fas fa-trash" /> Delete
-              </span>{' '}
+              {renderDelete()}
               <span
                 className="action onPublish"
                 onClick={(): void => onPublish(selectedCheckboxes)}

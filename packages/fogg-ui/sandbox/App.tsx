@@ -59,7 +59,7 @@ const tableData = {
     {
       id: '1f5f0276-2927-423e-b1d9-d411a30686bb',
       createdAt: '2020-06-27T11:06:53-07:00',
-      status: 'Published',
+      status: 'Draft',
       file: 'v32.png',
       fileName: 'v32.png',
       fileUrl: 'https://i0.wp.com/fishingbooker.com/blog/media/hero-lures.jpg',
@@ -69,7 +69,7 @@ const tableData = {
     {
       id: '62fb6d1b-9223-43c2-b316-ef7db5591e3a',
       createdAt: '2020-06-27T00:53:33-07:00',
-      status: 'Published',
+      status: 'Draft',
       file: 'V40.png',
       fileName: 'V40.png',
       fileUrl: 'https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iNLRO79Fe4_c/v1/1400x-1.jpg',
