@@ -7,9 +7,7 @@
     "module": "commonjs",
     "outDir": "./dist",
     "strict": true,
-    "target": "esnext",
-    "typeRoots": ["./src/@types", "./node_modules/@types"],
-    "types": ["jest"]
+    "target": "esnext"
   },
   "files": [
     "src/index.ts",
@@ -23,5 +21,5 @@
     "src/string/index.ts"
   ],
   "include": ["src/**/*.ts"],
-  "exclude": ["node_modules", "**/__tests__/*"]
+  "exclude": ["node_modules"]
 }

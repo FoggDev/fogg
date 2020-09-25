@@ -120,3 +120,20 @@ export function invertHexCode(hexCode?: any): string {
 export function waitFor(time: number): Promise<any> {
   return new Promise(resolve => setTimeout(resolve, time * 1000))
 }
+
+export function getReferenceTitle(
+  entry: any,
+  systemFields: string[] = ['id', 'createdAt', 'updatedAt', 'status', 'modelName']
+): string {
+  const entryFields = Object.entries(entry).filter(
+    (entryField: any) => !systemFields.includes(entryField[0])
+  )
+
+  let title: any = 'Unknown'
+
+  if (entryFields.length > 0) {
+    title = entryFields[0][1] || title // eslint-disable-line prefer-destructuring
+  }
+
+  return title
+}

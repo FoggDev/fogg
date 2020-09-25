@@ -1,4 +1,11 @@
-import { getModuleInfo, generateHexCode, isValidHexColor, invertHexCode, buildUrl } from '../index'
+import {
+  getModuleInfo,
+  generateHexCode,
+  isValidHexColor,
+  invertHexCode,
+  buildUrl,
+  getReferenceTitle
+} from '../index'
 
 describe('#buildUrl', () => {
   it('should generate a valid url', () => {
@@ -94,5 +101,34 @@ describe('#getModuleInfo', () => {
     expect(module).toBe('blog')
     expect(action).toBe(undefined)
     expect(id).toBe(undefined)
+  })
+})
+
+describe('getReferenceTitle', () => {
+  it('should get the correct title', () => {
+    const entry = {
+      authorName: 'Carlos Santana',
+      createdAt: '2020-09-18T22:51:03-07:00',
+      id: 'a0c38fdc-0732-4a1a-b2f3-9430fd9c810b',
+      modelName: 'Author',
+      status: 'Draft'
+    }
+
+    const title = getReferenceTitle(entry)
+
+    expect(title).toBe('Carlos Santana')
+  })
+
+  it('should get Unknown title', () => {
+    const entry = {
+      createdAt: '2020-09-18T22:51:03-07:00',
+      id: 'a0c38fdc-0732-4a1a-b2f3-9430fd9c810b',
+      modelName: 'Author',
+      status: 'Draft'
+    }
+
+    const title = getReferenceTitle(entry)
+
+    expect(title).toBe('Unknown')
   })
 })
