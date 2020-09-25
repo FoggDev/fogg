@@ -1,7 +1,7 @@
 import React, { FC, ReactElement, Fragment, useState, useEffect } from 'react'
 import styled from 'styled-components'
 import moment from 'moment'
-import { cx, getFileExtensionFromURL } from 'fogg-utils'
+import { cx, getFileExtensionFromURL, pluralify } from 'fogg-utils'
 import Icon from '../Icon'
 import Modal from '../Modal'
 
@@ -416,7 +416,7 @@ const Table: FC<iProps> = ({
 
       <StyledTable className={cx('Table', className)}>
         <caption>
-          {total} {total === 1 ? 'entry' : 'entries'} found
+          {total} {pluralify('entry', 'entries', total)} found
         </caption>
 
         <thead>
