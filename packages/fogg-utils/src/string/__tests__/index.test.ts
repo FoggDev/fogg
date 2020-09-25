@@ -1,4 +1,4 @@
-import { arrayIn, capitalize, camelCase } from '../index'
+import { arrayIn, capitalize, camelCase, pluralify } from '../index'
 
 describe('#arrayIn', () => {
   it('should return true if a value from array exists on string', () => {
@@ -31,5 +31,16 @@ describe('#camelCase', () => {
     expect(camelCase('Foo Bar')).toBe('fooBar')
     expect(camelCase('--foo-bar--')).toBe('fooBar')
     expect(camelCase('__FOO_BAR__')).toBe('fooBar')
+  })
+})
+
+describe('#pluralify', () => {
+  it('should return singular value', () => {
+    expect(pluralify('Entry', 'Entries', 1)).toBe('Entry')
+  })
+
+  it('should return plural', () => {
+    expect(pluralify('Entry', 'Entries', 0)).toBe('Entries')
+    expect(pluralify('Entry', 'Entries', 2)).toBe('Entries')
   })
 })

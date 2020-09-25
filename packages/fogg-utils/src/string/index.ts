@@ -31,3 +31,7 @@ export function arrayIn(arr: string[], str: string): boolean {
 
   return found
 }
+
+export function pluralify(singular: string, plural: string, count: number): string {
+  return count === 1 ? singular : plural
+}
