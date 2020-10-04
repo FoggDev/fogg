@@ -106,16 +106,16 @@ const StyledTable = styled.table`
         color: #de1212;
       }
 
-      .disabled {
-        color: #888;
-      }
-
       .onPublish {
         color: #0eb87f;
       }
 
       .onUnpublish {
         color: #ffb914;
+      }
+
+      .disabled {
+        color: #888;
       }
 
       &.checkbox {
@@ -399,6 +399,65 @@ const Table: FC<iProps> = ({
     )
   }
 
+  const renderPublish = (): any => {
+    const hasPublishedEntries = selectedCheckboxes.filter(
+      (selectedCheckbox: any) => selectedCheckbox.status === 'Published'
+    )
+
+    if (hasPublishedEntries.length === 0) {
+      return (
+        <>
+          <span
+            className="action onPublish"
+            onClick={(): void => onPublish(selectedCheckboxes)}
+            title="Publish"
+          >
+            <Icon type="fas fa-download" /> Publish
+          </span>{' '}
+        </>
+      )
+    }
+
+    return (
+      <>
+        <span className="action onPublish disabled" title="Only Draft Entries can be published">
+          <Icon type="fas fa-download" /> Publish
+        </span>{' '}
+      </>
+    )
+  }
+
+  const renderUnpublish = (): any => {
+    const hasPublishedEntries = selectedCheckboxes.filter(
+      (selectedCheckbox: any) => selectedCheckbox.status === 'Published'
+    )
+
+    if (hasPublishedEntries.length === 0) {
+      return (
+        <>
+          <span
+            className="action onUnpublish disabled"
+            title="Only Published Entries can be unpublished"
+          >
+            <Icon type="fas fa-download" /> Unpublish
+          </span>{' '}
+        </>
+      )
+    }
+
+    return (
+      <>
+        <span
+          className="action onUnpublish"
+          onClick={(): void => onUnpublish(selectedCheckboxes)}
+          title="Unpublish"
+        >
+          <Icon type="fas fa-download" /> Unpublish
+        </span>{' '}
+      </>
+    )
+  }
+
   return (
     <>
       <Modal
@@ -456,20 +515,8 @@ const Table: FC<iProps> = ({
             <th className="actions" colSpan={head.length + 1}>
               {checkedCheckboxes} {checkedCheckboxes === 1 ? 'entry' : 'entries'} selected:{' '}
               {renderDelete()}
-              <span
-                className="action onPublish"
-                onClick={(): void => onPublish(selectedCheckboxes)}
-                title="Publish"
-              >
-                <Icon type="fas fa-upload" /> Publish
-              </span>{' '}
-              <span
-                className="action onUnpublish"
-                onClick={(): void => onUnpublish(selectedCheckboxes)}
-                title="Unpublish"
-              >
-                <Icon type="fas fa-download" /> Unpublish
-              </span>{' '}
+              {renderPublish()}
+              {renderUnpublish()}
             </th>
           </tr>
 
