@@ -27,6 +27,7 @@
     }
   },
   "devDependencies": {
+    "@types/dot-object": "^2.1.2",
     "@types/jest": "26.0.14",
     "@types/node": "14.11.2",
     "@types/node-fetch": "2.5.7",
@@ -47,6 +48,7 @@
   },
   "dependencies": {
     "@types/slug": "0.9.1",
+    "dot-object": "^2.1.4",
     "isomorphic-unfetch": "3.0.0",
     "slug": "3.3.4"
   }

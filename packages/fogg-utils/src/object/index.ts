@@ -1,4 +1,8 @@
-import { isString, isEmptyObject, isObject } from '../is'
+// Dependencies
+import dot from 'dot-object'
+
+// Utils
+import { isString, isEmptyObject, isObject, isDefined, isArray } from '../is'
 import { chunk } from '../array'
 
 export function cloneObject(o: any): any {
@@ -105,6 +109,40 @@ export function keys(obj: any): any[] {
   }
 
   return []
+}
+
+export function forEach(items: any, callback: any): any {
+  if (!isDefined(items)) {
+    return false
+  }
+
+  if ((isDefined(items) && isDefined(items[0])) || isArray(items)) {
+    return items.forEach(callback)
+  }
+
+  return isObject(items) ? keys(items).forEach(callback) : false
+}
+
+export function pick(key: string, obj: any): string {
+  return dot.pick(key, obj) || key
+}
+
+export function buildContentJson(nodes: any, raw?: boolean) {
+  const rows: any = {}
+
+  forEach(nodes, (node: any) => {
+    rows[node.key] = node.value
+  })
+
+  if (!raw) {
+    dot.object(rows)
+  }
+
+  return rows
+}
+
+export function content(key: string, __: any) {
+  return pick(key, __)
 }
 
 export function hasOwnProperty(obj: any, prop: string): boolean {
