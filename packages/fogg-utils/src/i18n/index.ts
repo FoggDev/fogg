@@ -1,3 +1,5 @@
+import { pick } from '../object'
+
 export const languagesList: any = {
   ar: {
     name: 'العربية',
@@ -74,4 +76,8 @@ export const availableLanguages = (join = true) => {
 
 export const isLanguage = (lang: string) => {
   return !!languagesList[lang]
+}
+
+export function t(key: string, __: any) {
+  return pick(key, __)
 }

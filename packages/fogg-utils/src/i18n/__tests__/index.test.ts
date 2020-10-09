@@ -1,4 +1,4 @@
-import { availableLanguages, isLanguage } from '../index'
+import { availableLanguages, isLanguage, t } from '../index'
 
 describe('#availableLanguages', () => {
   it('should return the list of available languages as string', () => {
@@ -35,5 +35,27 @@ describe('#isLanguage', () => {
 
   it('should return false if is not a valid language', () => {
     expect(isLanguage('bn-IN')).toBe(false)
+  })
+})
+
+describe('#t', () => {
+  it('should return the translation in English', () => {
+    const __ = {
+      hello: {
+        world: 'Hello World'
+      }
+    }
+
+    expect(t('hello.world', __)).toBe('Hello World')
+  })
+
+  it('should return the translation in Spanish', () => {
+    const __ = {
+      hello: {
+        world: 'Hola Mundo'
+      }
+    }
+
+    expect(t('hello.world', __)).toBe('Hola Mundo')
   })
 })

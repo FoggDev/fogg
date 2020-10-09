@@ -149,10 +149,6 @@ export function objectToDot(nodes: any): any {
   return null
 }
 
-export function content(key: string, __: any) {
-  return pick(key, __)
-}
-
 export function hasOwnProperty(obj: any, prop: string): boolean {
   return Object.prototype.hasOwnProperty.call(obj, prop)
 }
