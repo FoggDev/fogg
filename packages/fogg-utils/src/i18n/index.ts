@@ -1,4 +1,4 @@
-export const languages: any = {
+export const languagesList: any = {
   ar: {
     name: 'العربية',
     lang: 'ar',
@@ -62,8 +62,16 @@ export const languages: any = {
   }
 }
 
-export const availableLanguages = () => languages
+export const availableLanguages = (join = true) => {
+  const listOfLanguages = Object.keys(languagesList)
+
+  if (join) {
+    return listOfLanguages.join('|')
+  }
+
+  return listOfLanguages
+}
 
 export const isLanguage = (lang: string) => {
-  return !!languages[lang]
+  return !!languagesList[lang]
 }

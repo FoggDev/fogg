@@ -1,8 +1,30 @@
-import { availableLanguages, isLanguage, languages } from '../index'
+import { availableLanguages, isLanguage } from '../index'
 
 describe('#availableLanguages', () => {
-  it('should return the list of available languages', () => {
-    expect(availableLanguages()).toEqual(languages)
+  it('should return the list of available languages as string', () => {
+    expect(availableLanguages()).toEqual(
+      'ar|de-DE|en-US|en-GB|es|es-AR|es-ES|es-MX|fr-FR|it-IT|pt-BR|pt-PT|ja-JP|ko-KR|zh-CN'
+    )
+  })
+
+  it('should return the list of available languages as array', () => {
+    expect(availableLanguages(false)).toEqual([
+      'ar',
+      'de-DE',
+      'en-US',
+      'en-GB',
+      'es',
+      'es-AR',
+      'es-ES',
+      'es-MX',
+      'fr-FR',
+      'it-IT',
+      'pt-BR',
+      'pt-PT',
+      'ja-JP',
+      'ko-KR',
+      'zh-CN'
+    ])
   })
 })
 
