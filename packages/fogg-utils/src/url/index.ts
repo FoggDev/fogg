@@ -1,4 +1,5 @@
 import { isString, isDefined, isLanguage, isBrowser } from '../is'
+import { getCurrentLanguage } from '../languages'
 
 export function getLocation(req?: any): any {
   return typeof window !== 'undefined' ? window.location : { pathname: req && req.url }
@@ -35,10 +36,24 @@ export function getParamsFromUrl(url: any, index = 0): any {
   return null
 }
 
-export function redirectTo(url = '/'): void {
+export function redirectTo(url = '/', inclueLanguage = false): void {
   if (isBrowser()) {
     const { pathname } = window.location
+    const language = getCurrentLanguage()
+    let slash = '/'
 
-    window.location.href = url === '_self' ? pathname : url
+    if (url === '_self') {
+      window.location.href = pathname
+    }
+
+    if (inclueLanguage) {
+      if (url[0] === '/') {
+        slash = ''
+      }
+
+      window.location.href = `${language}${slash}${url}`
+    } else {
+      window.location.href = url
+    }
   }
 }
