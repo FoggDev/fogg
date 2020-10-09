@@ -1,3 +1,5 @@
+import { languagesList } from '../languages'
+
 export function isArray(v: unknown): boolean {
   return Array.isArray(v)
 }
@@ -62,4 +64,8 @@ export function isSymbol(v: unknown): boolean {
 
 export function isEmptyObject(v: any): boolean {
   return v ? Object.keys(v).length === 0 : true
+}
+
+export const isLanguage = (lang: string) => {
+  return !!languagesList[lang]
 }

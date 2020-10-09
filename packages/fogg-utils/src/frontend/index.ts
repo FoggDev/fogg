@@ -28,12 +28,6 @@ export function cx(...classes: string[]): string {
   return classes.join(' ').trim()
 }
 
-export function redirectTo(url = '/'): void {
-  if (isBrowser()) {
-    window.location.href = url === '_self' ? window.location.pathname : url
-  }
-}
-
 export function isFirstRender(items: any): boolean {
   return !isDefined(items) || items.length === 0 || Object.keys(items).length === 0
 }
@@ -53,29 +47,6 @@ export function getModuleInfo(router: Router): PathInfo {
     action,
     id
   }
-}
-
-export function getParamsFromUrl(mapParams: string[], baseUrl?: any): any {
-  let pathname = ''
-
-  if (isBrowser() && !baseUrl) {
-    pathname = window.location.pathname
-  } else if (baseUrl) {
-    pathname = baseUrl.split('?')[0] // eslint-disable-line prefer-destructuring
-
-    if (pathname.substr(-1) === '/') {
-      pathname = pathname.slice(0, -1)
-    }
-  }
-
-  const chunks = pathname.split('/').filter(v => v)
-  const params: any = {}
-
-  mapParams.forEach((param, i) => {
-    params[param] = chunks[i] || null
-  })
-
-  return params
 }
 
 export function scrollToTop(): void {
