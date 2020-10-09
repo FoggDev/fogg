@@ -18,7 +18,8 @@
     "src/is/index.ts",
     "src/object/index.ts",
     "src/security/index.ts",
-    "src/string/index.ts"
+    "src/string/index.ts",
+    "src/i18n/index.ts"
   ],
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules"]
