@@ -2,7 +2,7 @@
 import slug from 'slug'
 
 // Utils
-import { isBrowser, isDefined } from '../is'
+import { isDefined } from '../is'
 
 // Interfaces
 interface Router {

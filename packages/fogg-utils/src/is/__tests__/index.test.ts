@@ -8,7 +8,8 @@ import {
   isPassword,
   isString,
   isUndefined,
-  isEmptyObject
+  isEmptyObject,
+  isLanguage
 } from '../index'
 
 describe('#isArray', () => {
@@ -145,5 +146,15 @@ describe('#isEmptyObject', () => {
       foo: 'bar'
     }
     expect(isEmptyObject(obj)).toBe(false)
+  })
+})
+
+describe('#isLanguage', () => {
+  it('should return true if is a valid language', () => {
+    expect(isLanguage('en-US')).toBe(true)
+  })
+
+  it('should return false if is not a valid language', () => {
+    expect(isLanguage('bn-IN')).toBe(false)
   })
 })
