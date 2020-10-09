@@ -141,6 +141,14 @@ export function buildContentJson(nodes: any, raw?: boolean) {
   return rows
 }
 
+export function objectToDot(nodes: any): any {
+  if (isObject(nodes)) {
+    return dot.dot(nodes)
+  }
+
+  return null
+}
+
 export function content(key: string, __: any) {
   return pick(key, __)
 }

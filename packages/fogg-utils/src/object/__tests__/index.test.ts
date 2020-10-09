@@ -7,6 +7,7 @@ import {
   getValuesForTable,
   hasOwnProperty,
   keys,
+  objectToDot,
   pick
 } from '../index'
 
@@ -378,6 +379,40 @@ describe('#forEach', () => {
     const mockCallback = jest.fn()
 
     expect(forEach(undefined, mockCallback)).toBe(false)
+  })
+})
+
+describe('#objectToDot', () => {
+  it('should convert an object to dot notation', () => {
+    const content = {
+      site: {
+        language: 'en',
+        title: 'Bar',
+        meta: {
+          abstract: 'Foo'
+        }
+      }
+    }
+
+    const expectedResult = {
+      'site.language': 'en',
+      'site.meta.abstract': 'Foo',
+      'site.title': 'Bar'
+    }
+
+    const result = objectToDot(content)
+
+    expect(result).toEqual(expectedResult)
+  })
+
+  it('should return null if content is not an object', () => {
+    const content = ['foo', 'bar']
+
+    const expectedResult = null
+
+    const result = objectToDot(content)
+
+    expect(result).toEqual(expectedResult)
   })
 })
 
