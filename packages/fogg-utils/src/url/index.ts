@@ -1,7 +1,7 @@
 import { isBrowser } from '../is'
 import { getCurrentLanguage } from '../i18n'
 
-export function redirectTo(url = '/', inclueLanguage = false): void {
+export function redirectTo(url = '/', includeLanguage = false): void {
   if (isBrowser()) {
     const { pathname } = window.location
     const language = getCurrentLanguage()
@@ -11,7 +11,7 @@ export function redirectTo(url = '/', inclueLanguage = false): void {
       window.location.href = pathname
     }
 
-    if (inclueLanguage) {
+    if (includeLanguage) {
       if (url[0] === '/') {
         slash = ''
       }
