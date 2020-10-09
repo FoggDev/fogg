@@ -1,4 +1,4 @@
-import { getParamsFromUrl } from '../url'
+import { getParamsFromUrl } from '../utils'
 import { pick } from '../object'
 import { isLanguage } from '../is'
 import { languagesList } from '../languages'
