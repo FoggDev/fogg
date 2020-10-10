@@ -16,7 +16,7 @@ export function redirectTo(url = '/', includeLanguage = false): void {
         slash = ''
       }
 
-      window.location.href = `${language}${slash}${url}`
+      window.location.href = `/${language}${slash}${url}`
     } else {
       window.location.href = url
     }
