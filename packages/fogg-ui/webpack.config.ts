@@ -59,8 +59,5 @@ module.exports = {
     '@emotion/styled': '@emotion/styled'
   },
   devtool: devMode ? 'source-map' : '',
-  optimization: {
-    minimize: false
-  },
   mode: devMode ? 'development' : 'production'
 }
