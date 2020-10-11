@@ -94,7 +94,7 @@ export function getLocation(req?: any): any {
   return typeof window !== 'undefined' ? window.location : { pathname: req && req.url }
 }
 
-export function getParamsFromUrl(url: any, index = 0): any {
+export function getParams(url: any, index = 0): any {
   if (!url) {
     url = getLocation().pathname
   }

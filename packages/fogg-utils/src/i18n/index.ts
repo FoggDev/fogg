@@ -1,4 +1,4 @@
-import { getParamsFromUrl } from '../utils'
+import { getParams } from '../utils'
 import { pick } from '../object'
 import { isLanguage } from '../is'
 import { languagesList } from '../languages'
@@ -22,6 +22,6 @@ export function t(key: string, __: any) {
 }
 
 export const getCurrentLanguage = (url?: string, defaultLanguage = 'en-US') => {
-  const params = getParamsFromUrl(url)
+  const params = getParams(url)
   return params && isLanguage(params[0]) ? params[0] : defaultLanguage
 }

@@ -22,3 +22,26 @@ export function redirectTo(url = '/', includeLanguage = false): void {
     }
   }
 }
+
+export function getParamsFromUrl(mapParams: string[], baseUrl?: any): any {
+  let pathname = ''
+
+  if (isBrowser() && !baseUrl) {
+    pathname = window.location.pathname
+  } else if (baseUrl) {
+    pathname = baseUrl.split('?')[0] // eslint-disable-line prefer-destructuring
+
+    if (pathname.substr(-1) === '/') {
+      pathname = pathname.slice(0, -1)
+    }
+  }
+
+  const chunks = pathname.split('/').filter(v => v)
+  const params: any = {}
+
+  mapParams.forEach((param, i) => {
+    params[param] = chunks[i] || null
+  })
+
+  return params
+}
