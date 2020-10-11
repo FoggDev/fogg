@@ -1,5 +1,4 @@
 const path = require('path')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const devMode = process.env.NODE_ENV !== 'production'
 
@@ -18,21 +17,6 @@ module.exports = {
       {
         test: /\.svg$/,
         loader: 'svg-url-loader'
-      },
-      {
-        test: /\.s?[ac]ss$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          {
-            loader: 'css-loader',
-            options: {
-              modules: true,
-              localIdentName: '[name]_[local]_[hash:base64]',
-              sourceMap: true
-            }
-          },
-          'sass-loader'
-        ]
       },
       {
         test: /\.(tsx|ts)$/,
@@ -69,13 +53,14 @@ module.exports = {
     },
     slug: 'slug',
     moment: 'moment',
-    'fogg-utils': 'fogg-utils'
+    'fogg-utils': 'fogg-utils',
+    emotion: 'emotion',
+    '@emotion/core': '@emotion/core',
+    '@emotion/styled': '@emotion/styled'
   },
   devtool: devMode ? 'source-map' : '',
-  plugins: [
-    new MiniCssExtractPlugin({
-      filename: 'style.css'
-    })
-  ],
+  optimization: {
+    minimize: false
+  },
   mode: devMode ? 'development' : 'production'
 }

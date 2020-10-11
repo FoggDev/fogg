@@ -19,22 +19,6 @@ module.exports = {
         loader: 'svg-url-loader'
       },
       {
-        test: /\.s?[ac]ss$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          {
-            loader: 'css-loader',
-            options: {
-              modules: {
-                localIdentName: '[name]_[local]_[hash:base64]'
-              },
-              sourceMap: true
-            }
-          },
-          'sass-loader'
-        ]
-      },
-      {
         test: /\.(tsx|ts)$/,
         exclude: /node_modules/,
         use: 'ts-loader'
@@ -51,9 +35,6 @@ module.exports = {
       title: 'Sandbox',
       template: './sandbox/index.html',
       filename: './index.html'
-    }),
-    new MiniCssExtractPlugin({
-      filename: 'style.css'
     })
   ],
   mode: devMode ? 'development' : 'production'
