@@ -1,6 +1,6 @@
 // Dependencies
 import React, { FC, ReactElement, useState, useEffect } from 'react'
-import styled from 'styled-components'
+import styled from '@emotion/styled'
 import slug from 'slug'
 import Icon from '../Icon'
 

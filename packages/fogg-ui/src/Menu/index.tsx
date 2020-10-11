@@ -1,5 +1,5 @@
 import React, { FC, ReactElement } from 'react'
-import styled from 'styled-components'
+import styled from '@emotion/styled'
 
 const StyledMenu = styled.div`
   border: 1px solid #eee;

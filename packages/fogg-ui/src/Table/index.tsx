@@ -1,5 +1,5 @@
 import React, { FC, ReactElement, Fragment, useState, useEffect } from 'react'
-import styled from 'styled-components'
+import styled from '@emotion/styled'
 import moment from 'moment'
 import { cx, getFileExtensionFromURL, pluralify } from 'fogg-utils'
 import Icon from '../Icon'
@@ -69,7 +69,7 @@ const StyledTable = styled.table`
         text-overflow: ellipsis;
         white-space: nowrap;
 
-        &:first-child {
+        &:first-of-type {
           min-width: 10px;
         }
 

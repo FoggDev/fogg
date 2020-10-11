@@ -1,6 +1,7 @@
 // Dependencies
 import React, { FC } from 'react'
-import styled, { createGlobalStyle } from 'styled-components'
+import styled from '@emotion/styled'
+import { Global, css } from '@emotion/core'
 import { cx } from 'fogg-utils'
 
 interface iProps {
@@ -29,7 +30,7 @@ interface iStyledProps {
   hasError?: boolean
 }
 
-const StyledBody = createGlobalStyle`
+const StyledBody = `
   textarea,
   input {
     border-radius: 0;
@@ -121,7 +122,8 @@ const Input: FC<iProps> = props => {
 
   return (
     <>
-      <StyledBody />
+      <Global styles={css(StyledBody)} />
+
       <div style={{ marginTop: '5px', marginBottom: '20px' }}>
         <StyledInput {...props} className={cx('Input', className)} />
       </div>

@@ -1,6 +1,6 @@
 // Dependencies
 import React, { FC, ReactNode, ReactElement } from 'react'
-import styled from 'styled-components'
+import styled from '@emotion/styled'
 
 // Colors
 import colors from '../colors'
@@ -11,10 +11,14 @@ import Icon from '../Icon'
 interface iProps {
   page: number
   total: number
-  theme: string
+  design: string
   href: string
   as?: string
   Link?: any
+}
+
+interface iStyledLink {
+  design: string
 }
 
 const StyledUl = styled.ul`
@@ -37,7 +41,7 @@ const StyledLi = styled.li`
   }
 `
 
-const StyledLink = styled.span`
+const StyledLink = styled.span<iStyledLink>`
   padding: 15px 20px;
   border-radius: 5px;
   &:hover {
@@ -55,8 +59,8 @@ const StyledLink = styled.span`
     }
   }
 
-  ${({ theme }): any =>
-    theme === 'primary' &&
+  ${({ design }): any =>
+    design === 'primary' &&
     `
     &.active {
       background: ${colors.primary.background};
@@ -69,8 +73,8 @@ const StyledLink = styled.span`
     }
   `}
 
-  ${({ theme }): any =>
-    theme === 'success' &&
+  ${({ design }): any =>
+    design === 'success' &&
     `
     &.active {
       background: ${colors.success.background};
@@ -83,8 +87,8 @@ const StyledLink = styled.span`
     }
   `}
 
-  ${({ theme }): any =>
-    theme === 'danger' &&
+  ${({ design }): any =>
+    design === 'danger' &&
     `
     &.active {
       background: ${colors.danger.background};
@@ -97,8 +101,8 @@ const StyledLink = styled.span`
     }
   `}
 
-  ${({ theme }): any =>
-    theme === 'warning' &&
+  ${({ design }): any =>
+    design === 'warning' &&
     `
     &.active {
       background: ${colors.warning.background};
@@ -111,8 +115,8 @@ const StyledLink = styled.span`
     }
   `}
 
-  ${({ theme }): any =>
-    theme === 'light' &&
+  ${({ design }): any =>
+    design === 'light' &&
     `
     &.active {
       background: ${colors.light.background};
@@ -125,8 +129,8 @@ const StyledLink = styled.span`
     }
   `}
 
-  ${({ theme }): any =>
-    theme === 'dark' &&
+  ${({ design }): any =>
+    design === 'dark' &&
     `
     &.active {
       background: ${colors.dark.background};
@@ -152,7 +156,7 @@ const Pagination: FC<iProps> = (props): ReactElement => {
     start: number,
     end: number
   ): ReactNode[] => {
-    const { theme, Link, href, as } = props
+    const { design, Link, href, as } = props
     const pageNav = []
 
     for (let i = firstPage; i < lastPage; i += 1) {
@@ -164,7 +168,7 @@ const Pagination: FC<iProps> = (props): ReactElement => {
           pageNav.push(
             <StyledLi key={i}>
               <Link href={href} as={as}>
-                <StyledLink theme={theme} className="active">
+                <StyledLink design={design} className="active">
                   {pge}
                 </StyledLink>
               </Link>
@@ -174,7 +178,7 @@ const Pagination: FC<iProps> = (props): ReactElement => {
           pageNav.push(
             <StyledLi key={i}>
               <a href="#">
-                <StyledLink theme={theme} className="active">
+                <StyledLink design={design} className="active">
                   {pge}
                 </StyledLink>
               </a>
@@ -185,7 +189,7 @@ const Pagination: FC<iProps> = (props): ReactElement => {
         pageNav.push(
           <StyledLi key={i}>
             <Link href={`${href}${pge}`} as={`${as}${pge}`}>
-              <StyledLink theme={theme}>{pge}</StyledLink>
+              <StyledLink design={design}>{pge}</StyledLink>
             </Link>
           </StyledLi>
         )
@@ -193,7 +197,7 @@ const Pagination: FC<iProps> = (props): ReactElement => {
         pageNav.push(
           <StyledLi key={i}>
             <a href={`${href}${pge}`}>
-              <StyledLink theme={theme}>{pge}</StyledLink>
+              <StyledLink design={design}>{pge}</StyledLink>
             </a>
           </StyledLi>
         )
@@ -204,14 +208,14 @@ const Pagination: FC<iProps> = (props): ReactElement => {
   }
 
   const getPageNext = (currentPage: number, pages: number): ReactNode => {
-    const { theme, Link, href, as } = props
+    const { design, Link, href, as } = props
 
     if (currentPage <= pages - 1) {
       if (Link) {
         return (
           <StyledLi>
             <Link href={`${href}${currentPage + 1}`} as={`${as}${currentPage + 1}`}>
-              <StyledLink theme={theme} className="next">
+              <StyledLink design={design} className="next">
                 <Icon type="fas fa-chevron-right" />
               </StyledLink>
             </Link>
@@ -221,7 +225,7 @@ const Pagination: FC<iProps> = (props): ReactElement => {
         return (
           <StyledLi>
             <a href={`${href}${currentPage + 1}`}>
-              <StyledLink theme={theme} className="next">
+              <StyledLink design={design} className="next">
                 <Icon type="fas fa-chevron-right" />
               </StyledLink>
             </a>
@@ -234,14 +238,14 @@ const Pagination: FC<iProps> = (props): ReactElement => {
   }
 
   const getPagePrevious = (start: number, currentPage: number): ReactNode => {
-    const { theme, Link, href, as } = props
+    const { design, Link, href, as } = props
 
     if (start > 0) {
       if (Link) {
         return (
           <StyledLi>
             <Link href={`${href}${currentPage - 1}`} as={`${as}${currentPage - 1}`}>
-              <StyledLink theme={theme} className="previous">
+              <StyledLink design={design} className="previous">
                 <Icon type="fas fa-chevron-left" />
               </StyledLink>
             </Link>
@@ -251,7 +255,7 @@ const Pagination: FC<iProps> = (props): ReactElement => {
         return (
           <StyledLi>
             <a href={`${href}${currentPage - 1}`}>
-              <StyledLink theme={theme} className="previous">
+              <StyledLink design={design} className="previous">
                 <Icon type="fas fa-chevron-left" />
               </StyledLink>
             </a>

@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import styled from 'styled-components'
+import styled from '@emotion/styled'
 
 interface iProps {
   label?: string
@@ -49,9 +49,7 @@ const StyledInput = styled.input`
   }
 `
 
-const StyledSpan = styled.span.attrs({
-  className: 'checkmark'
-})`
+const StyledSpan = styled.span`
   border-radius: 0.1875rem;
   position: absolute;
   top: 0;
@@ -75,7 +73,7 @@ const Checkbox: FC<iProps> = props => {
       <>
         {label}
         <StyledInput {...props} type="checkbox" />
-        <StyledSpan />
+        <StyledSpan className="checkmark" />
       </>
     </StyledLabel>
   )

@@ -1,5 +1,5 @@
 import React, { FC, ReactElement, useState } from 'react'
-import styled from 'styled-components'
+import styled from '@emotion/styled'
 import { cx } from 'fogg-utils'
 import Icon from '../Icon'
 import colors from '../colors'

@@ -1,6 +1,6 @@
 // Dependencies
 import React, { FC, ReactElement } from 'react'
-import styled from 'styled-components'
+import styled from '@emotion/styled'
 import { cx } from 'fogg-utils'
 
 interface iProps {

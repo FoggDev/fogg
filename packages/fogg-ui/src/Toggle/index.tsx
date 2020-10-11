@@ -1,5 +1,5 @@
 import React, { FC, ReactElement } from 'react'
-import styled from 'styled-components'
+import styled from '@emotion/styled'
 
 interface iProps {
   label?: string
@@ -57,9 +57,7 @@ const StyledInput = styled.input`
   }
 `
 
-const StyledSquareSpan = styled.span.attrs({
-  className: 'slider'
-})`
+const StyledSquareSpan = styled.span`
   position: absolute;
   cursor: pointer;
   top: 0;
@@ -110,7 +108,7 @@ const Toggle: FC<iProps> = ({
             checked={checked}
             readOnly={readOnly}
           />
-          {type === 'round' ? <StyledRoundSpan /> : <StyledSquareSpan />}
+          {type === 'round' ? <StyledRoundSpan /> : <StyledSquareSpan className="slider" />}
         </StyledLabel>
 
         <StyledText>{label}</StyledText>

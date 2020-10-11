@@ -1,7 +1,8 @@
 import React, { FC, ReactElement } from 'react'
-import styled, { createGlobalStyle } from 'styled-components'
+import styled from '@emotion/styled'
+import { Global, css } from '@emotion/core'
 
-const StyledBody = createGlobalStyle`
+const StyledBody = `
   html,
   body {
     margin: 0;
@@ -146,7 +147,7 @@ const Modal: FC<iProps> = ({ children, isOpen, onOpen, onClose, label, options =
 
   return (
     <>
-      <StyledBody />
+      <Global styles={css(StyledBody)} />
 
       <StyledModal className="Modal">
         <StyledContainer maxWidth={width} height={height} margin={margin}>

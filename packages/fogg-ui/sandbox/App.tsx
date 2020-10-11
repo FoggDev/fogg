@@ -440,7 +440,7 @@ class App extends Component {
             selectedFile={this.state.selectedFile}
             label="Choose a file"
             onChange={this.handleFile}
-            theme="success"
+            design="success"
             maxFileSize={52000000}
             allowedExtensions={['png', 'jpg', 'jpeg', 'gif', 'mp4', 'pdf', 'doc', 'docx']}
           />
@@ -532,7 +532,7 @@ class App extends Component {
             onOpen={(): void => console.log('on open')}
             onClose={this.handleModal}
           >
-            <p>
+            <div>
               <label>Name:</label>
 
               <Input
@@ -543,9 +543,9 @@ class App extends Component {
                   width: '96%'
                 }}
               />
-            </p>
+            </div>
 
-            <p>
+            <div>
               <label>Content:</label>
 
               <TextArea
@@ -557,34 +557,34 @@ class App extends Component {
                   height: '200px'
                 }}
               />
-            </p>
+            </div>
 
-            <p>
+            <div>
               <Toggle
                 checked={this.state.checked}
                 type="round"
                 onChange={(): void => this.handleChecked()}
                 label="Show system fields"
               />
-            </p>
+            </div>
 
-            <p>
+            <div>
               <PrimaryButton>Save</PrimaryButton>
-            </p>
+            </div>
           </Modal>
           <h2>Pagination</h2>
           <h3>Primary Theme</h3>
-          <Pagination theme="primary" page={2} total={100} href="/page/" />
+          <Pagination design="primary" page={2} total={100} href="/page/" />
           <h3>Success Theme</h3>
-          <Pagination theme="success" page={4} total={100} href="/page/" />
+          <Pagination design="success" page={4} total={100} href="/page/" />
           <h3>Danger Theme</h3>
-          <Pagination theme="danger" page={10} total={100} href="/page/" />
+          <Pagination design="danger" page={10} total={100} href="/page/" />
           <h3>Warning Theme</h3>
-          <Pagination theme="warning" page={1} total={100} href="/page/" />
+          <Pagination design="warning" page={1} total={100} href="/page/" />
           <h3>Light Theme</h3>
-          <Pagination theme="light" page={7} total={100} href="/page/" />
+          <Pagination design="light" page={7} total={100} href="/page/" />
           <h3>Dark Theme</h3>
-          <Pagination theme="dark" page={10} total={100} href="/page/" />
+          <Pagination design="dark" page={10} total={100} href="/page/" />
           <h2>Spinners</h2>
           <div className={styles.spinners}>
             <Spinner spinner="audio" style={{ width: '30px' }} />{' '}
