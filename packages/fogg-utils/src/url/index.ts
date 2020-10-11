@@ -9,9 +9,7 @@ export function redirectTo(url = '/', includeLanguage = false): void {
 
     if (url === '_self') {
       window.location.href = pathname
-    }
-
-    if (includeLanguage) {
+    } else if (includeLanguage) {
       if (url[0] === '/') {
         slash = ''
       }
