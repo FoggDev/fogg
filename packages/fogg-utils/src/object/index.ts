@@ -152,3 +152,39 @@ export function objectToDot(nodes: any): any {
 export function hasOwnProperty(obj: any, prop: string): boolean {
   return Object.prototype.hasOwnProperty.call(obj, prop)
 }
+
+export function getStorageItem(key: string, returnJson = true): any {
+  if (!localStorage) {
+    return null
+  }
+
+  const item = localStorage.getItem(key)
+
+  if (returnJson && item) {
+    return JSON.parse(item)
+  }
+
+  return item
+}
+
+export function setStorageItem(key: string, value: string): any {
+  if (key && value && localStorage) {
+    localStorage.setItem(key, value)
+
+    return true
+  }
+
+  return null
+}
+
+export function removeStorageItem(key: string): any {
+  if (key && localStorage) {
+    localStorage.removeItem(key)
+  }
+}
+
+export function clearStorage(): any {
+  if (localStorage) {
+    localStorage.clear()
+  }
+}
