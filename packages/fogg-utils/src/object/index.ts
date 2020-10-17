@@ -167,8 +167,12 @@ export function getStorageItem(key: string, returnJson = true): any {
   return item
 }
 
-export function setStorageItem(key: string, value: string): any {
+export function setStorageItem(key: string, value: any): any {
   if (key && value && localStorage) {
+    if (isObject(value)) {
+      value = JSON.stringify(value)
+    }
+
     localStorage.setItem(key, value)
 
     return true
