@@ -2,7 +2,7 @@
 import dot from 'dot-object'
 
 // Utils
-import { isString, isEmptyObject, isObject, isDefined, isArray } from '../is'
+import { isString, isEmptyObject, isObject, isDefined, isJson, isArray } from '../is'
 import { chunk } from '../array'
 
 export function cloneObject(o: any): any {
@@ -158,9 +158,9 @@ export function getStorageItem(key: string, returnJson = true): any {
     return null
   }
 
-  const item = localStorage.getItem(key)
+  const item: any = localStorage.getItem(key)
 
-  if (returnJson && item) {
+  if (returnJson && isJson(item)) {
     return JSON.parse(item)
   }
 
