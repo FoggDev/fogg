@@ -2,7 +2,7 @@
 import dot from 'dot-object'
 
 // Utils
-import { isString, isEmptyObject, isObject, isDefined, isJson, isArray } from '../is'
+import { isBrowser, isString, isEmptyObject, isObject, isDefined, isJson, isArray } from '../is'
 import { chunk } from '../array'
 
 export function cloneObject(o: any): any {
@@ -154,7 +154,7 @@ export function hasOwnProperty(obj: any, prop: string): boolean {
 }
 
 export function getStorageItem(key: string, returnJson = true): any {
-  if (!localStorage) {
+  if (!isBrowser() || !localStorage) {
     return null
   }
 
@@ -168,7 +168,7 @@ export function getStorageItem(key: string, returnJson = true): any {
 }
 
 export function setStorageItem(key: string, value: any): any {
-  if (key && value && localStorage) {
+  if (isBrowser() && key && value && localStorage) {
     if (isObject(value)) {
       value = JSON.stringify(value)
     }
@@ -182,13 +182,13 @@ export function setStorageItem(key: string, value: any): any {
 }
 
 export function removeStorageItem(key: string): any {
-  if (key && localStorage) {
+  if (isBrowser() && key && localStorage) {
     localStorage.removeItem(key)
   }
 }
 
 export function clearStorage(): any {
-  if (localStorage) {
+  if (isBrowser() && localStorage) {
     localStorage.clear()
   }
 }
