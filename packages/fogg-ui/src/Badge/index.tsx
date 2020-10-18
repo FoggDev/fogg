@@ -4,7 +4,7 @@ import { cx } from 'fogg-utils'
 
 interface iProps {
   center?: boolean
-  children?: string
+  children?: any
   className?: string
   danger?: boolean
   dark?: boolean
