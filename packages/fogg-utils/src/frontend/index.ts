@@ -2,7 +2,7 @@
 import slug from 'slug'
 
 // Utils
-import { isDefined } from '../is'
+import { isDefined, isString } from '../is'
 
 // Interfaces
 interface Router {
@@ -107,4 +107,26 @@ export function getReferenceTitle(
   }
 
   return title
+}
+
+export function add(cssRule: any): any {
+  return {
+    if: (condition: boolean) => {
+      if (condition && cssRule) {
+        if (isString(cssRule)) {
+          return cssRule
+        }
+
+        let cssString = ''
+
+        Object.keys(cssRule).forEach((property: string) => {
+          cssString += `${property}: ${cssRule[property]};`
+        })
+
+        return cssString
+      }
+
+      return ''
+    }
+  }
 }
