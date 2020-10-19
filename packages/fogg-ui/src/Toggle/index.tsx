@@ -108,7 +108,11 @@ const Toggle: FC<iProps> = ({
             checked={checked}
             readOnly={readOnly}
           />
-          {type === 'round' ? <StyledRoundSpan /> : <StyledSquareSpan className="slider" />}
+          {type === 'round' ? (
+            <StyledRoundSpan className="slider" />
+          ) : (
+            <StyledSquareSpan className="slider" />
+          )}
         </StyledLabel>
 
         <StyledText>{label}</StyledText>

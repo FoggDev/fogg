@@ -193,6 +193,7 @@ class App extends Component {
               type="square"
               onChange={(): void => console.log('CLICKED!')}
               label="Show system fields"
+              checked={this.state.checked}
             />
           </div>
           <div>
@@ -200,6 +201,7 @@ class App extends Component {
               type="round"
               onChange={(): void => console.log('CLICKED!')}
               label="Show system fields"
+              checked={this.state.checked}
             />
           </div>
           <h2>Alerts</h2>
