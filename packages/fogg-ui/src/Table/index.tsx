@@ -12,7 +12,7 @@ interface iProps {
   onUnpublish: any
   url: string
   query?: string
-  t: any
+  t?: any
   data: {
     head: string[]
     body: string[]
