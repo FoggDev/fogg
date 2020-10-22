@@ -12,6 +12,7 @@ interface iProps {
   onUnpublish: any
   url: string
   query?: string
+  t: any
   data: {
     head: string[]
     body: string[]
@@ -324,7 +325,8 @@ const Table: FC<iProps> = ({
   onPublish,
   onUnpublish,
   url,
-  query = '/'
+  query = '/',
+  t = (key: string) => key
 }): ReactElement => {
   const defaultFileTypes = {
     documents: ['pdf', 'doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'zip'],
@@ -384,7 +386,7 @@ const Table: FC<iProps> = ({
             onClick={(): void => onDelete(selectedCheckboxes)}
             title="Delete"
           >
-            <Icon type="fas fa-trash" /> Delete
+            <Icon type="fas fa-trash" /> {t('Delete')}
           </span>{' '}
         </>
       )
@@ -392,8 +394,8 @@ const Table: FC<iProps> = ({
 
     return (
       <>
-        <span className="action onDelete disabled" title="Only Draft Entries can be deleted">
-          <Icon type="fas fa-trash" /> Delete
+        <span className="action onDelete disabled" title={t('Only Draft Entries can be deleted')}>
+          <Icon type="fas fa-trash" /> {t('Delete')}
         </span>{' '}
       </>
     )
@@ -412,7 +414,7 @@ const Table: FC<iProps> = ({
             onClick={(): void => onPublish(selectedCheckboxes)}
             title="Publish"
           >
-            <Icon type="fas fa-download" /> Publish
+            <Icon type="fas fa-download" /> {t('Publish')}
           </span>{' '}
         </>
       )
@@ -420,8 +422,11 @@ const Table: FC<iProps> = ({
 
     return (
       <>
-        <span className="action onPublish disabled" title="Only Draft Entries can be published">
-          <Icon type="fas fa-download" /> Publish
+        <span
+          className="action onPublish disabled"
+          title={t('Only Draft Entries can be published')}
+        >
+          <Icon type="fas fa-download" /> {t('Publish')}
         </span>{' '}
       </>
     )
@@ -437,9 +442,9 @@ const Table: FC<iProps> = ({
         <>
           <span
             className="action onUnpublish disabled"
-            title="Only Published Entries can be unpublished"
+            title={t('Only Published Entries can be unpublished')}
           >
-            <Icon type="fas fa-download" /> Unpublish
+            <Icon type="fas fa-download" /> {t('Unpublish')}
           </span>{' '}
         </>
       )
@@ -450,9 +455,9 @@ const Table: FC<iProps> = ({
         <span
           className="action onUnpublish"
           onClick={(): void => onUnpublish(selectedCheckboxes)}
-          title="Unpublish"
+          title={t('Unpublish')}
         >
-          <Icon type="fas fa-download" /> Unpublish
+          <Icon type="fas fa-download" /> {t('Unpublish')}
         </span>{' '}
       </>
     )
@@ -462,7 +467,7 @@ const Table: FC<iProps> = ({
     <>
       <Modal
         isOpen={isOpen}
-        label="Preview"
+        label={t('Preview')}
         options={{
           position: 'top',
           height: html.includes('img') ? '700px' : '500px',
@@ -475,7 +480,7 @@ const Table: FC<iProps> = ({
 
       <StyledTable className={cx('Table', className)}>
         <caption>
-          {total} {pluralify('entry', 'entries', total)} found
+          {total} {pluralify(t('entry'), t('entries'), total)} {t('found')}
         </caption>
 
         <thead>
@@ -486,7 +491,7 @@ const Table: FC<iProps> = ({
               }
 
               if (isFile && th === 'FileUrl') {
-                return <th key={`th-${index}`}>Preview</th>
+                return <th key={`th-${index}`}>{t('Preview')}</th>
               }
 
               return (
@@ -513,7 +518,7 @@ const Table: FC<iProps> = ({
             }}
           >
             <th className="actions" colSpan={head.length + 1}>
-              {checkedCheckboxes} {checkedCheckboxes === 1 ? 'entry' : 'entries'} selected:{' '}
+              {checkedCheckboxes} {checkedCheckboxes === 1 ? 'entry' : 'entries'} {t('selected')}:{' '}
               {renderDelete()}
               {renderPublish()}
               {renderUnpublish()}
@@ -528,7 +533,7 @@ const Table: FC<iProps> = ({
             }}
           >
             <th className="noData" colSpan={head.length + 1}>
-              No data found
+              {t('No data found')}
             </th>
           </tr>
         </thead>
@@ -597,7 +602,9 @@ const Table: FC<iProps> = ({
                     if (isImage) {
                       const img = `
                         <div style="display: flex; align-items: center; flex-direction: column;">
-                          <img src="${row[parent]}" alt="${row[parent]}" style="width: 90%; border: 3px solid #000; margin-bottom: 10px;" />
+                          <img src="${row[parent]}" alt="${
+                        row[parent]
+                      }" style="width: 90%; border: 3px solid #000; margin-bottom: 10px;" />
                           <p>
                             <a
                               style="
@@ -610,11 +617,11 @@ const Table: FC<iProps> = ({
                                 padding: .375rem .75rem;
                               "
                               href="${row[parent]}"
-                              title="Download Image"
+                              title="${t('Download Image')}"
                               download="${fileName}.${extension}"
                               target="_blank"
                             >
-                              Download
+                              ${t('Download')}
                             </a>
                           </p>
                         </div>
@@ -625,7 +632,7 @@ const Table: FC<iProps> = ({
                           <a
                             target="_blank"
                             rel="noopener noreferrer"
-                            title="Click to preview"
+                            title={t('Click to preview')}
                             onClick={(): void => handleModal(img)}
                           >
                             <StyledCenter>
@@ -654,11 +661,11 @@ const Table: FC<iProps> = ({
                                 padding: .375rem .75rem;
                               "
                               href="${row[parent]}"
-                              title="Download Video"
+                              title="${t('Download Video')}"
                               target="_blank"
                               download="${fileName}.${extension}"
                             >
-                              Download
+                              ${t('Download')}
                             </a>
                           </p>
                         </div>
@@ -669,7 +676,7 @@ const Table: FC<iProps> = ({
                           <a
                             target="_blank"
                             rel="noopener noreferrer"
-                            title="Click to preview"
+                            title={t('Click to preview')}
                             onClick={(): void => handleModal(video)}
                           >
                             <StyledCenter>
@@ -689,7 +696,7 @@ const Table: FC<iProps> = ({
                             href={row[parent]}
                             target="_blank"
                             rel="noopener noreferrer"
-                            title="Click to download"
+                            title={t('Click to download')}
                             download={`${fileName}.${extension}`}
                           >
                             <StyledCenter>
@@ -711,7 +718,7 @@ const Table: FC<iProps> = ({
                         {isFile && (
                           <>
                             <span className="date">{date[0]}</span>
-                            <span className="at"> at </span>
+                            <span className="at"> {t('at')} </span>
                             <span className="hour">{date[1]}</span>
                           </>
                         )}
@@ -719,7 +726,7 @@ const Table: FC<iProps> = ({
                         {!isFile && (
                           <a href={`${url}${query}${id}`}>
                             <span className="date">{date[0]}</span>
-                            <span className="at"> at </span>
+                            <span className="at"> {t('at')} </span>
                             <span className="hour">{date[1]}</span>
                           </a>
                         )}
