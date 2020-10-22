@@ -480,7 +480,7 @@ const Table: FC<iProps> = ({
 
       <StyledTable className={cx('Table', className)}>
         <caption>
-          {total} {pluralify(t('entry'), t('entries'), total)} {t('found')}
+          {total} {t(pluralify('entry found', 'entries found', total))}
         </caption>
 
         <thead>
@@ -518,7 +518,8 @@ const Table: FC<iProps> = ({
             }}
           >
             <th className="actions" colSpan={head.length + 1}>
-              {checkedCheckboxes} {checkedCheckboxes === 1 ? 'entry' : 'entries'} {t('selected')}:{' '}
+              {checkedCheckboxes}{' '}
+              {checkedCheckboxes === 1 ? t('entry selected') : t('entries selected')}:
               {renderDelete()}
               {renderPublish()}
               {renderUnpublish()}
