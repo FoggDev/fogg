@@ -502,8 +502,8 @@ const Table: FC<iProps> = ({
                     </th>
                   )}
 
-                  <th key={`th-${index}`} className={th.toLocaleLowerCase()}>
-                    {th}
+                  <th key={`th-${index}`} className={th.toLocaleLowerCase()} title={th}>
+                    {t(th)}
                   </th>
                 </Fragment>
               )
@@ -570,10 +570,10 @@ const Table: FC<iProps> = ({
 
                     return (
                       <td key={`tr-${trIndex}`}>
-                        {isFile && <span>{values}</span>}
+                        {isFile && <span>{t(values)}</span>}
                         {!isFile && (
-                          <a href={`${url}${query}${id}`}>
-                            <span>{values}</span>
+                          <a href={`${url}${query}${id}`} title={values}>
+                            <span>{t(values)}</span>
                           </a>
                         )}
                       </td>
@@ -764,9 +764,11 @@ const Table: FC<iProps> = ({
 
                   return (
                     <td key={`tr-${trIndex}`} className={`${parent} ${tr} ${rowClass}`}>
-                      {isFile && <a>{row[parent] && row[parent].toString()}</a>}
+                      {isFile && <a>{row[parent] && t(row[parent].toString())}</a>}
                       {!isFile && (
-                        <a href={`${url}${query}${id}`}>{row[parent] && row[parent].toString()}</a>
+                        <a href={`${url}${query}${id}`}>
+                          {row[parent] && t(row[parent].toString())}
+                        </a>
                       )}
                     </td>
                   )
