@@ -18,8 +18,8 @@ export const getSelectLanguages = (list: any) => {
 
   list.forEach((language: string) => {
     languages.push({
-      option: languages[language].name,
-      value: languages[language].lang,
+      option: languagesList[language].name,
+      value: languagesList[language].lang,
       selected: language === currentLanguage
     })
   })
