@@ -21,15 +21,15 @@ export const languagesList: any = {
     lang: 'es'
   },
   'es-AR': {
-    name: 'Español (Argentina)',
+    name: 'Español (AR)',
     lang: 'es-AR'
   },
   'es-ES': {
-    name: 'Español (España)',
+    name: 'Español (ES)',
     lang: 'es-ES'
   },
   'es-MX': {
-    name: 'Español (México)',
+    name: 'Español (MX)',
     lang: 'es-MX'
   },
   'fr-FR': {
@@ -41,11 +41,11 @@ export const languagesList: any = {
     lang: 'it-IT'
   },
   'pt-BR': {
-    name: 'Português (Brasil)',
+    name: 'Português (BR)',
     lang: 'pt-BR'
   },
   'pt-PT': {
-    name: 'Português (Portugal)',
+    name: 'Português (PT)',
     lang: 'pt-PT'
   },
   'ja-JP': {

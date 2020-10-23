@@ -7,6 +7,26 @@ export const getLanguagesList = () => {
   return languagesList
 }
 
+export const getCurrentLanguage = (url?: string, defaultLanguage = 'en-US') => {
+  const params = getParams(url)
+  return params && isLanguage(params[0]) ? params[0] : defaultLanguage
+}
+
+export const getSelectLanguages = (list: any) => {
+  const languages: any = []
+  const currentLanguage = getCurrentLanguage()
+
+  list.forEach((language: string) => {
+    languages.push({
+      option: languages[language].name,
+      value: languages[language].lang,
+      selected: language === currentLanguage
+    })
+  })
+
+  return languages
+}
+
 export const availableLanguages = (join = true) => {
   const listOfLanguages = Object.keys(languagesList)
 
@@ -19,9 +39,4 @@ export const availableLanguages = (join = true) => {
 
 export function t(key: string, __: any) {
   return pick(key, __)
-}
-
-export const getCurrentLanguage = (url?: string, defaultLanguage = 'en-US') => {
-  const params = getParams(url)
-  return params && isLanguage(params[0]) ? params[0] : defaultLanguage
 }
