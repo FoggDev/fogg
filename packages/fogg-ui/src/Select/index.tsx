@@ -183,8 +183,9 @@ const Select: FC<iProps> = (props): ReactElement => {
         {top && renderList()}
 
         <a onClick={handleOpenOnClick}>
-          <div>{selectedOption.option || label}</div>{' '}
+          <div>{selectedOption.option || label}</div>
           <div>
+            &nbsp;
             <Icon type={`fas fa-caret-${!top ? 'down' : 'up'}`} />
           </div>
         </a>
