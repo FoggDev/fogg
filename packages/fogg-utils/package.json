@@ -1,6 +1,6 @@
 {
   "name": "fogg-utils",
-  "version": "2.6.4",
+  "version": "2.6.5",
   "description": "Fogg Utils",
   "scripts": {
     "build": "tsc",
