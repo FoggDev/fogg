@@ -225,6 +225,7 @@ class App extends Component {
           <Badge dark>Dark</Badge>
           <h2>Select</h2>
           <Select
+            top="160px"
             name="language"
             label="Select language"
             onClick={({ option, value }: { option: string; value: any }): void => {
@@ -255,10 +256,15 @@ class App extends Component {
               {
                 option: 'Chinese',
                 value: 'ch'
+              },
+              {
+                option: 'Korean',
+                value: 'kr'
               }
             ]}
           />
           <Select
+            top="160px"
             name="language"
             type="warning"
             label="Select language"

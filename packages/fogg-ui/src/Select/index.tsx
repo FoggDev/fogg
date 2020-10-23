@@ -21,10 +21,12 @@ interface iProps {
   options?: Option[]
   style?: any
   type?: string
+  top?: string
 }
 
 interface iStyledProps {
   type?: string
+  top?: string
 }
 
 const StyledSelect = styled.div<iStyledProps>`
@@ -68,11 +70,17 @@ const StyledSelect = styled.div<iStyledProps>`
     max-height: 150px;
     overflow: auto;
     padding: 0;
-    position: absolute;
     scrollbar-width: none;
     top: 45px;
     width: 130%;
     z-index: 1;
+    position: absolute;
+
+    ${({ top }): any =>
+      top &&
+      `
+      top: -${top};
+    `}
 
     &::-webkit-scrollbar {
       display: none;
@@ -107,7 +115,14 @@ const StyledSelect = styled.div<iStyledProps>`
 `
 
 const Select: FC<iProps> = (props): ReactElement => {
-  const { label = '', options = null, onClick, type = 'select', className = '' } = props
+  const {
+    label = '',
+    options = null,
+    onClick,
+    type = 'select',
+    className = '',
+    top = false
+  } = props
   const [open, setOpen] = useState(false)
   const [selectedOption, setValue] = useState({ option: '', value: '' })
 
@@ -132,18 +147,11 @@ const Select: FC<iProps> = (props): ReactElement => {
     return <div />
   }
 
-  return (
-    <div style={{ marginTop: '5px', marginBottom: '20px' }}>
-      <StyledSelect {...props} type={type} className={cx('Select', className)}>
-        <a onClick={handleOpenOnClick}>
-          <div>{selectedOption.option || label}</div>
-          <div>
-            <Icon type="fas fa-caret-down" />
-          </div>
-        </a>
-
-        <ul style={{ display: open ? 'block' : 'none' }}>
-          {options.map(({ option, value, selected }) => {
+  const renderList = () => {
+    return (
+      <ul style={{ display: open ? 'block' : 'none' }}>
+        {options.map(
+          ({ option, value, selected }: { option: string; value: string; selected: boolean }) => {
             if (selected && selectedOption.value === '') {
               selectOption(option, value)
             }
@@ -160,8 +168,25 @@ const Select: FC<iProps> = (props): ReactElement => {
                 {option}
               </li>
             )
-          })}
-        </ul>
+          }
+        )}
+      </ul>
+    )
+  }
+
+  return (
+    <div style={{ marginTop: '5px', marginBottom: '20px' }}>
+      <StyledSelect {...props} type={type} className={cx('Select', className)}>
+        {top && renderList()}
+
+        <a onClick={handleOpenOnClick}>
+          <div>{selectedOption.option || label}</div>
+          <div>
+            <Icon type="fas fa-caret-down" />
+          </div>
+        </a>
+
+        {!top && renderList()}
       </StyledSelect>
     </div>
   )
