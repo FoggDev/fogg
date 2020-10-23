@@ -114,7 +114,7 @@ const Toggle: FC<iProps> = ({
             <StyledSquareSpan className="slider" />
           )}
         </StyledLabel>
-
+        &nbsp;
         <StyledText>{label}</StyledText>
       </StyledDiv>
     </>
