@@ -31,6 +31,7 @@ interface iStyledProps {
 
 const StyledSelect = styled.div<iStyledProps>`
   width: fit-content;
+  min-width: 200px;
   position: relative;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
