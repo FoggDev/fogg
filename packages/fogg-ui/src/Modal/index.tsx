@@ -1,6 +1,9 @@
 import React, { FC, ReactElement } from 'react'
 import styled from '@emotion/styled'
 import { Global, css } from '@emotion/core'
+import { getCurrentLanguage } from 'fogg-utils'
+
+const currentLanguage = getCurrentLanguage()
 
 const StyledBody = `
   html,
@@ -94,7 +97,7 @@ const StyledContent = styled.div`
   margin-top: 9px;
   overflow-y: auto;
   overflow-x: hidden;
-  text-align: left;
+  text-align: ${currentLanguage === 'ar' ? 'right' : 'left'};
 
   .label {
     margin: 0;
