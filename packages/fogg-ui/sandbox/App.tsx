@@ -301,7 +301,7 @@ class App extends Component {
           />
           <Select
             name="published"
-            type="warning"
+            type="white"
             label="Published"
             onClick={({ option, value }: { option: string; value: any }): void => {
               console.log(option, value)

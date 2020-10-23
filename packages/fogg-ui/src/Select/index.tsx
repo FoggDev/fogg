@@ -44,10 +44,12 @@ const StyledSelect = styled.div<iStyledProps>`
       type &&
       `
       background: ${colors[type].background};
+      color: ${colors[type].font};
+
+      ${type === 'white' ? `border: 1px solid #ccc;` : ''}
     `}
     display: flex;
     padding: 10px 20px;
-    color: white;
     border-radius: 5px;
     text-decoration: none;
     width: fit-content;
@@ -182,7 +184,7 @@ const Select: FC<iProps> = (props): ReactElement => {
         <a onClick={handleOpenOnClick}>
           <div>{selectedOption.option || label}</div>
           <div>
-            <Icon type="fas fa-caret-down" />
+            <Icon type={`fas fa-caret-${!top ? 'down' : 'up'}`} />
           </div>
         </a>
 

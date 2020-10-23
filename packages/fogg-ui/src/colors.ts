@@ -3,7 +3,14 @@ const colors: any = {
   default: {
     color: '#888',
     background: '#F5F5F5',
-    hover: '#CCC'
+    hover: '#CCC',
+    font: '#fff'
+  },
+  white: {
+    color: '#fff',
+    background: '#fff',
+    hover: '#eee',
+    font: '#222'
   },
   primary: {
     background: '#00AEEF',
@@ -45,8 +52,9 @@ const colors: any = {
   },
   select: {
     background: '#5A6268',
-    hover: '#EEE',
-    font: '#333'
+    color: '#333',
+    hover: '#ccc',
+    font: '#fff'
   }
 }
 
