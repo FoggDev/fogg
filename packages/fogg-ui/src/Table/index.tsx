@@ -1,7 +1,7 @@
 import React, { FC, ReactElement, Fragment, useState, useEffect } from 'react'
 import styled from '@emotion/styled'
 import moment from 'moment'
-import { cx, getFileExtensionFromURL, pluralify } from 'fogg-utils'
+import { cx, getFileExtensionFromURL, pluralify, getCurrentLanguage } from 'fogg-utils'
 import Icon from '../Icon'
 import Modal from '../Modal'
 
@@ -22,6 +22,8 @@ interface iProps {
     fileTypes: any
   }
 }
+
+const language = getCurrentLanguage()
 
 const StyledModalContent = styled.div`
   width: 100%;
@@ -47,7 +49,7 @@ const StyledTable = styled.table`
     background-color: white;
     border-bottom: 0;
     position: relative;
-    text-align: left;
+    text-align: ${language === 'ar' ? 'right' : 'left'};
     padding-left: 10px;
     margin-bottom: 10px;
   }
