@@ -55,6 +55,7 @@ const Menu: FC<iProps> = ({ isOpen, items }): ReactElement => {
                   src={require(`./icons/${item.icon}.svg`)}
                 />
               )}
+              &nbsp;
               {item.option}
             </a>
           </div>
