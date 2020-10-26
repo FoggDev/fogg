@@ -40,3 +40,19 @@ export const availableLanguages = (join = true) => {
 export function t(key: string, __: any) {
   return pick(key, __)
 }
+
+export function getDirection(language?: any, value1?: any, value2?: any): any {
+  if (!isLanguage(language)) {
+    language = getCurrentLanguage()
+  }
+
+  if (!value1) {
+    value1 = 'rtl'
+  }
+
+  if (!value2) {
+    value2 = 'ltr'
+  }
+
+  return language === 'ar' ? value1 : value2
+}
