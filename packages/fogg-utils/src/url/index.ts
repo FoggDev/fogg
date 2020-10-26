@@ -3,7 +3,7 @@ import { getCurrentLanguage } from '../i18n'
 
 export function redirectTo(url = '/', includeLanguage = ''): void {
   if (isBrowser()) {
-    const { pathname } = window.location
+    const { pathname, reload } = window.location
     const language = getCurrentLanguage()
     let slash = '/'
 
@@ -16,10 +16,15 @@ export function redirectTo(url = '/', includeLanguage = ''): void {
         }
 
         window.location.assign(`${slash}${segments.join('/')}`)
-        window.location.reload(true)
+
+        setTimeout(() => {
+          reload()
+        }, 0)
       } else {
         window.location.href = pathname
-        window.location.reload(true)
+        setTimeout(() => {
+          reload()
+        }, 0)
       }
     } else if (includeLanguage) {
       if (url[0] === '/') {
@@ -27,10 +32,14 @@ export function redirectTo(url = '/', includeLanguage = ''): void {
       }
 
       window.location.assign(`/${language}${slash}${url}`)
-      window.location.reload(true)
+      setTimeout(() => {
+        reload()
+      }, 0)
     } else {
       window.location.assign(url)
-      window.location.reload(true)
+      setTimeout(() => {
+        reload()
+      }, 0)
     }
   }
 }
