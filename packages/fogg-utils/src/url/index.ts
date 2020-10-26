@@ -16,8 +16,10 @@ export function redirectTo(url = '/', includeLanguage = ''): void {
         }
 
         window.location.assign(`${slash}${segments.join('/')}`)
+        window.location.reload(true)
       } else {
         window.location.href = pathname
+        window.location.reload(true)
       }
     } else if (includeLanguage) {
       if (url[0] === '/') {
@@ -25,8 +27,10 @@ export function redirectTo(url = '/', includeLanguage = ''): void {
       }
 
       window.location.assign(`/${language}${slash}${url}`)
+      window.location.reload(true)
     } else {
       window.location.assign(url)
+      window.location.reload(true)
     }
   }
 }
