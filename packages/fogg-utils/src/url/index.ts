@@ -15,18 +15,18 @@ export function redirectTo(url = '/', includeLanguage = ''): void {
           segments[0] = includeLanguage
         }
 
-        window.location.href = `${slash}${segments.join('/')}?nocache=${new Date().getTime()}`
+        window.location.assign(`${slash}${segments.join('/')}`)
       } else {
-        window.location.href = `${pathname}?nocache=${new Date().getTime()}`
+        window.location.href = pathname
       }
     } else if (includeLanguage) {
       if (url[0] === '/') {
         slash = ''
       }
 
-      window.location.href = `/${language}${slash}${url}?nocache=${new Date().getTime()}`
+      window.location.assign(`/${language}${slash}${url}`)
     } else {
-      window.location.href = `${url}?nocache=${new Date().getTime()}`
+      window.location.assign(url)
     }
   }
 }
