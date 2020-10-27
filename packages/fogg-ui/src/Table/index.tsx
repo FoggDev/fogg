@@ -504,8 +504,12 @@ const Table: FC<iProps> = ({
                     </th>
                   )}
 
-                  <th key={`th-${index}`} className={th.toLocaleLowerCase()} title={th}>
-                    {t(th)}
+                  <th
+                    key={`th-${index}`}
+                    className={th.toLocaleLowerCase()}
+                    title={`${th} (${t(th)})`}
+                  >
+                    {th}
                   </th>
                 </Fragment>
               )
@@ -768,9 +772,7 @@ const Table: FC<iProps> = ({
                     <td key={`tr-${trIndex}`} className={`${parent} ${tr} ${rowClass}`}>
                       {isFile && <a>{row[parent] && t(row[parent].toString())}</a>}
                       {!isFile && (
-                        <a href={`${url}${query}${id}`}>
-                          {row[parent] && t(row[parent].toString())}
-                        </a>
+                        <a href={`${url}${query}${id}`}>{row[parent] && row[parent].toString()}</a>
                       )}
                     </td>
                   )
