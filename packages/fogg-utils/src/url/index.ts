@@ -1,7 +1,7 @@
 import { isBrowser, isLanguage } from '../is'
 import { getCurrentLanguage } from '../i18n'
 
-export function redirectTo(url = '/', includeLanguage = ''): void {
+export function redirectTo(url = '/', includeLanguage?: any): void {
   if (isBrowser()) {
     const { pathname } = window.location
     const language = getCurrentLanguage()
