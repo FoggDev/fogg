@@ -718,7 +718,7 @@ const Table: FC<iProps> = ({
                   }
 
                   if (row[parent] && parent === 'createdAt') {
-                    const date = moment(row[parent]).format('MM/DD/YYYY,hh:mm a').split(',')
+                    const date = moment(row[parent]).format('MM/DD/YYYY,HH:mm').split(',')
 
                     return (
                       <td key={`tr-${trIndex}`} className={parent}>
