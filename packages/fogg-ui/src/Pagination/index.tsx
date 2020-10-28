@@ -167,11 +167,11 @@ const Pagination: FC<iProps> = (props): ReactElement => {
         if (Link) {
           pageNav.push(
             <StyledLi key={i}>
-              <Link href={href} as={as}>
+              <a href="#">
                 <StyledLink design={design} className="active">
                   {pge}
                 </StyledLink>
-              </Link>
+              </a>
             </StyledLi>
           )
         } else {
