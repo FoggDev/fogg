@@ -38,25 +38,32 @@ export function getEntries(data: any, exclude = ['updatedAt']): any {
     return null
   }
 
-  const entries: any = {}
+  const { fields, values } = data
   const systemHead = []
   const systemBody = []
   const head = []
   const body = []
+  let entries: any = {}
 
-  for (const field of data) {
-    if (!exclude.includes(field.identifier) && field.type !== 'Reference') {
-      if (field.isSystem && field.identifier !== 'id') {
-        systemHead.push(field.fieldName)
-        systemBody.push(field.identifier)
-      } else {
-        head.push(field.fieldName)
-        body.push(field.identifier)
-      }
+  if (fields) {
+    for (const field of fields) {
+      if (!exclude.includes(field.identifier) && field.type !== 'Reference') {
+        if (field.isSystem && field.identifier !== 'id') {
+          systemHead.push(field.fieldName)
+          systemBody.push(field.identifier)
+        } else {
+          head.push(field.fieldName)
+          body.push(field.identifier)
+        }
 
-      for (const value of field.values) {
-        entries[value.entry] = entries[value.entry] || {}
-        entries[value.entry][field.identifier] = value.value
+        if (!values) {
+          for (const value of field.values) {
+            entries[value.entry] = entries[value.entry] || {}
+            entries[value.entry][field.identifier] = value.value
+          }
+        } else {
+          entries = values
+        }
       }
     }
   }
