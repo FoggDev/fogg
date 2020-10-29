@@ -11,6 +11,7 @@ import Icon from '../Icon'
 interface iProps {
   page: number
   total: number
+  rowsPerPage?: number
   design: string
   href: string
   as?: string
@@ -145,7 +146,7 @@ const StyledLink = styled.span<iStyledLink>`
 `
 
 const Pagination: FC<iProps> = (props): ReactElement => {
-  const maxElementsPerPage = 10
+  const maxElementsPerPage = props.rowsPerPage || 10
   const increment = 5
 
   const getCurrentPage = (start: number, end: number): number => (start === 0 ? 1 : start / end + 1)
