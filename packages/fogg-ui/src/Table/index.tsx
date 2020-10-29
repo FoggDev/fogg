@@ -266,12 +266,14 @@ const StyledTable = styled.table`
           }
         }
 
-        &.draft {
-          a {
-            color: #ffb914;
-
-            &:hover {
+        &.status {
+          &.draft {
+            a {
               color: #ffb914;
+
+              &:hover {
+                color: #ffb914;
+              }
             }
           }
         }
