@@ -31,6 +31,8 @@ import Modal from '../src/Modal'
 import Toggle from '../src/Toggle'
 import Menu from '../src/Menu'
 
+import raw from './raw'
+
 import styles from './App.scss'
 
 const panels = [
@@ -53,52 +55,97 @@ const panels = [
 ]
 
 const tableData = {
-  head: ['ID', 'File', 'Filename', 'FileUrl', 'Size', 'Information', 'Created At', 'Status'],
-  body: ['id', 'file', 'fileName', 'fileUrl', 'size', 'information', 'createdAt', 'status'],
+  head: ['ID', 'Key', 'Value', 'Language'],
+  body: ['id', 'key', 'value', 'language'],
+  raw,
   rows: [
     {
-      id: '1f5f0276-2927-423e-b1d9-d411a30686bb',
-      createdAt: '2020-06-27T11:06:53-07:00',
-      status: 'Draft',
-      file: 'v32.png',
-      fileName: 'v32.png',
-      fileUrl: 'https://i0.wp.com/fishingbooker.com/blog/media/hero-lures.jpg',
-      size: '746.7 KB',
-      information: '1280x720px'
+      __typename: 'I18n',
+      id: '758674cf-67f5-457f-b34c-53a714e1be15',
+      key: 'Key',
+      value: 'Llave',
+      language: 'es-MX'
     },
     {
-      id: '62fb6d1b-9223-43c2-b316-ef7db5591e3a',
-      createdAt: '2020-06-27T00:53:33-07:00',
-      status: 'Draft',
-      file: 'V40.png',
-      fileName: 'V40.png',
-      fileUrl: 'https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iNLRO79Fe4_c/v1/1400x-1.jpg',
-      size: '745.5 KB',
-      information: '1280x720px'
+      __typename: 'I18n',
+      id: '041444fa-9f9d-41a2-8863-c447d49ed2ab',
+      key: 'Is System Field?',
+      value: '¿Es Campo de Sistema?',
+      language: 'es-MX'
     },
     {
-      id: '12fb6d1b-9223-43c2-b316-ef7db5591e3a',
-      createdAt: '2020-06-27T00:53:33-07:00',
-      status: 'Published',
-      file: 'Video.mp4',
-      fileName: 'Video.mp4',
-      fileUrl: 'http://localhost:3000/files/videos/intro.mp4',
-      size: '1 MB',
-      information: ''
+      __typename: 'I18n',
+      id: 'c82c34ab-dd24-46ff-af27-667a44b354ea',
+      key: 'Is Media (image, video or document)?',
+      value: '¿Es archivo (imagen, video o documento)?',
+      language: 'es-MX'
     },
     {
-      id: '12fb6d1b-9223-43c2-b316-ef7db5591e3a',
-      createdAt: '2020-06-27T00:53:33-07:00',
-      status: 'Published',
-      file: 'CV.pdf',
-      fileName: 'CV.pdf',
-      fileUrl: 'http://localhost:3000/files/documents/CV.pdf',
-      size: '1 MB',
-      information: ''
+      __typename: 'I18n',
+      id: 'aa00939b-5f9f-4fc1-bce9-362447dcb316',
+      key: 'Integer',
+      value: 'Entero',
+      language: 'es-MX'
+    },
+    {
+      __typename: 'I18n',
+      id: '680e8766-d849-4038-8fba-0f2b2d11d86c',
+      key: 'Inserting existing entry',
+      value: 'Insertar entrada existente',
+      language: 'es-MX'
+    },
+    {
+      __typename: 'I18n',
+      id: '418e7312-840b-4cf0-99ea-6ef00f14c776',
+      key: 'Information',
+      value: 'Información',
+      language: 'es-MX'
+    },
+    {
+      __typename: 'I18n',
+      id: '5b0ae060-1e85-4ff5-b4ad-4552c64e20da',
+      key: 'Image',
+      value: 'Imagen',
+      language: 'es-MX'
+    },
+    {
+      __typename: 'I18n',
+      id: '115fca29-8355-42c2-b1ff-de692523992d',
+      key: 'Identifier',
+      value: 'Identificador',
+      language: 'es-MX'
+    },
+    {
+      __typename: 'I18n',
+      id: '790ad65d-74cd-40fc-bd7e-8455f163582c',
+      key: 'Icon Color',
+      value: 'Color del Ícono',
+      language: 'es-MX'
+    },
+    {
+      __typename: 'I18n',
+      id: 'ee0f20ba-bdbc-485e-8160-6b833020328c',
+      key: 'ID',
+      value: 'ID',
+      language: 'es-MX'
+    },
+    {
+      __typename: 'I18n',
+      id: 'ed78ec8d-52a6-419e-899d-01788293d260',
+      key: 'Hide',
+      value: 'Oculto',
+      language: 'es-MX'
+    },
+    {
+      __typename: 'I18n',
+      id: '3279be04-bb72-40c5-ac65-9e9203653f07',
+      key: 'Hide field',
+      value: 'Ocultar campo',
+      language: 'es-MX'
     }
   ],
   count: 15,
-  isFile: true,
+  isFile: false,
   fileTypes: {
     documents: ['pdf', 'doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'zip'],
     images: ['png', 'jpg', 'jpeg', 'gif'],
