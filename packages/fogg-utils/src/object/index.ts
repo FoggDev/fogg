@@ -106,6 +106,7 @@ export function getValuesForTable(
     head: head.concat(systemHead),
     body: body.concat(systemBody),
     rows: chunk(rows, chunks),
+    raw: rows,
     total: rows.length
   }
 }
