@@ -1,4 +1,4 @@
-import React, { FC, ReactElement, Fragment, useState, useEffect } from 'react'
+import React, { FC, ReactElement, Fragment, useState, useMemo, useEffect } from 'react'
 import styled from '@emotion/styled'
 import moment from 'moment'
 import { cx, getFileExtensionFromURL, pluralify, getCurrentLanguage } from 'fogg-utils'
@@ -66,6 +66,27 @@ const StyledTable = styled.table`
       text-align: ${language === 'ar' ? 'right' : 'left'};
       text-transform: none;
       width: 100px;
+      position: relative;
+      cursor: pointer;
+
+      &.ascending::after {
+        content: '\f0de';
+        display: inline-block;
+        font-family: 'Font Awesome 5 Free';
+        font-weight: 900;
+        margin-left: 10px;
+        margin-top: 5px;
+        position: absolute;
+      }
+
+      &.descending::after {
+        content: '\f0dd';
+        display: inline-block;
+        font-family: 'Font Awesome 5 Free';
+        font-weight: 900;
+        margin-left: 10px;
+        position: absolute;
+      }
 
       @media screen and (max-width: 768px) {
         font-size: 11.5px;
@@ -321,6 +342,42 @@ const getCheckedCheckboxes = (checkboxes: any): any => {
   return Object.values(checkboxes).filter((checkbox: any) => checkbox.checked)
 }
 
+const useSortableData = (items: any, config = null) => {
+  const [sortConfig, setSortConfig] = useState<any>(config)
+
+  const sortedItems = useMemo(() => {
+    const sortableItems = [...items]
+
+    if (sortConfig !== null) {
+      sortableItems.sort((a, b) => {
+        if (a[sortConfig.key] < b[sortConfig.key]) {
+          return sortConfig.direction === 'ascending' ? -1 : 1
+        }
+
+        if (a[sortConfig.key] > b[sortConfig.key]) {
+          return sortConfig.direction === 'ascending' ? 1 : -1
+        }
+
+        return 0
+      })
+    }
+
+    return sortableItems
+  }, [items, sortConfig])
+
+  const requestSort = (key: string) => {
+    let direction = 'ascending'
+
+    if (sortConfig && sortConfig.key === key && sortConfig.direction === 'ascending') {
+      direction = 'descending'
+    }
+
+    setSortConfig({ key, direction })
+  }
+
+  return { items: sortedItems, requestSort, sortConfig }
+}
+
 const Table: FC<iProps> = ({
   className = '',
   data,
@@ -346,9 +403,19 @@ const Table: FC<iProps> = ({
   const selectedCheckboxes = getCheckedCheckboxes(checkbox)
   const checkedCheckboxes = selectedCheckboxes.length
 
+  const { items, requestSort, sortConfig } = useSortableData(rows)
+
   const handleModal = (html: any): any => {
     setHtml(html)
     handleIsOpen(!isOpen)
+  }
+
+  const getClassNamesFor = (name: string) => {
+    if (!sortConfig) {
+      return
+    }
+
+    return sortConfig.key === name ? sortConfig.direction : undefined
   }
 
   useEffect(() => {
@@ -507,8 +574,9 @@ const Table: FC<iProps> = ({
 
                   <th
                     key={`th-${index}`}
-                    className={th.toLocaleLowerCase()}
+                    className={cx(th.toLocaleLowerCase(), getClassNamesFor(body[index]))}
                     title={`${th} (${t(th)})`}
+                    onClick={() => requestSort(body[index])}
                   >
                     {th}
                   </th>
@@ -547,7 +615,7 @@ const Table: FC<iProps> = ({
         </thead>
 
         <tbody>
-          {rows.map((row, rowIndex) => {
+          {items.map((row, rowIndex) => {
             let id: any = null
 
             return (
