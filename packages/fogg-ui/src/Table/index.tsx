@@ -75,6 +75,7 @@ const StyledTable = styled.table`
         font-family: 'Font Awesome 5 Free';
         font-weight: 900;
         margin-left: 10px;
+        margin-right: 5px;
         margin-top: 5px;
         position: absolute;
       }
@@ -85,6 +86,7 @@ const StyledTable = styled.table`
         font-family: 'Font Awesome 5 Free';
         font-weight: 900;
         margin-left: 10px;
+        margin-right: 5px;
         position: absolute;
       }
 
