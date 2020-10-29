@@ -65,6 +65,7 @@ const StyledTable = styled.table`
       padding: 10px 8px;
       text-align: ${language === 'ar' ? 'right' : 'left'};
       text-transform: none;
+      width: 100px;
 
       @media screen and (max-width: 768px) {
         font-size: 11.5px;
