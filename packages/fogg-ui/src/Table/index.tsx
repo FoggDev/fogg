@@ -18,7 +18,6 @@ interface iProps {
     body: string[]
     rows: any[]
     raw: any[]
-    count?: number
     isFile?: boolean
     fileTypes: any
   }
@@ -370,23 +369,28 @@ const Search: FC<any> = ({
   t,
   setSearchedRows,
   setCurrentSearch,
+  setCheckbox,
   raw,
   currentSearch
 }): ReactElement => {
-  const handleKeyDown = (e: any) => {
-    if (e.key === 'Enter') {
-      const {
-        target: { value }
-      } = e
+  const filterRows = (raw: any, value: string) =>
+    raw.filter((item: any) => {
+      const str = Object.values(item).join().toLowerCase()
+      return str.indexOf(value.toLowerCase()) > -1
+    })
 
-      const filteredRows = raw.filter((item: any) => {
-        const str = Object.values(item).join().toLowerCase()
-        return str.indexOf(value.toLowerCase()) > -1
-      })
+  const handleOnKeyUp = (e: any) => {
+    const {
+      target: { value }
+    } = e
 
-      if (value && value !== currentSearch) {
+    if (value) {
+      if (value.length >= 3 && value !== currentSearch) {
+        const filteredRows = filterRows(raw, value)
         setCurrentSearch(value)
         setSearchedRows(filteredRows)
+
+        setCheckbox(createCheckboxes(false, filteredRows, filteredRows.length))
       } else {
         setCurrentSearch('')
         setSearchedRows(raw)
@@ -396,7 +400,7 @@ const Search: FC<any> = ({
 
   return (
     <StyledSearch>
-      <StyledInput type="text" placeholder={t('Search')} onKeyDown={handleKeyDown} />
+      <StyledInput type="text" placeholder={t('Search')} onKeyUp={handleOnKeyUp} />
     </StyledSearch>
   )
 }
@@ -442,7 +446,12 @@ const useSortableData = (items: any, config = null) => {
     return sortableItems
   }, [items, sortConfig])
 
-  const requestSort = (key: string) => {
+  const requestSort = (key: string, isSearch: boolean) => {
+    if (isSearch) {
+      setSortConfig({ key, direction: undefined })
+      return null
+    }
+
     let direction = 'ascending'
 
     if (sortConfig && sortConfig.key === key && sortConfig.direction === 'ascending') {
@@ -470,22 +479,22 @@ const Table: FC<iProps> = ({
     images: ['png', 'jpg', 'jpeg', 'gif'],
     videos: ['mp4']
   }
-  const { head, body, rows = [], raw = [], count, isFile, fileTypes = defaultFileTypes } = data
-  const total = count || rows.length
+  const { head, body, rows = [], raw = [], isFile, fileTypes = defaultFileTypes } = data
 
   const [allCheckboxes, setAllCheckboxes] = useState(false)
   const [isOpen, handleIsOpen] = useState(false)
   const [html, setHtml] = useState('')
-  const [checkbox, setCheckbox] = useState(createCheckboxes(false, rows, rows.length))
   const [searchedRows, setSearchedRows] = useState(raw)
   const [currentSearch, setCurrentSearch] = useState('')
 
+  const { items, requestSort, sortConfig } = useSortableData(rows)
+  const showItems = currentSearch ? searchedRows : items
+
+  const [checkbox, setCheckbox] = useState(createCheckboxes(false, showItems, showItems.length))
   const selectedCheckboxes = getCheckedCheckboxes(checkbox)
   const checkedCheckboxes = selectedCheckboxes.length
 
-  const { items, requestSort, sortConfig } = useSortableData(rows)
-
-  const showItems = currentSearch && searchedRows.length ? searchedRows : items
+  const total = showItems.length
 
   const handleModal = (html: any): any => {
     setHtml(html)
@@ -503,12 +512,12 @@ const Table: FC<iProps> = ({
   useEffect(() => {
     const allChecks = Object.values(checkbox).filter((check: any) => check.checked)
 
-    if (allChecks.length < rows.length) {
+    if (allChecks.length < showItems.length) {
       setAllCheckboxes(false)
-    } else {
+    } else if (showItems.length) {
       setAllCheckboxes(true)
     }
-  }, [checkbox])
+  }, [checkbox, showItems, currentSearch])
 
   const handleCheckbox = (index: number): any => {
     const newCheckbox = checkbox[index]
@@ -522,11 +531,11 @@ const Table: FC<iProps> = ({
 
   const handleAllCheckbox = (): any => {
     setAllCheckboxes(!allCheckboxes)
-    setCheckbox(createCheckboxes(!allCheckboxes, rows, rows.length))
+    setCheckbox(createCheckboxes(!allCheckboxes, showItems, showItems.length))
   }
 
   const renderDelete = (): any => {
-    const hasPublishedEntries = selectedCheckboxes.filter(
+    const hasPublishedEntries = getCheckedCheckboxes(checkbox).filter(
       (selectedCheckbox: any) => selectedCheckbox.status === 'Published'
     )
 
@@ -535,7 +544,7 @@ const Table: FC<iProps> = ({
         <>
           <span
             className="action onDelete"
-            onClick={(): void => onDelete(selectedCheckboxes)}
+            onClick={(): void => onDelete(getCheckedCheckboxes(checkbox))}
             title="Delete"
           >
             <Icon type="fas fa-trash" /> {t('Delete')}
@@ -554,7 +563,7 @@ const Table: FC<iProps> = ({
   }
 
   const renderPublish = (): any => {
-    const hasPublishedEntries = selectedCheckboxes.filter(
+    const hasPublishedEntries = getCheckedCheckboxes(checkbox).filter(
       (selectedCheckbox: any) => selectedCheckbox.status === 'Published'
     )
 
@@ -563,7 +572,7 @@ const Table: FC<iProps> = ({
         <>
           <span
             className="action onPublish"
-            onClick={(): void => onPublish(selectedCheckboxes)}
+            onClick={(): void => onPublish(getCheckedCheckboxes(checkbox))}
             title="Publish"
           >
             <Icon type="fas fa-download" /> {t('Publish')}
@@ -585,7 +594,7 @@ const Table: FC<iProps> = ({
   }
 
   const renderUnpublish = (): any => {
-    const hasPublishedEntries = selectedCheckboxes.filter(
+    const hasPublishedEntries = getCheckedCheckboxes(checkbox).filter(
       (selectedCheckbox: any) => selectedCheckbox.status === 'Published'
     )
 
@@ -606,7 +615,7 @@ const Table: FC<iProps> = ({
       <>
         <span
           className="action onUnpublish"
-          onClick={(): void => onUnpublish(selectedCheckboxes)}
+          onClick={(): void => onUnpublish(getCheckedCheckboxes(checkbox))}
           title={t('Unpublish')}
         >
           <Icon type="fas fa-download" /> {t('Unpublish')}
@@ -632,9 +641,9 @@ const Table: FC<iProps> = ({
 
       <Search
         t={t}
-        searchedRows={searchedRows}
         setSearchedRows={setSearchedRows}
         setCurrentSearch={setCurrentSearch}
+        setCheckbox={setCheckbox}
         raw={raw}
       />
 
@@ -666,7 +675,7 @@ const Table: FC<iProps> = ({
                     key={`th-${index}`}
                     className={cx(th.toLocaleLowerCase(), getClassNamesFor(body[index]))}
                     title={`${th} (${t(th)})`}
-                    onClick={() => requestSort(body[index])}
+                    onClick={() => requestSort(body[index], !!currentSearch)}
                   >
                     {th}
                   </th>
@@ -683,7 +692,7 @@ const Table: FC<iProps> = ({
             }}
           >
             <th className="actions" colSpan={head.length + 1}>
-              {checkedCheckboxes}{' '}
+              {checkedCheckboxes > showItems.length ? showItems.length : checkedCheckboxes}{' '}
               {checkedCheckboxes === 1 ? t('entry selected') : t('entries selected')}:
               {renderDelete()}
               {renderPublish()}
@@ -705,6 +714,13 @@ const Table: FC<iProps> = ({
         </thead>
 
         <tbody>
+          {showItems && showItems.length === 0 && (
+            <tr>
+              <td colSpan={5} style={{ textAlign: 'center' }}>
+                {t('No results')}
+              </td>
+            </tr>
+          )}
           {showItems &&
             showItems.map((row, rowIndex) => {
               let id: any = null
