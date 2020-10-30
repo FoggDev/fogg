@@ -17,7 +17,7 @@ interface iProps {
     head: string[]
     body: string[]
     rows: any[]
-    count?: number
+    raw: any[]
     isFile?: boolean
     fileTypes: any
   }
@@ -328,6 +328,83 @@ const StyledCenter = styled.div`
   margin-bottom: 10px;
 `
 
+const StyledInput = styled.input`
+  border: 1px solid #eee;
+  color: #333;
+  height: 35px;
+  padding-left: 5px;
+  font-size: 13px;
+  width: 100%;
+
+  &:focus {
+    box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+    border: 1px solid rgba(81, 203, 238, 1);
+    outline: 0;
+  }
+
+  &::placeholder {
+    color: #ccc;
+    opacity: 1;
+  }
+`
+
+const StyledSearch = styled.div`
+  display: inline-block;
+  position: relative;
+  width: 50%;
+
+  &:after {
+    content: '\f002';
+    display: inline-block;
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    position: absolute;
+    top: 11px;
+    right: 6px;
+    color: #ccc;
+  }
+`
+
+const Search: FC<any> = ({
+  t,
+  setSearchedRows,
+  setCurrentSearch,
+  setCheckbox,
+  raw,
+  currentSearch
+}): ReactElement => {
+  const filterRows = (raw: any, value: string) =>
+    raw.filter((item: any) => {
+      const str = Object.values(item).join().toLowerCase()
+      return str.indexOf(value.toLowerCase()) > -1
+    })
+
+  const handleOnKeyUp = (e: any) => {
+    const {
+      target: { value }
+    } = e
+
+    if (value) {
+      if (value.length >= 3 && value !== currentSearch) {
+        const filteredRows = filterRows(raw, value)
+        setCurrentSearch(value)
+        setSearchedRows(filteredRows)
+
+        setCheckbox(createCheckboxes(false, filteredRows, filteredRows.length))
+      } else {
+        setCurrentSearch('')
+        setSearchedRows(raw)
+      }
+    }
+  }
+
+  return (
+    <StyledSearch>
+      <StyledInput type="text" placeholder={t('Search')} onKeyUp={handleOnKeyUp} />
+    </StyledSearch>
+  )
+}
+
 const createCheckboxes = (state: boolean, ids: any[], count: number): any => {
   const checkboxes: any = {}
 
@@ -369,7 +446,12 @@ const useSortableData = (items: any, config = null) => {
     return sortableItems
   }, [items, sortConfig])
 
-  const requestSort = (key: string) => {
+  const requestSort = (key: string, isSearch: boolean) => {
+    if (isSearch) {
+      setSortConfig({ key, direction: undefined })
+      return null
+    }
+
     let direction = 'ascending'
 
     if (sortConfig && sortConfig.key === key && sortConfig.direction === 'ascending') {
@@ -397,17 +479,22 @@ const Table: FC<iProps> = ({
     images: ['png', 'jpg', 'jpeg', 'gif'],
     videos: ['mp4']
   }
-  const { head, body, rows = [], count, isFile, fileTypes = defaultFileTypes } = data
-  const total = count || rows.length
+  const { head, body, rows = [], raw = [], isFile, fileTypes = defaultFileTypes } = data
 
   const [allCheckboxes, setAllCheckboxes] = useState(false)
   const [isOpen, handleIsOpen] = useState(false)
   const [html, setHtml] = useState('')
-  const [checkbox, setCheckbox] = useState(createCheckboxes(false, rows, rows.length))
+  const [searchedRows, setSearchedRows] = useState(raw)
+  const [currentSearch, setCurrentSearch] = useState('')
+
+  const { items, requestSort, sortConfig } = useSortableData(rows)
+  const showItems = currentSearch ? searchedRows : items
+
+  const [checkbox, setCheckbox] = useState(createCheckboxes(false, showItems, showItems.length))
   const selectedCheckboxes = getCheckedCheckboxes(checkbox)
   const checkedCheckboxes = selectedCheckboxes.length
 
-  const { items, requestSort, sortConfig } = useSortableData(rows)
+  const total = showItems.length
 
   const handleModal = (html: any): any => {
     setHtml(html)
@@ -425,12 +512,12 @@ const Table: FC<iProps> = ({
   useEffect(() => {
     const allChecks = Object.values(checkbox).filter((check: any) => check.checked)
 
-    if (allChecks.length < rows.length) {
+    if (allChecks.length < showItems.length) {
       setAllCheckboxes(false)
-    } else {
+    } else if (showItems.length) {
       setAllCheckboxes(true)
     }
-  }, [checkbox])
+  }, [checkbox, showItems, currentSearch])
 
   const handleCheckbox = (index: number): any => {
     const newCheckbox = checkbox[index]
@@ -444,11 +531,11 @@ const Table: FC<iProps> = ({
 
   const handleAllCheckbox = (): any => {
     setAllCheckboxes(!allCheckboxes)
-    setCheckbox(createCheckboxes(!allCheckboxes, rows, rows.length))
+    setCheckbox(createCheckboxes(!allCheckboxes, showItems, showItems.length))
   }
 
   const renderDelete = (): any => {
-    const hasPublishedEntries = selectedCheckboxes.filter(
+    const hasPublishedEntries = getCheckedCheckboxes(checkbox).filter(
       (selectedCheckbox: any) => selectedCheckbox.status === 'Published'
     )
 
@@ -457,7 +544,7 @@ const Table: FC<iProps> = ({
         <>
           <span
             className="action onDelete"
-            onClick={(): void => onDelete(selectedCheckboxes)}
+            onClick={(): void => onDelete(getCheckedCheckboxes(checkbox))}
             title="Delete"
           >
             <Icon type="fas fa-trash" /> {t('Delete')}
@@ -476,7 +563,7 @@ const Table: FC<iProps> = ({
   }
 
   const renderPublish = (): any => {
-    const hasPublishedEntries = selectedCheckboxes.filter(
+    const hasPublishedEntries = getCheckedCheckboxes(checkbox).filter(
       (selectedCheckbox: any) => selectedCheckbox.status === 'Published'
     )
 
@@ -485,7 +572,7 @@ const Table: FC<iProps> = ({
         <>
           <span
             className="action onPublish"
-            onClick={(): void => onPublish(selectedCheckboxes)}
+            onClick={(): void => onPublish(getCheckedCheckboxes(checkbox))}
             title="Publish"
           >
             <Icon type="fas fa-download" /> {t('Publish')}
@@ -507,7 +594,7 @@ const Table: FC<iProps> = ({
   }
 
   const renderUnpublish = (): any => {
-    const hasPublishedEntries = selectedCheckboxes.filter(
+    const hasPublishedEntries = getCheckedCheckboxes(checkbox).filter(
       (selectedCheckbox: any) => selectedCheckbox.status === 'Published'
     )
 
@@ -528,7 +615,7 @@ const Table: FC<iProps> = ({
       <>
         <span
           className="action onUnpublish"
-          onClick={(): void => onUnpublish(selectedCheckboxes)}
+          onClick={(): void => onUnpublish(getCheckedCheckboxes(checkbox))}
           title={t('Unpublish')}
         >
           <Icon type="fas fa-download" /> {t('Unpublish')}
@@ -551,6 +638,14 @@ const Table: FC<iProps> = ({
       >
         <StyledModalContent dangerouslySetInnerHTML={{ __html: html }} />
       </Modal>
+
+      <Search
+        t={t}
+        setSearchedRows={setSearchedRows}
+        setCurrentSearch={setCurrentSearch}
+        setCheckbox={setCheckbox}
+        raw={raw}
+      />
 
       <StyledTable className={cx('Table', className)}>
         <caption>
@@ -580,7 +675,7 @@ const Table: FC<iProps> = ({
                     key={`th-${index}`}
                     className={cx(th.toLocaleLowerCase(), getClassNamesFor(body[index]))}
                     title={`${th} (${t(th)})`}
-                    onClick={() => requestSort(body[index])}
+                    onClick={() => requestSort(body[index], !!currentSearch)}
                   >
                     {th}
                   </th>
@@ -597,7 +692,7 @@ const Table: FC<iProps> = ({
             }}
           >
             <th className="actions" colSpan={head.length + 1}>
-              {checkedCheckboxes}{' '}
+              {checkedCheckboxes > showItems.length ? showItems.length : checkedCheckboxes}{' '}
               {checkedCheckboxes === 1 ? t('entry selected') : t('entries selected')}:
               {renderDelete()}
               {renderPublish()}
@@ -619,72 +714,80 @@ const Table: FC<iProps> = ({
         </thead>
 
         <tbody>
-          {items.map((row, rowIndex) => {
-            let id: any = null
+          {showItems && showItems.length === 0 && (
+            <tr>
+              <td colSpan={5} style={{ textAlign: 'center' }}>
+                {t('No results')}
+              </td>
+            </tr>
+          )}
+          {showItems &&
+            showItems.map((row, rowIndex) => {
+              let id: any = null
 
-            return (
-              <tr key={`row-${rowIndex}`}>
-                {body.map((tr, trIndex) => {
-                  const [parent, child] = tr.split('.')
-                  let values = ''
+              return (
+                <tr key={`row-${rowIndex}`}>
+                  {body.map((tr, trIndex) => {
+                    const [parent, child] = tr.split('.')
+                    let values = ''
 
-                  if (row && row[parent] && typeof row[parent][child] === 'string') {
-                    values = row[parent][child]
-                  }
-
-                  if (!id && tr === 'id') {
-                    id = row[parent].toString()
-                  }
-
-                  if (child) {
-                    if (Array.isArray(row[parent])) {
-                      row[parent].forEach((item: any) => {
-                        if (item[child]) {
-                          values += `${item[child]} `
-                        } else {
-                          values += `${item} `
-                        }
-                      })
+                    if (row && row[parent] && typeof row[parent][child] === 'string') {
+                      values = row[parent][child]
                     }
 
-                    return (
-                      <td key={`tr-${trIndex}`}>
-                        {isFile && <span>{t(values)}</span>}
-                        {!isFile && (
-                          <a href={`${url}${query}${id}`} title={values}>
-                            <span>{t(values)}</span>
-                          </a>
-                        )}
-                      </td>
-                    )
-                  }
+                    if (!id && tr === 'id') {
+                      id = row[parent].toString()
+                    }
 
-                  if (row[parent] && parent === 'content') {
-                    return (
-                      <td key={`tr-${trIndex}`} className={parent}>
-                        <span onClick={(): void => handleModal(row[parent])}>
-                          <Icon type="fas fa-quote-right" />
-                        </span>
-                      </td>
-                    )
-                  }
+                    if (child) {
+                      if (Array.isArray(row[parent])) {
+                        row[parent].forEach((item: any) => {
+                          if (item[child]) {
+                            values += `${item[child]} `
+                          } else {
+                            values += `${item} `
+                          }
+                        })
+                      }
 
-                  if (isFile && row[parent] && parent === 'file') {
-                    return <td key={`tr-${trIndex}`} />
-                  }
+                      return (
+                        <td key={`tr-${trIndex}`}>
+                          {isFile && <span>{t(values)}</span>}
+                          {!isFile && (
+                            <a href={`${url}${query}${id}`} title={values}>
+                              <span>{t(values)}</span>
+                            </a>
+                          )}
+                        </td>
+                      )
+                    }
 
-                  if (isFile && row[parent] && parent === 'fileUrl') {
-                    const { extension, fileName } = getFileExtensionFromURL(row[parent])
-                    const isImage = fileTypes.images.includes(extension)
-                    const isDocument = fileTypes.documents.includes(extension)
-                    const isVideo = fileTypes.videos.includes(extension)
+                    if (row[parent] && parent === 'content') {
+                      return (
+                        <td key={`tr-${trIndex}`} className={parent}>
+                          <span onClick={(): void => handleModal(row[parent])}>
+                            <Icon type="fas fa-quote-right" />
+                          </span>
+                        </td>
+                      )
+                    }
 
-                    if (isImage) {
-                      const img = `
+                    if (isFile && row[parent] && parent === 'file') {
+                      return <td key={`tr-${trIndex}`} />
+                    }
+
+                    if (isFile && row[parent] && parent === 'fileUrl') {
+                      const { extension, fileName } = getFileExtensionFromURL(row[parent])
+                      const isImage = fileTypes.images.includes(extension)
+                      const isDocument = fileTypes.documents.includes(extension)
+                      const isVideo = fileTypes.videos.includes(extension)
+
+                      if (isImage) {
+                        const img = `
                         <div style="display: flex; align-items: center; flex-direction: column;">
                           <img src="${row[parent]}" alt="${
-                        row[parent]
-                      }" style="width: 90%; border: 3px solid #000; margin-bottom: 10px;" />
+                          row[parent]
+                        }" style="width: 90%; border: 3px solid #000; margin-bottom: 10px;" />
                           <p>
                             <a
                               style="
@@ -707,24 +810,24 @@ const Table: FC<iProps> = ({
                         </div>
                       `
 
-                      return (
-                        <td key={`tr-${trIndex}`}>
-                          <a
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            title={t('Click to preview')}
-                            onClick={(): void => handleModal(img)}
-                          >
-                            <StyledCenter>
-                              <StyledPreviewImage src={row[parent]} />
-                            </StyledCenter>
-                          </a>
-                        </td>
-                      )
-                    }
+                        return (
+                          <td key={`tr-${trIndex}`}>
+                            <a
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              title={t('Click to preview')}
+                              onClick={(): void => handleModal(img)}
+                            >
+                              <StyledCenter>
+                                <StyledPreviewImage src={row[parent]} />
+                              </StyledCenter>
+                            </a>
+                          </td>
+                        )
+                      }
 
-                    if (isVideo) {
-                      const video = `
+                      if (isVideo) {
+                        const video = `
                         <div style="display: flex; align-items: center; flex-direction: column;">
                           <video width="80%" controls autoplay style="border-radius: 10px;">
                             <source src="${row[parent]}" type="video/mp4">
@@ -751,108 +854,116 @@ const Table: FC<iProps> = ({
                         </div>
                       `
 
+                        return (
+                          <td key={`tr-${trIndex}`}>
+                            <a
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              title={t('Click to preview')}
+                              onClick={(): void => handleModal(video)}
+                            >
+                              <StyledCenter>
+                                <StyledPlayIcon>
+                                  <Icon type="fas fa-play-circle" />
+                                </StyledPlayIcon>
+                              </StyledCenter>
+                            </a>
+                          </td>
+                        )
+                      }
+
+                      if (isDocument) {
+                        return (
+                          <td key={`tr-${trIndex}`}>
+                            <a
+                              href={row[parent]}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              title={t('Click to download')}
+                              download={`${fileName}.${extension}`}
+                            >
+                              <StyledCenter>
+                                <StyledDocumentIcon>
+                                  <Icon type="fas fa-cloud-download-alt" />
+                                </StyledDocumentIcon>
+                              </StyledCenter>
+                            </a>
+                          </td>
+                        )
+                      }
+                    }
+
+                    if (row[parent] && parent === 'createdAt') {
+                      const date = moment(row[parent]).format('MM/DD/YYYY,HH:mm').split(',')
+
                       return (
-                        <td key={`tr-${trIndex}`}>
-                          <a
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            title={t('Click to preview')}
-                            onClick={(): void => handleModal(video)}
-                          >
-                            <StyledCenter>
-                              <StyledPlayIcon>
-                                <Icon type="fas fa-play-circle" />
-                              </StyledPlayIcon>
-                            </StyledCenter>
-                          </a>
+                        <td key={`tr-${trIndex}`} className={parent}>
+                          {isFile && (
+                            <>
+                              <span className="date">{date[0]}</span>
+                              <span className="at"> {t('at')} </span>
+                              <span className="hour">{date[1]}</span>
+                            </>
+                          )}
+
+                          {!isFile && (
+                            <a href={`${url}${query}${id}`}>
+                              <span className="date">{date[0]}</span>
+                              <span className="at"> {t('at')} </span>
+                              <span className="hour">{date[1]}</span>
+                            </a>
+                          )}
                         </td>
                       )
                     }
 
-                    if (isDocument) {
+                    if (trIndex === 0) {
+                      let checked = false
+
+                      if (checkbox[rowIndex]) {
+                        checked = checkbox[rowIndex].checked
+                      }
+
                       return (
-                        <td key={`tr-${trIndex}`}>
-                          <a
-                            href={row[parent]}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            title={t('Click to download')}
-                            download={`${fileName}.${extension}`}
-                          >
-                            <StyledCenter>
-                              <StyledDocumentIcon>
-                                <Icon type="fas fa-cloud-download-alt" />
-                              </StyledDocumentIcon>
-                            </StyledCenter>
-                          </a>
-                        </td>
+                        <Fragment key="checkbox-fragment">
+                          <td className="checkbox">
+                            <input
+                              type="checkbox"
+                              name="option[]"
+                              checked={checked}
+                              onChange={(): void => handleCheckbox(rowIndex)}
+                            />
+                          </td>
+                          <td key={`tr-${trIndex}`} className={tr} title={row[parent].toString()}>
+                            {isFile && <span>{row[parent].toString()}</span>}
+                            {!isFile && (
+                              <a href={`${url}${query}${id}`}>
+                                <span>{row[parent].toString()}</span>
+                              </a>
+                            )}
+                          </td>
+                        </Fragment>
                       )
                     }
-                  }
 
-                  if (row[parent] && parent === 'createdAt') {
-                    const date = moment(row[parent]).format('MM/DD/YYYY,HH:mm').split(',')
+                    const rowClass = row[parent]
+                      ? row[parent].toString().toLowerCase().replace(/\s+/g, '')
+                      : ''
 
                     return (
-                      <td key={`tr-${trIndex}`} className={parent}>
-                        {isFile && (
-                          <>
-                            <span className="date">{date[0]}</span>
-                            <span className="at"> {t('at')} </span>
-                            <span className="hour">{date[1]}</span>
-                          </>
-                        )}
-
+                      <td key={`tr-${trIndex}`} className={`${parent} ${tr} ${rowClass}`}>
+                        {isFile && <a>{row[parent] && t(row[parent].toString())}</a>}
                         {!isFile && (
                           <a href={`${url}${query}${id}`}>
-                            <span className="date">{date[0]}</span>
-                            <span className="at"> {t('at')} </span>
-                            <span className="hour">{date[1]}</span>
+                            {row[parent] && row[parent].toString()}
                           </a>
                         )}
                       </td>
                     )
-                  }
-
-                  if (trIndex === 0) {
-                    return (
-                      <Fragment key="checkbox-fragment">
-                        <td className="checkbox">
-                          <input
-                            type="checkbox"
-                            name="option[]"
-                            checked={checkbox[rowIndex].checked}
-                            onChange={(): void => handleCheckbox(rowIndex)}
-                          />
-                        </td>
-                        <td key={`tr-${trIndex}`} className={tr} title={row[parent].toString()}>
-                          {isFile && <span>{row[parent].toString()}</span>}
-                          {!isFile && (
-                            <a href={`${url}${query}${id}`}>
-                              <span>{row[parent].toString()}</span>
-                            </a>
-                          )}
-                        </td>
-                      </Fragment>
-                    )
-                  }
-
-                  const rowClass = row[parent]
-                    ? row[parent].toString().toLowerCase().replace(/\s+/g, '')
-                    : ''
-
-                  return (
-                    <td key={`tr-${trIndex}`} className={`${parent} ${tr} ${rowClass}`}>
-                      {isFile && <a>{row[parent] && t(row[parent].toString())}</a>}
-                      {!isFile && (
-                        <a href={`${url}${query}${id}`}>{row[parent] && row[parent].toString()}</a>
-                      )}
-                    </td>
-                  )
-                })}
-              </tr>
-            )
-          })}
+                  })}
+                </tr>
+              )
+            })}
         </tbody>
       </StyledTable>
     </>
