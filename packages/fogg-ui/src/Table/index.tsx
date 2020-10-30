@@ -368,10 +368,10 @@ const StyledSearch = styled.div`
 
 const Search: FC<any> = ({
   t,
-  searchedRows,
   setSearchedRows,
   setCurrentSearch,
-  raw
+  raw,
+  currentSearch
 }): ReactElement => {
   const handleKeyDown = (e: any) => {
     if (e.key === 'Enter') {
@@ -381,19 +381,16 @@ const Search: FC<any> = ({
 
       const filteredRows = raw.filter((item: any) => {
         const str = Object.values(item).join().toLowerCase()
-        console.log('value===', str)
         return str.indexOf(value.toLowerCase()) > -1
       })
-      console.log('FILTERED===', filteredRows)
 
-      if (value) {
+      if (value && value !== currentSearch) {
         setCurrentSearch(value)
+        setSearchedRows(filteredRows)
       } else {
         setCurrentSearch('')
         setSearchedRows(raw)
       }
-
-      setSearchedRows(filteredRows)
     }
   }
 
