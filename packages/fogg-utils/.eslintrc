@@ -41,6 +41,8 @@
     "no-underscore-dangle": "off",
     "prettier/prettier": "error",
     "react/jsx-curly-newline": "off",
-    "no-bitwise": "off"
+    "no-bitwise": "off",
+    "func-names": "off",
+    "@typescript-eslint/no-this-alias": "off"
   }
 }

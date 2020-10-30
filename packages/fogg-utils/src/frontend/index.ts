@@ -130,3 +130,19 @@ export function add(cssRule: any): any {
     }
   }
 }
+
+export function debounce(func: any, wait: number) {
+  let timeout: any = null
+
+  return function (...args: any) {
+    const context = this
+
+    const later = function () {
+      timeout = null
+      func.apply(context, args)
+    }
+
+    clearTimeout(timeout)
+    timeout = setTimeout(later, wait)
+  }
+}
