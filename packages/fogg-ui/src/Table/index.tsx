@@ -395,6 +395,9 @@ const Search: FC<any> = ({
         setCurrentSearch('')
         setSearchedRows(raw)
       }
+    } else {
+      setCurrentSearch('')
+      setSearchedRows(raw)
     }
   }
 
