@@ -494,7 +494,7 @@ const Table: FC<iProps> = ({
   const selectedCheckboxes = getCheckedCheckboxes(checkbox)
   const checkedCheckboxes = selectedCheckboxes.length
 
-  const total = showItems.length
+  const total = currentSearch ? showItems.length : raw.length
 
   const handleModal = (html: any): any => {
     setHtml(html)
@@ -828,31 +828,31 @@ const Table: FC<iProps> = ({
 
                       if (isVideo) {
                         const video = `
-                        <div style="display: flex; align-items: center; flex-direction: column;">
-                          <video width="80%" controls autoplay style="border-radius: 10px;">
-                            <source src="${row[parent]}" type="video/mp4">
-                          </video>
-                          <p>
-                            <a
-                              style="
-                                text-decoration: none;
-                                font-weight: 600;
-                                background-color: #00AEEF;
-                                border-color: #00AEEF;
-                                color: #FFF;
-                                border-radius: .25rem;
-                                padding: .375rem .75rem;
-                              "
-                              href="${row[parent]}"
-                              title="${t('Download Video')}"
-                              target="_blank"
-                              download="${fileName}.${extension}"
-                            >
-                              ${t('Download')}
-                            </a>
-                          </p>
-                        </div>
-                      `
+                          <div style="display: flex; align-items: center; flex-direction: column;">
+                            <video width="80%" controls autoplay style="border-radius: 10px;">
+                              <source src="${row[parent]}" type="video/mp4">
+                            </video>
+                            <p>
+                              <a
+                                style="
+                                  text-decoration: none;
+                                  font-weight: 600;
+                                  background-color: #00AEEF;
+                                  border-color: #00AEEF;
+                                  color: #FFF;
+                                  border-radius: .25rem;
+                                  padding: .375rem .75rem;
+                                "
+                                href="${row[parent]}"
+                                title="${t('Download Video')}"
+                                target="_blank"
+                                download="${fileName}.${extension}"
+                              >
+                                ${t('Download')}
+                              </a>
+                            </p>
+                          </div>
+                        `
 
                         return (
                           <td key={`tr-${trIndex}`}>
